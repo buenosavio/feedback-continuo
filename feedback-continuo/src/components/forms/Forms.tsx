@@ -1,10 +1,13 @@
-import { useFormik} from "formik";
-import {LoginDTO} from '../../model/LoginDTO';
+import { LoginDTO } from '../../model/LoginDTO';
+import { useFormik } from "formik";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+
 import * as Yup from 'yup';
 
 function Forms() {
 
-  
+  const {handleLogin} = useContext<any>(AuthContext);
 
   // const SignupSchema : any = Yup.object().shape({
   //   user: Yup.string()
@@ -20,8 +23,8 @@ function Forms() {
       user: '',
       password: '',
     },
-    onSubmit: (values:LoginDTO ) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: (values: LoginDTO) => {      
+      handleLogin(values);
     },
     // validationSchema: SignupSchema
   });
