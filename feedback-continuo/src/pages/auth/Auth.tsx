@@ -1,20 +1,19 @@
+import { Link } from 'react-router-dom';
 import { LoginDTO } from '../../model/LoginDTO';
 import { useFormik } from "formik";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
+import { Form, TextDanger } from '../../Global.styles';
 import { useContext, useEffect } from "react";
-import { Link } from 'react-router-dom';
+
+import * as Yup from 'yup';
 
 const Auth = () => {
 
-  // const SignupSchema : any = Yup.object().shape({
-  //   user: Yup.string()
-  //   .user ('E-mail inválido')
-  //   .required ('Campo Obrigatório'),
-  //   password: Yup.string()
-  //   .password ('Usuário Inválido')
-  //   .required ('Campo Obrigatório')
-  // });
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string().email('E-mail inválido').required('Obrigatório').matches(/@dbccompany.com.br/, 'Informe e-mail da DBC'),
+    password: Yup.string().required('Obrigatório')
+  });
 
   const {handleLogin, isNotLogged} = useContext(AuthContext) as IAuthContext;  
   
@@ -24,41 +23,40 @@ const Auth = () => {
 
   const formikProps = useFormik({
     initialValues: {
-      user: '',
+      email: '',
       password: '',
     },
     onSubmit: (values: LoginDTO) => {      
       handleLogin(values);
     },
-    // validationSchema: SignupSchema
+    validationSchema: (SignupSchema)
   });
   return (
     <>
-      <form onSubmit={formikProps.handleSubmit}>
-        <label htmlFor="user">Login</label>
-        <input
-          id="user"
-          name="user"
-          type="text"
+      <h1>Fazer Login</h1>
+      <Form onSubmit={formikProps.handleSubmit}>
+        <label htmlFor="email">E-mail</label>
+        <input id="email" name="email" type="text"
           onChange={formikProps.handleChange}
-          value={formikProps.values.user}
+          value={formikProps.values.email}
+          onBlur={formikProps.handleBlur}
         />
-        {formikProps.errors.user && formikProps.touched.user ? (
-                    <div>{formikProps.errors.user}</div>
-                    ) : null}
+        {formikProps.errors.email && formikProps.touched.email 
+          ? (<TextDanger>{formikProps.errors.email}</TextDanger>) 
+          : null}
+
         <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="text"
+        <input id="password" name="password" type="password"
           onChange={formikProps.handleChange}
           value={formikProps.values.password}
+          onBlur={formikProps.handleBlur}
         />
-        {formikProps.errors.password && formikProps.touched.password ? (
-                    <div>{formikProps.errors.password}</div>
-                    ) : null}
-        <button type="submit">Submit</button>
-      </form>
+        {formikProps.errors.password && formikProps.touched.password 
+          ? (<TextDanger>{formikProps.errors.password}</TextDanger>)
+          : null}
+
+        <button type="submit">Login</button>
+      </Form>
       <Link to='/register-user'>Registre-se</Link>
     </>
 )

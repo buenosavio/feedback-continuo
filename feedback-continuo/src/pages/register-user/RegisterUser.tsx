@@ -11,10 +11,10 @@ import * as Yup from 'yup';
 const RegisterUser = () => {
 
   const SignupSchema = Yup.object().shape({
-    name: Yup.string().required('Obrigatório'),
+    name: Yup.string().required('Obrigatório').matches(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/, 'Permitido apenas letras'),
     email: Yup.string().email('Informe um e-mail válido').required('Obrigatório').matches(/@dbccompany.com.br/, 'Informe e-mail da DBC'),
-    password: Yup.string().required('Obrigatório'),
-    confirm_password: Yup.string().required('Obrigatório').oneOf([Yup.ref('password')], 'A senha deve ser igual'),
+    password: Yup.string().required('Obrigatório').min(8, 'Mínimo 8 dígitos').max(20, 'Máximo 20 dígitos'),
+    confirm_password: Yup.string().required('Obrigatório').oneOf([Yup.ref('password')], 'A senha deve ser igual').min(8, 'Mínimo 8 dígitos').max(20, 'Máximo 20 dígitos'),
   });
 
   const {registerUser} = useContext(AuthContext) as IAuthContext  
@@ -25,6 +25,7 @@ const RegisterUser = () => {
       email: '',
       password: '',
       confirm_password: '',
+      profileImage: ''
     },
     validationSchema: (SignupSchema),
     onSubmit: (values: UserDTO) => {      
@@ -64,7 +65,7 @@ const RegisterUser = () => {
           value={formikProps.values.password}
           onBlur={formikProps.handleBlur}
         />
-        <PasswordStrengthBar password={formikProps.values.password} />
+        <PasswordStrengthBar password={formikProps.values.password} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={8} shortScoreWord={['Muito curta']}/>
         {formikProps.errors.password && formikProps.touched.password 
           ? (<TextDanger>{formikProps.errors.password}</TextDanger>) 
           : null

@@ -1,7 +1,7 @@
 export interface UserDTO {
-  name: string,
   email: string,
+  name: string,
   password: string,
-  confirm_password: string,
-  // profile_picture: string
+  confirm_password?: string,
+  profileImage: string
 }
