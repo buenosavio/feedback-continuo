@@ -1,17 +1,89 @@
-import { FC, ReactElement, ReactNode, useContext, useEffect } from "react";
+import { UserDTO } from "../../model/UserDTO";
+import { useFormik } from "formik";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
+import { Form, TextDanger } from "../../Global.styles";
+import PasswordStrengthBar from 'react-password-strength-bar';
+
+import * as Yup from 'yup';
 
 const RegisterUser = () => {
 
-  const {isLogged} = useContext(AuthContext) as IAuthContext
+  const SignupSchema = Yup.object().shape({
+    name: Yup.string().required('Obrigatório'),
+    email: Yup.string().email('Informe um e-mail válido').required('Obrigatório').matches(/@dbccompany.com.br/, 'Informe e-mail da DBC'),
+    password: Yup.string().required('Obrigatório'),
+    confirm_password: Yup.string().required('Obrigatório').oneOf([Yup.ref('password')], 'A senha deve ser igual'),
+  });
 
-  useEffect(() => {
-    isLogged()
-  },[])
+  const {registerUser} = useContext(AuthContext) as IAuthContext  
+
+  const formikProps = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirm_password: '',
+    },
+    validationSchema: (SignupSchema),
+    onSubmit: (values: UserDTO) => {      
+      registerUser(values)
+    },
+  });
 
   return(
-    <h1>RegisterUsuario</h1>
+    <>
+      <h1>Inserir usuário</h1>
+      <Form onSubmit={formikProps.handleSubmit}>      
+        <label htmlFor="name">Nome Completo</label>
+        <input id="name" name="name" type="text"
+          onChange={formikProps.handleChange}
+          value={formikProps.values.name}
+          onBlur={formikProps.handleBlur}
+        />       
+        {formikProps.errors.name && formikProps.touched.name 
+          ? (<TextDanger>{formikProps.errors.name}</TextDanger>) 
+          : null
+        }       
+
+        <label htmlFor="email">E-mail</label>
+        <input id="email" name="email" type="text"
+          onChange={formikProps.handleChange}
+          value={formikProps.values.email}
+          onBlur={formikProps.handleBlur}                          
+        />
+        {formikProps.errors.email && formikProps.touched.email
+          ? (<TextDanger>{formikProps.errors.email}</TextDanger>) 
+          : null
+        }
+
+        <label htmlFor="password">Senha</label>
+        <input id="password" name="password" type="password"
+          onChange={formikProps.handleChange}
+          value={formikProps.values.password}
+          onBlur={formikProps.handleBlur}
+        />
+        <PasswordStrengthBar password={formikProps.values.password} />
+        {formikProps.errors.password && formikProps.touched.password 
+          ? (<TextDanger>{formikProps.errors.password}</TextDanger>) 
+          : null
+        }
+
+        <label htmlFor="confirm_password">Repita sua senha</label>
+        <input id="confirm_password" name="confirm_password" type="password"
+          onChange={formikProps.handleChange}
+          value={formikProps.values.confirm_password}
+          onBlur={formikProps.handleBlur}
+        />
+        {formikProps.errors.confirm_password && formikProps.touched.confirm_password 
+          ? (<TextDanger>{formikProps.errors.confirm_password}</TextDanger>) 
+          : null
+        }        
+
+      <button type="submit">Cadastrar</button>    
+    </Form>
+  </>
   )
 }
 
