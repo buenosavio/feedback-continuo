@@ -4,7 +4,7 @@ import { UserDTO } from '../model/UserDTO';
 import { LoginDTO } from "../model/LoginDTO";
 import { IAuthContext } from "../model/TypesDTO";
 import { useNavigate } from "react-router-dom";
-import { createContext, ReactElement, ReactNode, useState } from "react";
+import { createContext, ReactElement, ReactNode, useEffect, useState } from "react";
 
 
 export const AuthContext = createContext<IAuthContext | null>(null);
@@ -26,17 +26,17 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
   }
 
   const isLogged = () => {  
-    const logged = localStorage.getItem('token')    
-    return (
-      !logged ? navigate('/login') : null
-    )    
+    const logged = localStorage.getItem('token')  
+    if (!logged) {
+      navigate('/login')
+    }  
   }
 
   const isNotLogged = () => {
-    const logged = localStorage.getItem('token')      
-    return (
-      logged ? navigate('/') : null
-    )  
+    const logged = localStorage.getItem('token')
+    if (logged) {
+      navigate('/')
+    }  
   }
 
   const registerUser = async (values: UserDTO) => {
@@ -49,6 +49,14 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
       Notify.failure('Erro realizar cadastro. Tente novamente!');
     }
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if(token) {
+      api.defaults.headers.common['Authorization'] = token;      
+    }
+    isLogged();
+  },[]);
 
   return (
     <AuthContext.Provider value={{handleLogin, token, isLogged, isNotLogged, registerUser}}>
