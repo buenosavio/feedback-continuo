@@ -25,6 +25,11 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
+
   const isLogged = () => {  
     const logged = localStorage.getItem('token')  
     if (!logged) {
@@ -59,7 +64,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
   },[]);
 
   return (
-    <AuthContext.Provider value={{handleLogin, token, isLogged, isNotLogged, registerUser}}>
+    <AuthContext.Provider value={{handleLogin, handleLogout, token, isLogged, isNotLogged, registerUser}}>
       {children}
     </AuthContext.Provider>
   )

@@ -4,14 +4,17 @@ import { useContext, useEffect } from "react";
 
 const Home = () => {
 
-  const {isLogged} = useContext(AuthContext) as IAuthContext
+  const {isLogged, handleLogout} = useContext(AuthContext) as IAuthContext
 
   useEffect(() => {
     isLogged()
   },[])
 
   return(
-    <h1>Home</h1>
+    <>
+      <h1>Home</h1>
+      <button onClick={() => {handleLogout()}}>Logout</button>
+    </>
   )
 }
 
