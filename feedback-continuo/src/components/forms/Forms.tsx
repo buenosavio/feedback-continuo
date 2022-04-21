@@ -1,8 +1,10 @@
-import { useFormik} from "formik"
-import {LoginDTO} from '../../model/LoginDTO'
-import * as Yup from 'yup'
+import { useFormik} from "formik";
+import {LoginDTO} from '../../model/LoginDTO';
+import * as Yup from 'yup';
 
 function Forms() {
+
+  
 
   // const SignupSchema : any = Yup.object().shape({
   //   user: Yup.string()
@@ -11,7 +13,7 @@ function Forms() {
   //   password: Yup.string()
   //   .password ('Usuário Inválido')
   //   .required ('Campo Obrigatório')
-  // })
+  // });
 
 
   const formikProps = useFormik({
@@ -52,5 +54,6 @@ function Forms() {
   </form>
 )
 }
+
 
 export default Forms
