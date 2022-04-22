@@ -6,7 +6,6 @@ import { IAuthContext } from "../model/TypesDTO";
 import { useNavigate } from "react-router-dom";
 import { createContext, ReactElement, ReactNode, useEffect, useState } from "react";
 
-
 export const AuthContext = createContext<IAuthContext | null>(null);
 
 const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {

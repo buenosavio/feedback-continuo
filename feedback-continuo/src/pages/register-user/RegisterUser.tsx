@@ -1,11 +1,11 @@
 import { UserDTO } from "../../model/UserDTO";
 import { useFormik } from "formik";
-import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
 import { Form, TextDanger } from "../../Global.styles";
-import PasswordStrengthBar from 'react-password-strength-bar';
+import { useContext, useState } from "react";
 
+import PasswordStrengthBar from 'react-password-strength-bar';
 import * as Yup from 'yup';
 
 const RegisterUser = () => {

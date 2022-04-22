@@ -5,3 +5,10 @@ export interface UserDTO {
   confirm_password?: string,
   profileImage: string
 }
+
+export interface UserDataDTO {
+  id: string,
+  name: string,
+  email: string,
+  profileImage: string
+}
