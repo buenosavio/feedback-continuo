@@ -60,8 +60,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     if(token) {
       api.defaults.headers.common['Authorization'] = token;      
     }
-    // isLogged();
-    // isNotLogged();
+    isLogged();
   },[]);
 
   return (
