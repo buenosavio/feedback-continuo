@@ -1,6 +1,6 @@
 import { UserDTO } from "../../model/UserDTO";
 import { useFormik } from "formik";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
 import { Form, TextDanger } from "../../Global.styles";
@@ -18,6 +18,30 @@ const RegisterUser = () => {
   });
 
   const {registerUser} = useContext(AuthContext) as IAuthContext  
+  const [baseImage, setBaseImage] = useState<any>();
+
+  const uploadImage = async (event: any) => {
+    const file = event.target.files[0];
+    const base64 = await convertBase64(file);
+    setBaseImage(base64);
+    formikProps.setFieldValue("profileImage", base64)
+    console.log(typeof base64)    
+  };
+
+  const convertBase64 = (file: Blob) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file); 
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   const formikProps = useFormik({
     initialValues: {
@@ -36,7 +60,14 @@ const RegisterUser = () => {
   return(
     <>
       <h1>Inserir usuário</h1>
-      <Form onSubmit={formikProps.handleSubmit}>      
+      <Form onSubmit={formikProps.handleSubmit}>
+       <label htmlFor="profileImage">Insira sua foto</label>
+        <input type="file" id="profileImage" name="profileImage"
+          onChange={(event) => {uploadImage(event)}}
+        />
+        <br></br>
+        <img src={baseImage} height="200px" />
+
         <label htmlFor="name">Nome Completo</label>
         <input id="name" name="name" type="text"
           onChange={formikProps.handleChange}
@@ -80,7 +111,7 @@ const RegisterUser = () => {
         {formikProps.errors.confirm_password && formikProps.touched.confirm_password 
           ? (<TextDanger>{formikProps.errors.confirm_password}</TextDanger>) 
           : null
-        }        
+        }   
 
       <button type="submit">Cadastrar</button>    
     </Form>

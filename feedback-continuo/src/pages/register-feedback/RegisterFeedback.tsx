@@ -1,6 +1,6 @@
 import {AuthContext} from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
-import { useContext, useEffect } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 
 const RegisterFeedback = () => {
 
