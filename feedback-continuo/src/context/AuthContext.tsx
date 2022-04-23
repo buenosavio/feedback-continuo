@@ -21,6 +21,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
       localStorage.setItem('token', data)
       api.defaults.headers.common['Authorization'] = data;
       setLoginOn(true);
+      setToken(data);
       navigate('/')      
     } catch (error) {
       setLoginOn(false);
@@ -36,13 +37,16 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     navigate('/login')
   }
 
-  const isLogged = () => {  
-    const logged = localStorage.getItem('token')  
+  const isLogged = async () => {      
+    const logged = localStorage.getItem('token');
+    if (logged) {
+      api.defaults.headers.common['Authorization'] = logged;
+    }    
     if (!logged) {
       setLoginOn(false);
       setLoginOff(false);
       navigate('/login')
-    }  
+    }
   }
 
   const isNotLogged = () => {
