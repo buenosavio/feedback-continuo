@@ -12,26 +12,35 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
 
   const [token, setToken] = useState<string>('');
   const navigate = useNavigate();
+  const [loginOn, setLoginOn] = useState(false);
+  const [loginOff, setLoginOff] = useState(true);
 
   const handleLogin = async (values: LoginDTO) => {
     try {
       const {data} = await api.post('/auth/sign-in/', values)      
       localStorage.setItem('token', data)
       api.defaults.headers.common['Authorization'] = data;
+      setLoginOn(true);
       navigate('/')      
     } catch (error) {
+      setLoginOn(false);
+      setLoginOff(false);
       Notify.failure('Erro ao fazer login. Tente novamente!');
     }
   }
 
   const handleLogout = () => {
     localStorage.removeItem('token')
+    setLoginOff(false);
+    setLoginOn(false);
     navigate('/login')
   }
 
   const isLogged = () => {  
     const logged = localStorage.getItem('token')  
     if (!logged) {
+      setLoginOn(false);
+      setLoginOff(false);
       navigate('/login')
     }  
   }
@@ -39,6 +48,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
   const isNotLogged = () => {
     const logged = localStorage.getItem('token')
     if (logged) {
+      setLoginOff(false);
       navigate('/')
     }  
   }
@@ -63,7 +73,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
   },[]);
 
   return (
-    <AuthContext.Provider value={{handleLogin, handleLogout, token, isLogged, isNotLogged, registerUser}}>
+    <AuthContext.Provider value={{handleLogin, handleLogout, token, isLogged, isNotLogged, registerUser, loginOn,loginOff}}>
       {children}
     </AuthContext.Provider>
   )
