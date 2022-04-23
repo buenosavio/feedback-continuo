@@ -57,13 +57,13 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     }  
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if(token) {
-      api.defaults.headers.common['Authorization'] = token;      
-    }
-    isLogged();
-  },[]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if(token) {
+  //     api.defaults.headers.common['Authorization'] = token;      
+  //   }
+  //   isLogged();
+  // },[]);
 
   return (
     <AuthContext.Provider value={{handleLogin, handleLogout, token, isLogged, isNotLogged, loginOn,loginOff}}>
