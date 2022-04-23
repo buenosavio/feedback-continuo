@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 
 const Home = () => {
 
-  const {isLogged} = useContext(AuthContext) as IAuthContext
+  const {isLogged,handleLogout} = useContext(AuthContext) as IAuthContext
   const [data, setData] = useState<any>({});
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Home = () => {
     <>
       <h1>Home</h1>
       <div>
-        
+      <button onClick={() => {handleLogout()}}>Logout</button>
       </div>
     </>
   )

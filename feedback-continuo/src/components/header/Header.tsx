@@ -6,21 +6,37 @@ import { useContext, useEffect, useState } from "react";
 
 const Header = () => {
 
-  const {loginOn, handleLogout} = useContext(AuthContext) as IAuthContext
+  const {loginOn,loginOff, handleLogout} = useContext(AuthContext) as IAuthContext
   const [data, setData] = useState<any>({});
 
   useEffect(() => {
-    
+    userFeedback();
   },[])
+
+  const userFeedback = async () => {
+    try {
+      const {data} = await api.get('/user/user-loged')
+      setData(data)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
     {loginOn && (
-    <header>
-    <h1>Header</h1>
-
-    <button onClick={() => {handleLogout()}}>Logout</button>
+    <>
+   
+        <header>
+      <div key={data.userId}>
+    <img src={data.profileImage} alt="" />
+    <h4>Olá, {data.name}!</h4>
+    </div>
     </header>
-    
+     
+    <button onClick={() => {handleLogout()}}>Logout</button>
+    </>
     )}
     </>
   )
