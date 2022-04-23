@@ -6,3 +6,11 @@ export interface FeedbackDTO {
   tags: string,
   usuario: string
 }
+
+// createdAt:	string
+//   feedbackId:	string
+//   feedbackUserId:	string
+//   isAnonymous:	boolean
+//   message:	string
+//   userId:	string
+// }

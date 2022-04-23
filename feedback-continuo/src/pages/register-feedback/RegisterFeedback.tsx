@@ -1,24 +1,41 @@
-import { AuthContext } from "../../context/AuthContext";
-import { IAuthContext } from "../../model/TypesDTO";
-import { useContext, useEffect, useState } from "react";
+import { api } from "../../api";
+import { Link } from "react-router-dom";
+import { Notify } from "notiflix";
 import { useFormik } from "formik";
-import { Form, TextDanger } from "../../Global.styles";
+import { AuthContext } from "../../context/AuthContext";
 import { FeedbackDTO } from "../../model/FeedbackDTO";
+import { IAuthContext } from "../../model/TypesDTO";
+import { Form, TextDanger } from "../../Global.styles";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import onChangeHandler from "../../utils/AutoComplete";
+import Autocomplete from "react-autocomplete";
+
 
 const RegisterFeedback = () => {
 
   const {isLogged} = useContext(AuthContext) as IAuthContext
+  const [users, setUsers] = useState({});
 
   useEffect(() => {
     isLogged()
+    getUsers()
   },[])
 
   const saveFeedback = async (values: FeedbackDTO) => {
     try {
-      const {data} = await axios.post('http://localhost:3000/feedbacks', values)
+      await axios.post('http://localhost:3000/feedbacks', values)
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  const getUsers = async () => {
+    try {
+      const {data} = await api.get('/user/list-all-users');
+      setUsers(data)      
+    } catch (error) {
+      Notify.failure('Erro ao fazer req. Tente novamente!');
     }
   }
 
@@ -36,10 +53,13 @@ const RegisterFeedback = () => {
       saveFeedback(values)
     },
   });
+  let value;
 
+  console.log(users)
 
   return (
     <>
+    <Link to='/'>Voltar</Link>
     <h1>Register Feedback</h1>
     <Form onSubmit={formikProps.handleSubmit}>
 
@@ -73,11 +93,10 @@ const RegisterFeedback = () => {
 
         <label htmlFor="usuario">Usuário</label>
         <input id="usuario" name="usuario" type="search"
-          onChange={formikProps.handleChange}
+          onChange={() => onChangeHandler(formikProps.values.usuario, users)}
           value={formikProps.values.usuario}
           onBlur={formikProps.handleBlur}
-        />
-          
+        />          
       <button type="submit">Registrar</button>    
     </Form>
     </>
