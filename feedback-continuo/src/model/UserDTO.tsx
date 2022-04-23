@@ -7,8 +7,8 @@ export interface UserDTO {
 }
 
 export interface UserDataDTO {
-  id: string,
+  userId: string,
   name: string,
   email: string,
-  profileImage: string
+  profileImage?: string
 }
