@@ -53,17 +53,6 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     }  
   }
 
-  const registerUser = async (values: UserDTO) => {
-    try {
-      const {data} = await api.post('auth/sign-up/', values)
-      localStorage.setItem('token', data)
-      api.defaults.headers.common['Authorization'] = data;
-      navigate('/')
-    } catch (error) {
-      Notify.failure('Erro realizar cadastro. Tente novamente!');
-    }
-  }
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     if(token) {
@@ -73,7 +62,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
   },[]);
 
   return (
-    <AuthContext.Provider value={{handleLogin, handleLogout, token, isLogged, isNotLogged, registerUser, loginOn,loginOff}}>
+    <AuthContext.Provider value={{handleLogin, handleLogout, token, isLogged, isNotLogged, loginOn,loginOff}}>
       {children}
     </AuthContext.Provider>
   )

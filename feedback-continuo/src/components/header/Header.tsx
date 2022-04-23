@@ -7,50 +7,54 @@ import { useContext, useEffect, useState } from "react";
 
 const Header = () => {
 
-  type UserDataDTO = {
-  userId: string,
-  name: string,
-  email: string,
-  profileImage?: string
-  }
+  // type UserDataDTO = {
+  // userId: string,
+  // name: string,
+  // email: string,
+  // profileImage?: string
+  // }
 
-  const {loginOn,loginOff, handleLogout,isLogged} = useContext(AuthContext) as IAuthContext
-  const [data, setData] = useState<UserDataDTO>({
-    userId: '',
-    name: '',
-    email: '',
-    profileImage:'',
-  });
+  // const {loginOn,loginOff, handleLogout,isLogged} = useContext(AuthContext) as IAuthContext
+  // const [data, setData] = useState<UserDataDTO>({
+  //   userId: '',
+  //   name: '',
+  //   email: '',
+  //   profileImage:'',
+  // });
 
-  useEffect(() => {
-    userFeedback();
-    isLogged();
-  },[])
+  // useEffect(() => {
+  //   userFeedback();
+  //   isLogged();
+  // },[])
 
-  const userFeedback = async () => {
-    try {
-      // const {data} = await api.get('/user/user-loged')
-      // setData(data)
+  // const userFeedback = async () => {
+  //   try {
+  //     // const {data} = await api.get('/user/user-loged')
+  //     // setData(data)
       
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
+  // return (
+  //   <>
+  //   {loginOn && (
+  //   <>
+  //       <header>
+  //     <div key={data.userId}>
+  //   <img src={data.profileImage} alt="" />
+  //   <h4>Olá, {data.name}!</h4>
+  //   </div>
+  //   </header>
+  //   <button onClick={() => {handleLogout()}}>Logout</button>
+  //   </>
+  //   )}
+  //   </>
+  // )
 
   return (
-    <>
-    {loginOn && (
-    <>
-        <header>
-      <div key={data.userId}>
-    <img src={data.profileImage} alt="" />
-    <h4>Olá, {data.name}!</h4>
-    </div>
-    </header>
-    <button onClick={() => {handleLogout()}}>Logout</button>
-    </>
-    )}
-    </>
+    <h1>Header</h1>
   )
 }
 

@@ -7,7 +7,6 @@ export interface IAuthContext {
   handleLogout: () => void;
   isLogged: () => void;
   isNotLogged: () => void;
-  registerUser: (values: UserDTO) => void;
   loginOn:  boolean;
   loginOff: boolean;
 }

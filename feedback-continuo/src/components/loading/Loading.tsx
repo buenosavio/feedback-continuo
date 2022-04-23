@@ -1,8 +1,7 @@
-
-const Loading = () => {
+const Loadingg = () => {
   return (
-    <div>Loading</div>
+    <h1>Loading....</h1>
   )
 }
 
-export default Loading
+export default Loadingg

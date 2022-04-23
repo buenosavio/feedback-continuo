@@ -1,6 +1,6 @@
 export interface FeedbackDTO {
-  userId: string;
+  feedbackUserId: string;
   isAnonymous: boolean;
   message: string;
-  tags: string;
+  tags: [string];
 }
