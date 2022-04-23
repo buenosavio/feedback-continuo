@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
 
-  const {isLogged, handleLogout} = useContext(AuthContext) as IAuthContext
+  const {isLogged,handleLogout} = useContext(AuthContext) as IAuthContext
   const [data, setData] = useState<any>({});
 
   useEffect(() => {
@@ -27,11 +27,9 @@ const Home = () => {
   return(
     <>
       <h1>Home</h1>
-      <button onClick={() => {handleLogout()}}>Logout</button>
-      <br />
       <Link to='/register-feedback'>Register Feedback</Link>
       <div>
-        
+      <button onClick={() => {handleLogout()}}>Logout</button>
       </div>
     </>
   )
