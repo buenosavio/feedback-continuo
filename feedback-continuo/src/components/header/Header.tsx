@@ -15,9 +15,9 @@ const Header = () => {
 
   const userFeedback = async () => {
     try {
-      const {data} = await api.get('/user/user-loged')
-      setData(data)
-      console.log(data)
+      // const {data} = await api.get('/user/user-loged')
+      // setData(data)
+      
     } catch (error) {
       console.log(error)
     }
@@ -27,14 +27,12 @@ const Header = () => {
     <>
     {loginOn && (
     <>
-   
-        <header>
-      <div key={data.userId}>
-    <img src={data.profileImage} alt="" />
-    <h4>Olá, {data.name}!</h4>
-    </div>
+    <header>
+      {/* <div key={data.userId}>
+        <img src={data.profileImage} alt="" />
+        <h4>Olá, {data.name}!</h4>
+      </div> */}
     </header>
-     
     <button onClick={() => {handleLogout()}}>Logout</button>
     </>
     )}
