@@ -2,15 +2,29 @@ import { api } from "../../api";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
 import { useContext, useEffect, useState } from "react";
+// import { UserDataDTO } from "../../model/UserDTO";
 
 
 const Header = () => {
 
-  const {loginOn,loginOff, handleLogout} = useContext(AuthContext) as IAuthContext
-  const [data, setData] = useState<any>({});
+  type UserDataDTO = {
+  userId: string,
+  name: string,
+  email: string,
+  profileImage?: string
+  }
+
+  const {loginOn,loginOff, handleLogout,isLogged} = useContext(AuthContext) as IAuthContext
+  const [data, setData] = useState<UserDataDTO>({
+    userId: '',
+    name: '',
+    email: '',
+    profileImage:'',
+  });
 
   useEffect(() => {
     userFeedback();
+    isLogged();
   },[])
 
   const userFeedback = async () => {
@@ -27,7 +41,6 @@ const Header = () => {
     <>
     {loginOn && (
     <>
-   
         <header>
       <div key={data.userId}>
     <img src={data.profileImage} alt="" />
