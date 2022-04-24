@@ -1,10 +1,10 @@
-import { api } from "../../api";
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserDataDTO } from "../../model/UserDTO";
+import { api } from "../../api";
+import {Notify} from "notiflix";
 
 import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";

@@ -1,12 +1,15 @@
+import { api } from "../../api";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { UserDTO } from "../../model/UserDTO";
+import { useState } from "react";
 import { useFormik } from "formik";
-import { AuthContext } from "../../context/AuthContext";
-import { IAuthContext } from "../../model/TypesDTO";
+import { useNavigate } from "react-router-dom";
 import { Form, TextDanger } from "../../Global.styles";
-import { useContext, useState } from "react";
 
-import PasswordStrengthBar from 'react-password-strength-bar';
+import Error from "../../components/error/Error";
+import Loading from "../../components/loading/Loading";
 import * as Yup from 'yup';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 const RegisterUser = () => {
 
@@ -17,8 +20,25 @@ const RegisterUser = () => {
     confirm_password: Yup.string().required('Obrigatório').oneOf([Yup.ref('password')], 'A senha deve ser igual').min(8, 'Mínimo 8 dígitos').max(20, 'Máximo 20 dígitos'),
   });
 
-  const {registerUser} = useContext(AuthContext) as IAuthContext  
   const [baseImage, setBaseImage] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const navigate = useNavigate()
+
+  const registerUser = async (values: UserDTO) => {
+    setLoading(true)
+    try {
+      const {data} = await api.post('auth/sign-up/', values)
+      localStorage.setItem('token', data)
+      api.defaults.headers.common['Authorization'] = data;
+      navigate('/')
+      setLoading(false)
+    } catch (error) {
+      Notify.failure('Erro realizar cadastro. Tente novamente!');
+      setLoading(false)
+      setError(true)
+    }
+  }
 
   const uploadImage = async (event: any) => {
     const file = event.target.files[0];
@@ -56,6 +76,18 @@ const RegisterUser = () => {
       registerUser(values)
     },
   });
+
+  if (loading) {
+    return(
+      <Loading />
+    ) 
+  }
+
+  if (error) {
+    return(
+      <Error />
+    ) 
+  }
 
   return(
     <>

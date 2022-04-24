@@ -9,6 +9,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <script src="dist/notiflix-aio-X.X.X.min.js"></script>
     <Routers />
   </React.StrictMode>
 );
