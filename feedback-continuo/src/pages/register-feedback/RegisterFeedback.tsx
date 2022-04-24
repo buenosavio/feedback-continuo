@@ -40,7 +40,7 @@ const RegisterFeedback = () => {
   const getUsers = async () => {
     let users: any = [];
     try {
-      const {data} = await api.get('/user/list-all-users');
+      const {data} = await api.get('/user/list-all-users-without-loged');
       data.map((user: ItemDTO) => {
         users.push({name: user.name, id: user.userId})  
       })

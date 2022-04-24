@@ -5,12 +5,8 @@ import TabTitle from './TabTitle'
 type Props = {
   children: ReactElement[]
 }
-
 const Tabs: FC<Props> = ({children}) => {
   const [selectedTab, setSelectedTab] = useState(0)
-
-
-
   return (
       <div>
       <ul>

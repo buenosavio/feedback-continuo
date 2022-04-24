@@ -25,14 +25,14 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
       navigate('/')      
     } catch (error) {
       setLoginOn(false);
-      setLoginOff(false);
+      setLoginOff(true);
       Notify.failure('Erro ao fazer login. Tente novamente!');
     }
   }
 
   const handleLogout = () => {
     localStorage.removeItem('token')
-    setLoginOff(false);
+    setLoginOff(true);
     setLoginOn(false);
     navigate('/login')
   }
@@ -44,7 +44,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     }    
     if (!logged) {
       setLoginOn(false);
-      setLoginOff(false);
+      setLoginOff(true);
       navigate('/login')
     }
   }
@@ -52,7 +52,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
   const isNotLogged = () => {
     const logged = localStorage.getItem('token')
     if (logged) {
-      setLoginOff(false);
+      setLoginOff(true);
       navigate('/')
     }  
   }
