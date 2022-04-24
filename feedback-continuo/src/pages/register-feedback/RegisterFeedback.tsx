@@ -5,52 +5,50 @@ import { useFormik } from "formik";
 import { AuthContext } from "../../context/AuthContext";
 import { FeedbackDTO } from "../../model/FeedbackDTO";
 import { IAuthContext } from "../../model/TypesDTO";
+import { ItemDTO, ListDTO } from "../../model/ListDTO";
 import { Form, TextDanger } from "../../Global.styles";
 import { useContext, useEffect, useState } from "react";
+
+import Error from "../../components/error/Error";
+import Loading from "../../components/loading/Loading";
 import * as Yup from 'yup'
 
 //A FAZER:
-//componentizar select e options.
-// permitir selecionar mais de uma tag.
-// tipar as coisas
+// componentizar select e options. nao foi possivel pois o formik precisa do value
+// OK permitir selecionar mais de uma tag. OK
+// OK tipar as coisas
 
 const RegisterFeedback = () => {
-
+  
   const RegisterFeedbackSchema = Yup.object().shape({
-    userId: Yup.string().required('Obrigatório'),
+    feedbackUserId: Yup.string().required('Obrigatório'),
     message: Yup.string().required('Obrigatório'),
-    tags: Yup.string().required('Obrigatório')
+    tags: Yup.array().required('Obrigatório')
   });
 
   const {isLogged} = useContext(AuthContext) as IAuthContext
-  const [users, setUsers] = useState<any>();
-  const [tags, setTags] = useState<any>();
+  const [users, setUsers] = useState<ListDTO>();
+  const [tags, setTags] = useState<ListDTO>();
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
   
   useEffect(() => {
     isLogged()
     getUsers()    
   },[])
 
-  const saveFeedback = async (values: FeedbackDTO) => {
-    try {
-      await api.post(`/feedback?feedbackUserId=${values.userId}&isAnonymous=${values.isAnonymous}&message=${values.message}&tags=${values.tags}`)
-      Notify.success("Feedback enviado com sucesso!")
-    } catch (error) {
-      Notify.failure("Erro ao enviar feedback!")
-    }
-  }
-
   const getUsers = async () => {
     let users: any = [];
     try {
       const {data} = await api.get('/user/list-all-users');
-      data.map((user:any) => {
+      data.map((user: ItemDTO) => {
         users.push({name: user.name, id: user.userId})  
       })
       setUsers(users)        
       getTags() 
-    } catch (error) {
+    } catch (error) {   
+      setLoading(false)
+      setError(true)   
       Notify.failure('Erro na requisição de pessoas. Tente novamente!');
     }
   }
@@ -59,55 +57,75 @@ const RegisterFeedback = () => {
     let tags: any = [];
     try {
       const {data} = await api.get('/tag');
-      data.map((tag:any) => {
-        tags.push({name: tag.name, id: tag.tagId})  
-      })
-      setTags(tags)  
+      data.map((tag:ItemDTO) => {
+        tags.push({name: tag.name, id: tag.tagId}) 
+      })      
+      setTags(tags)   
       setLoading(false)
     } catch (error) {
+      setLoading(false)
+      setError(true)
       Notify.failure('Erro na requisição das tags. Tente novamente!');
+    }
+  }
+
+  const saveFeedback = async (values: FeedbackDTO) => {
+    try {      
+      await api.post("/feedback/", values)
+      Notify.success("Feedback enviado com sucesso!")
+      formikProps.resetForm()
+    } catch (error) {
+      Notify.failure("Erro ao enviar feedback!")
     }
   }
 
   const formikProps = useFormik({
     initialValues: {
-      userId: '', 
+      feedbackUserId: '', 
       isAnonymous: false,      
       message: '',
-      tags: '',      
+      tags: [''],      
     },
     validationSchema: (RegisterFeedbackSchema),
     onSubmit: (values: FeedbackDTO) => {      
       saveFeedback(values)
+      console.log(values)
     },
   });
 
   if (loading) {
     return(
-      <h1>Loading....</h1>
+      <Loading />
     ) 
   }
 
+  if (error) {
+    return(
+      <Error />
+    ) 
+  }
+  
   return (
     <>
     <Link to='/'>Voltar</Link>
     <h1>Register Feedback</h1>
     <Form onSubmit={formikProps.handleSubmit}>      
 
-      <label htmlFor="userId">Selecione a pessoa</label>
-      <select id="userId" name="userId" 
+      <label htmlFor="feedbackUserId">Selecione a pessoa</label>
+      <select id="feedbackUserId" name="feedbackUserId" 
         onChange={formikProps.handleChange} 
         onBlur={formikProps.handleBlur} 
-        value={formikProps.values.userId}>
+        value={formikProps.values.feedbackUserId}>
         <option value=''></option>
         {
-          users.map((user: any) => (
+          users ? users.map((user: ItemDTO) => (
             <option key={user.id} value={user.id}>{user.name}</option>
           ))
+          : null
         }      
       </select>
-      {formikProps.errors.userId && formikProps.touched.userId
-          ? (<TextDanger>{formikProps.errors.userId}</TextDanger>)
+      {formikProps.errors.feedbackUserId && formikProps.touched.feedbackUserId
+          ? (<TextDanger>{formikProps.errors.feedbackUserId}</TextDanger>)
           : null
       }  
        
@@ -126,12 +144,15 @@ const RegisterFeedback = () => {
       <select id="tags" name="tags" 
         onChange={formikProps.handleChange} 
         onBlur={formikProps.handleBlur} 
-        value={formikProps.values.tags}>
+        value={formikProps.values.tags}
+        multiple={true}>
         <option value=''></option>
         {
-          tags.map((tag: any) => (
-            <option key={tag.id+tag.name} value={tag.id}>{tag.name}</option>
+          tags ?
+          tags.map((tag: ItemDTO) => (
+            <option key={tag.id+tag.name} value={tag.name.toUpperCase()}>{tag.name}</option>
           ))
+          : null
         }      
       </select>
       {formikProps.errors.tags && formikProps.touched.tags
