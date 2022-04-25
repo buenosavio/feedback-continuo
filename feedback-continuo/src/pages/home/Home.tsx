@@ -54,7 +54,7 @@ const Home = () => {
     let response = "";
 
     tagList.map((tag) => {
-      response = response + " " + tag
+      response = response + " # " + tag
     }); 
     return response;
   }
@@ -65,11 +65,11 @@ const Home = () => {
       <Loading/>
     ) 
   }
-  // if (error) {
-  //   return(
-  //     <Error />
-  //   ) 
-  // }
+  if (error) {
+    return(
+      <Error />
+    ) 
+  }
   return(
     <>
       <h1>Home</h1>
@@ -81,27 +81,27 @@ const Home = () => {
       <Tab title="Recebidos">
         <>
         <h1>Recebidos</h1>
-        {received.map ((feedback:any) =>(
+        {received ? received.map ((feedback:any) =>(
             <div key={feedback.createdAt}>
               <img src={feedback.profileUserImage} alt="" />
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
               <p>{formatTags(feedback.tags)}</p>
             </div>
-        ))}
+        )) : "Nenhum feedback recebido!"}
         </>
       </Tab>
       <Tab title="Enviados">
         <>
         <h1>Enviados</h1>
-        {data.map ((feedback:any) =>(
+        {data ? data.map ((feedback:any) =>(
             <div key={feedback.feedbackId}>
               <img src={feedback.profileUserImage} alt="" />
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
               <p>{formatTags(feedback.tags)}</p>
             </div>
-        ))}
+        )): "Nenhum feedback enviado!"}
        </>
       </Tab>
     </Tabs>
