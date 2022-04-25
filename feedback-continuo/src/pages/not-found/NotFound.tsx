@@ -13,10 +13,6 @@ const NotFound = () => {
     (counter > 0) ? setCounter(counter - 1) : navigate('/')
   }, 1000);
   
-  // setTimeout(() => {
-  //   navigate('/login')
-  // }, 5000)
-  
   return(
     <>
     <ContainerFull>
