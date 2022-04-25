@@ -11,7 +11,7 @@ import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
 import Loading from "../../components/loading/Loading";
 import Error from "../../components/error/Error";
-
+import Card from "../../components/cards/Card";
 
 const Home = () => {
 
@@ -20,6 +20,8 @@ const Home = () => {
   const [received, setReceived] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+
+  
 
   useEffect(() => {
     isLogged();
@@ -82,13 +84,15 @@ const Home = () => {
       <Tab title="Recebidos">
         <>
         <h1>Recebidos</h1>
-        {received ? received.map ((feedback:GivedFeedbackDTO) =>(
-            <div key={feedback.createdAt}>
-              <img src={feedback.profileUserImage} alt="" />
+        {received ? received.map ((feedback:GivedFeedbackDTO) =>( 
+         <div  key={feedback.createdAt}>
+               <img src={feedback.profileUserImage} alt="" />
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
-              <p>{formatTags(feedback.tags)}</p>
-            </div>
+              <p>{formatTags(feedback.tags)}</p>  
+              {/* <Card key={feedback.createdAt} profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)}/>  */} 
+        </div> 
+            
         )) : "Nenhum feedback recebido!"}
         </>
       </Tab>

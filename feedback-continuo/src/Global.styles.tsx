@@ -14,3 +14,4 @@ export const TextDanger = styled.p`
   font-weight: bolder;
 
 `
+
