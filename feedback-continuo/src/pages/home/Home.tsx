@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { UserDataDTO } from "../../model/UserDTO";
 import { api } from "../../api";
 import {Notify} from "notiflix";
+import { GivedFeedbackDTO } from "../../model/FeedbackDTO";
 
 import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
@@ -81,7 +82,7 @@ const Home = () => {
       <Tab title="Recebidos">
         <>
         <h1>Recebidos</h1>
-        {received ? received.map ((feedback:any) =>(
+        {received ? received.map ((feedback:GivedFeedbackDTO) =>(
             <div key={feedback.createdAt}>
               <img src={feedback.profileUserImage} alt="" />
               <p>{feedback.userName}</p>
@@ -94,7 +95,7 @@ const Home = () => {
       <Tab title="Enviados">
         <>
         <h1>Enviados</h1>
-        {data ? data.map ((feedback:any) =>(
+        {data ? data.map ((feedback:GivedFeedbackDTO) =>(
             <div key={feedback.feedbackId}>
               <img src={feedback.profileUserImage} alt="" />
               <p>{feedback.userName}</p>
