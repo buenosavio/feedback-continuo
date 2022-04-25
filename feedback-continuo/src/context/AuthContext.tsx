@@ -41,6 +41,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     const logged = localStorage.getItem('token');
     if (logged) {
       api.defaults.headers.common['Authorization'] = logged;
+      setLoginOn(true)
     }    
     if (!logged) {
       setLoginOn(false);

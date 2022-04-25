@@ -1,11 +1,12 @@
 import { api } from "../../api";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { AuthContext } from "../../context/AuthContext";
+import { UserDataDTO } from "../../model/UserDTO";
 import { IAuthContext } from "../../model/TypesDTO";
 import { useContext, useEffect, useState } from "react";
+
 import Loading from "../loading/Loading";
 import Error from "../error/Error";
-// import { UserDataDTO } from "../../model/UserDTO";
-
 
 const Header = () => {
 
@@ -16,7 +17,7 @@ const Header = () => {
   profileImage?: string
   }
 
-  const {loginOn,loginOff, handleLogout,isLogged} = useContext(AuthContext) as IAuthContext
+  const {loginOn, loginOff, handleLogout,isLogged} = useContext(AuthContext) as IAuthContext
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [data, setData] = useState<UserDataDTO>({
@@ -26,46 +27,51 @@ const Header = () => {
     profileImage:'',
   });
 
-  useEffect(() => {
+  useEffect(() => {    
     userFeedback();
-    isLogged();
-  },[])
+    //isLogged();
+  },[loginOn])
 
   const userFeedback = async () => {
-    try {
-      const {data} = await api.get('/user/user-loged')
-      setData(data)
-      setLoading(true)
-    } catch (error) {
-      setError(true)
-      setLoading(false)
-      console.log(error)
-    }
+    if (loginOn) {
+      try {
+        const {data} = await api.get('/user/user-loged')      
+        setData(data)
+        setError(false)
+        setLoading(false)
+      } catch (error) {
+        setError(true)
+        setLoading(false)
+        Notify.failure('Erro carregar dados do usuário logado. Tente novamente!');
+      }
+    }    
   }
 
-  if (loading) {
-    return(
-      <Loading/>
-    ) 
-  }
   if (error) {
     return(
       <Error />
     ) 
   }
+
+  if (loading && loginOn) {
+    return(
+      <Loading/>
+    ) 
+  }
+  
   return (
     <>
-    {loginOn && (
+    {(loginOn) ? (
     <>
-        <header>
+    <header>
       <div key={data.userId}>
-    <img src={data.profileImage} alt="" />
-    <h4>Olá, {data.name}!</h4>
-    </div>
+        <img src={data.profileImage} alt="Imagem do perfil" />
+        <h4>Olá, {data.name}!</h4>
+      </div>
     </header>
     <button onClick={() => {handleLogout()}}>Logout</button>
     </>
-    )}
+    ) : null}
     </>
   )
 }
