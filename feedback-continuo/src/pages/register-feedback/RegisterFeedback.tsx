@@ -49,6 +49,7 @@ const RegisterFeedback = () => {
     } catch (error) {   
       setLoading(false)
       setError(true)   
+      console.log(error)      
       Notify.failure('Erro na requisição de pessoas. Tente novamente!');
     }
   }
