@@ -12,6 +12,8 @@ import { useContext, useEffect, useState } from "react";
 import Error from "../../components/error/Error";
 import Loading from "../../components/loading/Loading";
 import * as Yup from 'yup'
+import { AxiosError } from "axios";
+import handleError from "../../utils/Error";
 
 //A FAZER:
 // componentizar select e options. nao foi possivel pois o formik precisa do value
@@ -49,8 +51,8 @@ const RegisterFeedback = () => {
     } catch (error) {   
       setLoading(false)
       setError(true)   
-      console.log(error)      
-      Notify.failure('Erro ao carregar lista de pessoas. Tente novamente!');
+      const errorData = error as AxiosError 
+      handleError(errorData)
     }
   }
 
@@ -66,7 +68,8 @@ const RegisterFeedback = () => {
     } catch (error) {
       setLoading(false)
       setError(true)
-      Notify.failure('Erro ao carregar lista de tags. Tente novamente!');
+      const errorData = error as AxiosError 
+      handleError(errorData)
     }
   }
 
@@ -76,7 +79,8 @@ const RegisterFeedback = () => {
       Notify.success("Feedback enviado com sucesso!")
       formikProps.resetForm()
     } catch (error) {
-      Notify.failure("Erro ao enviar feedback!")
+      const errorData = error as AxiosError 
+      handleError(errorData)
     }
   }
 

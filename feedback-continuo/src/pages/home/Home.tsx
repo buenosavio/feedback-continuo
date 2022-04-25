@@ -1,22 +1,21 @@
+import { api } from "../../api";
+import { Link } from "react-router-dom";
+import { Image } from "../../Global.styles";
+import { Notify } from "notiflix";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { UserDataDTO } from "../../model/UserDTO";
-import { api } from "../../api";
-import {Notify} from "notiflix";
 import { GivedFeedbackDTO } from "../../model/FeedbackDTO";
+import { useContext, useEffect, useState } from "react";
 
 import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
 import Loading from "../../components/loading/Loading";
 import Error from "../../components/error/Error";
-import { Image } from "../../Global.styles";
 
 
 const Home = () => {
 
-  const {isLogged,handleLogout} = useContext(AuthContext) as IAuthContext
+  const {isLogged} = useContext(AuthContext) as IAuthContext
   const [data, setData] = useState<any>({});
   const [received, setReceived] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(true);
@@ -54,13 +53,11 @@ const Home = () => {
 
   const formatTags = (tagList: string[]) => {
     let response = "";
-
     tagList.map((tag) => {
-      response = response + " # " + tag
+      response = response + " #" + tag
     }); 
     return response;
   }
-
 
   if (loading) {
     return(
@@ -75,9 +72,7 @@ const Home = () => {
   return(
     <>
       <h1>Home</h1>
-
       <Link to='/register-feedback'>Register Feedback</Link>
-
       <>
       <Tabs>
       <Tab title="Recebidos">
@@ -107,10 +102,7 @@ const Home = () => {
        </>
       </Tab>
     </Tabs>
-      </>
-      <div>
-       <button onClick={() => {handleLogout()}}>Logout</button>
-      </div>
+      </>      
     </>
   )
 }

@@ -5,6 +5,8 @@ import { LoginDTO } from "../model/LoginDTO";
 import { IAuthContext } from "../model/TypesDTO";
 import { useNavigate } from "react-router-dom";
 import { createContext, ReactElement, ReactNode, useEffect, useState } from "react";
+import { AxiosError } from 'axios';
+import handleError from '../utils/Error';
 
 export const AuthContext = createContext<IAuthContext | null>(null);
 
@@ -26,7 +28,8 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     } catch (error) {
       setLoginOn(false);
       setLoginOff(true);
-      Notify.failure('Erro ao fazer login. Tente novamente!');
+      const errorData = error as AxiosError 
+      handleError(errorData)            
     }
   }
 
@@ -63,7 +66,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     if(token) {
       api.defaults.headers.common['Authorization'] = token;      
     }
-    isLogged();
+    //isLogged();
   },[]);
 
   return (
