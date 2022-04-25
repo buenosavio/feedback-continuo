@@ -10,9 +10,7 @@ export interface GivedFeedbackDTO{
     feedbackId: string,
     message: string,
     profileUserImage: string,
-    tags: [
-      string,
-    ],
+    tags: [],
     userName: string,
 }
 

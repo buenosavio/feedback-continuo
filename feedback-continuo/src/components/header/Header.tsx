@@ -34,8 +34,8 @@ const Header = () => {
   const userFeedback = async () => {
     try {
       const {data} = await api.get('/user/user-loged')
-      setLoading(true)
       setData(data)
+      setLoading(true)
     } catch (error) {
       setError(true)
       setLoading(false)
