@@ -31,7 +31,7 @@ const Home = () => {
     try {
 
       const {data} = await api.get('/feedback/gived')
-      console.log('concedidos',data)
+      console.log('enviados',data)
       setLoading(true)
       setData(data)
     } catch (error) {
@@ -44,7 +44,7 @@ const Home = () => {
   const getReceveidFeedback = async () =>{
     try {
       const{data} = await api.get('/feedback/receveid')
-      console.log('recebido',data)
+      console.log('recebidos',data)
       setReceived(data)
     } catch (error) {
       Notify.failure('Erro ao fazer req. Tente novamente!');
@@ -79,30 +79,30 @@ const Home = () => {
 
       <>
       <Tabs>
-      <Tab title="Concedidos">
+      <Tab title="Recebidos">
         <>
-        <h1>Concedidos</h1>
-        {received.map ((feedback:any) =>(
+        <h1>Recebidos</h1>
+        {/* {received.map ((feedback:any) =>(
             <div key={feedback.createdAt}>
               <img src={feedback.profileUserImage} alt="" />
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
               <p>{formatTags(feedback.tags)}</p>
             </div>
-        ))}
+        ))} */}
         </>
       </Tab>
-      <Tab title="Recebidos">
+      <Tab title="Enviados">
         <>
-        <h1>Recebidos</h1>
-        {data.map ((feedback:any) =>(
+        <h1>Enviados</h1>
+        {/* {data.map ((feedback:any) =>(
             <div key={feedback.feedbackId}>
               <img src={feedback.profileUserImage} alt="" />
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
               <p>{formatTags(feedback.tags)}</p>
             </div>
-        ))}
+        ))} */}
        </>
       </Tab>
     </Tabs>
