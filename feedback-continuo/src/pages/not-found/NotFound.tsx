@@ -10,14 +10,12 @@ const NotFound = () => {
   const [counter, setCounter] = useState<number>(5);
 
   setInterval(() => {
-    if (counter > 0) {
-      setCounter(counter - 1);}
-    
+    (counter > 0) ? setCounter(counter - 1) : navigate('/')
   }, 1000);
   
-  setTimeout(() => {
-    navigate('/login')
-  }, 5000)
+  // setTimeout(() => {
+  //   navigate('/login')
+  // }, 5000)
   
   return(
     <>
