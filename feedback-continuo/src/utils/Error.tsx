@@ -15,7 +15,7 @@ const handleError = (errorData: AxiosError) => {
       break;
       default:
         Notify.failure('Erro. Tente novamente!');
-  }      
+    }      
   } else {
     Notify.failure('Erro desconhecido. Tente novamente!'); 
   }     
