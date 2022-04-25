@@ -8,7 +8,7 @@ const handleError = (errorData: AxiosError) => {
         Notify.failure('E-mail já existente. Tente novamente!');
         break;
       case 403:
-        Notify.failure('Login inválido. Tente novamente!');
+        Notify.failure('Login inválido. Tente novamente!'); 
         break;
       case 404:
         Notify.failure('Requisição inválida. Tente novamente!');

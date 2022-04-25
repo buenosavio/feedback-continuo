@@ -1,6 +1,4 @@
 import { api } from '../api';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { UserDTO } from '../model/UserDTO';
 import { LoginDTO } from "../model/LoginDTO";
 import { IAuthContext } from "../model/TypesDTO";
 import { useNavigate } from "react-router-dom";
@@ -66,7 +64,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     if(token) {
       api.defaults.headers.common['Authorization'] = token;      
     }
-    //isLogged();
+    isLogged();
   },[]);
 
   return (
