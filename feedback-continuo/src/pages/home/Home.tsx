@@ -10,6 +10,7 @@ import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
 import Loading from "../../components/loading/Loading";
 import Error from "../../components/error/Error";
+import { Image } from "../../Global.styles";
 
 
 const Home = () => {
@@ -83,7 +84,7 @@ const Home = () => {
         <h1>Recebidos</h1>
         {received.map ((feedback:any) =>(
             <div key={feedback.createdAt}>
-              <img src={feedback.profileUserImage} alt="" />
+              <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
               <p>{formatTags(feedback.tags)}</p>
@@ -96,7 +97,7 @@ const Home = () => {
         <h1>Enviados</h1>
         {data.map ((feedback:any) =>(
             <div key={feedback.feedbackId}>
-              <img src={feedback.profileUserImage} alt="" />
+              <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
               <p>{formatTags(feedback.tags)}</p>

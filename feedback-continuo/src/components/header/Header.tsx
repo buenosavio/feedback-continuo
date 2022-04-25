@@ -1,9 +1,10 @@
 import { api } from "../../api";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { AuthContext } from "../../context/AuthContext";
-import { UserDataDTO } from "../../model/UserDTO";
 import { IAuthContext } from "../../model/TypesDTO";
 import { useContext, useEffect, useState } from "react";
+
+import { Image } from "../../Global.styles";
 
 import Loading from "../loading/Loading";
 import Error from "../error/Error";
@@ -65,7 +66,7 @@ const Header = () => {
     <>
     <header>
       <div key={data.userId}>
-        <img src={data.profileImage} alt="Imagem do perfil" />
+        <Image src={data.profileImage} width="80px" height="80px" alt="Imagem do perfil" />
         <h4>Olá, {data.name}!</h4>
       </div>
     </header>
