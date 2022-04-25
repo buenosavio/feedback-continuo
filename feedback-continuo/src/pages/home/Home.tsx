@@ -22,22 +22,20 @@ const Home = () => {
 
   useEffect(() => {
     isLogged();
-    getGivedFeedback();
-    getReceveidFeedback();
+    getGivedFeedback();    
   },[])
 
   
   const getGivedFeedback = async () => {
     try {
-
       const {data} = await api.get('/feedback/gived')
       console.log('enviados',data)
-      setLoading(true)
       setData(data)
+      getReceveidFeedback();
     } catch (error) {
       setLoading(false)
       setError(true)
-      Notify.failure('Erro ao fazer req. Tente novamente!');
+      Notify.failure('Erro ao carregar feedbacks. Tente novamente!');
     }
   }
 
@@ -46,8 +44,9 @@ const Home = () => {
       const{data} = await api.get('/feedback/receveid')
       console.log('recebidos',data)
       setReceived(data)
+      setLoading(false)
     } catch (error) {
-      Notify.failure('Erro ao fazer req. Tente novamente!');
+      Notify.failure('Erro ao carregar feedbacks. Tente novamente!');
     }
   }
 
@@ -61,11 +60,11 @@ const Home = () => {
   }
 
 
-  // if (loading) {
-  //   return(
-  //     <Loading/>
-  //   ) 
-  // }
+  if (loading) {
+    return(
+      <Loading/>
+    ) 
+  }
   // if (error) {
   //   return(
   //     <Error />
@@ -82,27 +81,27 @@ const Home = () => {
       <Tab title="Recebidos">
         <>
         <h1>Recebidos</h1>
-        {/* {received.map ((feedback:any) =>(
+        {received.map ((feedback:any) =>(
             <div key={feedback.createdAt}>
               <img src={feedback.profileUserImage} alt="" />
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
               <p>{formatTags(feedback.tags)}</p>
             </div>
-        ))} */}
+        ))}
         </>
       </Tab>
       <Tab title="Enviados">
         <>
         <h1>Enviados</h1>
-        {/* {data.map ((feedback:any) =>(
+        {data.map ((feedback:any) =>(
             <div key={feedback.feedbackId}>
               <img src={feedback.profileUserImage} alt="" />
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
               <p>{formatTags(feedback.tags)}</p>
             </div>
-        ))} */}
+        ))}
        </>
       </Tab>
     </Tabs>

@@ -50,7 +50,7 @@ const RegisterFeedback = () => {
       setLoading(false)
       setError(true)   
       console.log(error)      
-      Notify.failure('Erro na requisição de pessoas. Tente novamente!');
+      Notify.failure('Erro ao carregar lista de pessoas. Tente novamente!');
     }
   }
 
@@ -66,7 +66,7 @@ const RegisterFeedback = () => {
     } catch (error) {
       setLoading(false)
       setError(true)
-      Notify.failure('Erro na requisição das tags. Tente novamente!');
+      Notify.failure('Erro ao carregar lista de tags. Tente novamente!');
     }
   }
 
