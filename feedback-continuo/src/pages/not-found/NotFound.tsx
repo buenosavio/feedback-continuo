@@ -10,7 +10,9 @@ const NotFound = () => {
   const [counter, setCounter] = useState<number>(5);
 
   setInterval(() => {
-    setCounter(counter - 1);
+    if (counter > 0) {
+      setCounter(counter - 1);}
+    
   }, 1000);
   
   setTimeout(() => {
