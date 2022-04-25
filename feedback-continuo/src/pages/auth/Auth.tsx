@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginDTO } from '../../model/LoginDTO';
 import { useFormik } from "formik";
 import { AuthContext } from "../../context/AuthContext";
@@ -15,11 +15,15 @@ const Auth = () => {
     password: Yup.string().required('Obrigatório')
   });
 
-  const {handleLogin, isNotLogged} = useContext(AuthContext) as IAuthContext;  
-  
+  const {handleLogin, isLogged, loginOn} = useContext(AuthContext) as IAuthContext;  
+  const navigate = useNavigate();
+
   useEffect(() => {
-    isNotLogged()    
-  },[])
+    isLogged()
+    if (loginOn) {
+      navigate('/')
+    }    
+  },[loginOn])
 
   const formikProps = useFormik({
     initialValues: {

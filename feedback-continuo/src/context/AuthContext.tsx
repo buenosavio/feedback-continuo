@@ -1,10 +1,10 @@
 import { api } from '../api';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { UserDTO } from '../model/UserDTO';
 import { LoginDTO } from "../model/LoginDTO";
 import { IAuthContext } from "../model/TypesDTO";
 import { useNavigate } from "react-router-dom";
 import { createContext, ReactElement, ReactNode, useEffect, useState } from "react";
+import { AxiosError } from 'axios';
+import handleError from '../utils/Error';
 
 export const AuthContext = createContext<IAuthContext | null>(null);
 
@@ -26,7 +26,8 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     } catch (error) {
       setLoginOn(false);
       setLoginOff(true);
-      Notify.failure('Erro ao fazer login. Tente novamente!');
+      const errorData = error as AxiosError 
+      handleError(errorData)            
     }
   }
 
@@ -50,24 +51,25 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     }
   }
 
-  const isNotLogged = () => {
-    const logged = localStorage.getItem('token')
-    if (logged) {
-      setLoginOff(true);
-      navigate('/')
-    }  
-  }
+  // const isNotLogged = () => {
+  //   const logged = localStorage.getItem('token')
+  //   if (logged) {
+  //     setLoginOff(true);
+  //     navigate('/')
+  //   }  
+  // }
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if(token) {
       api.defaults.headers.common['Authorization'] = token;      
     }
-    isLogged();
+     isLogged();
+    // isNotLogged();
   },[]);
 
   return (
-    <AuthContext.Provider value={{handleLogin, handleLogout, token, isLogged, isNotLogged, loginOn,loginOff}}>
+    <AuthContext.Provider value={{handleLogin, handleLogout, token, isLogged, loginOn, loginOff}}>
       {children}
     </AuthContext.Provider>
   )

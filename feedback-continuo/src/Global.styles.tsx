@@ -12,6 +12,11 @@ export const TextDanger = styled.p`
   font-size: 14px;
   color: red;
   font-weight: bolder;
-
 `
 
+export const Image = styled.img`
+  border-radius: 50%;
+  border: 2px solid blue;
+  width: ${props => props.width};
+  height: ${props => props.height};
+`;

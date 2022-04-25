@@ -1,11 +1,11 @@
+import { api } from "../../api";
+import { Link } from "react-router-dom";
+import { Image } from "../../Global.styles";
+import { Notify } from "notiflix";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { UserDataDTO } from "../../model/UserDTO";
-import { api } from "../../api";
-import {Notify} from "notiflix";
 import { GivedFeedbackDTO } from "../../model/FeedbackDTO";
+import { useContext, useEffect, useState } from "react";
 
 import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
@@ -15,7 +15,7 @@ import Card from "../../components/cards/Card";
 
 const Home = () => {
 
-  const {isLogged,handleLogout} = useContext(AuthContext) as IAuthContext
+  const {isLogged} = useContext(AuthContext) as IAuthContext
   const [data, setData] = useState<any>({});
   const [received, setReceived] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(true);
@@ -55,13 +55,11 @@ const Home = () => {
 
   const formatTags = (tagList: string[]) => {
     let response = "";
-
     tagList.map((tag) => {
-      response = response + " # " + tag
+      response = response + " #" + tag
     }); 
     return response;
   }
-
 
   if (loading) {
     return(
@@ -76,17 +74,15 @@ const Home = () => {
   return(
     <>
       <h1>Home</h1>
-
       <Link to='/register-feedback'>Register Feedback</Link>
-
       <>
       <Tabs>
       <Tab title="Recebidos">
         <>
         <h1>Recebidos</h1>
-        {received ? received.map ((feedback:GivedFeedbackDTO) =>( 
-         <div  key={feedback.createdAt}>
-               <img src={feedback.profileUserImage} alt="" />
+        {received ? received.map ((feedback:GivedFeedbackDTO) =>(
+            <div key={feedback.createdAt}>
+              <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
               <p>{formatTags(feedback.tags)}</p>  
@@ -101,7 +97,7 @@ const Home = () => {
         <h1>Enviados</h1>
         {data ? data.map ((feedback:GivedFeedbackDTO) =>(
             <div key={feedback.feedbackId}>
-              <img src={feedback.profileUserImage} alt="" />
+              <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
               <p>{formatTags(feedback.tags)}</p>
@@ -110,10 +106,7 @@ const Home = () => {
        </>
       </Tab>
     </Tabs>
-      </>
-      <div>
-       <button onClick={() => {handleLogout()}}>Logout</button>
-      </div>
+      </>      
     </>
   )
 }
