@@ -51,21 +51,12 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
     }
   }
 
-  // const isNotLogged = () => {
-  //   const logged = localStorage.getItem('token')
-  //   if (logged) {
-  //     setLoginOff(true);
-  //     navigate('/')
-  //   }  
-  // }
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     if(token) {
       api.defaults.headers.common['Authorization'] = token;      
     }
-     isLogged();
-    // isNotLogged();
+     isLogged(); 
   },[]);
 
   return (
