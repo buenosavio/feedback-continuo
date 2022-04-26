@@ -11,6 +11,10 @@ import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
 import Loading from "../../components/loading/Loading";
 import Error from "../../components/error/Error";
+<<<<<<< HEAD
+=======
+import Card from "../../components/cards/Card";
+>>>>>>> 8a5c82eebc1c191832db5c4bc1bab9cc64097db3
 
 const Home = () => {
 
@@ -28,6 +32,8 @@ const Home = () => {
   const [btnDisabledReceivedPrevious, setBtnDisabledReceivedPrevious] = useState<boolean>(true);
   const [btnDisabledGivedPrevious, setBtnDisabledGivedPrevious] = useState<boolean>(true);
 
+  
+
   useEffect(() => {
     isLogged();
     getGivedFeedback();    
@@ -35,6 +41,7 @@ const Home = () => {
 
   const getGivedFeedback = async () => {
     try {
+<<<<<<< HEAD
       const {data} = await api.get(`/feedback/gived?page=${currentPageGived}`)    
       console.log('entrei na function', data)
       setData(data.content)  
@@ -45,6 +52,11 @@ const Home = () => {
         setBtnDisabledReceivedPrevious(true)
         setBtnDisabledGivedPrevious(true)
       }
+=======
+      const {data} = await api.get('/feedback/gived?page=1')
+      console.log('enviados',data)
+      setData(data)
+>>>>>>> 8a5c82eebc1c191832db5c4bc1bab9cc64097db3
       getReceveidFeedback();
     } catch (error) {
       setLoading(false)
@@ -87,6 +99,7 @@ const Home = () => {
 
   const getReceveidFeedback = async () =>{
     try {
+<<<<<<< HEAD
       const{data} = await api.get(`/feedback/receveid?page=${currentPageReceived}`)  
       setReceived(data.content)
       setTotalPagesReceived(data.totalPages)
@@ -94,6 +107,11 @@ const Home = () => {
         setBtnDisabledReceived(true)
         setBtnDisabledReceivedPrevious(true)
       }
+=======
+      const{data} = await api.get('/feedback/receveid?page=1')
+      console.log('recebidos',data)
+      setReceived(data)
+>>>>>>> 8a5c82eebc1c191832db5c4bc1bab9cc64097db3
       setLoading(false)
     } catch (error) {
       Notify.failure('Erro ao carregar feedbacks. Tente novamente!');
@@ -127,22 +145,30 @@ const Home = () => {
       <Tab title="Recebidos">
         <>
         <h1>Recebidos</h1>
-        {received ? received.map ((feedback:GivedFeedbackDTO) =>(
+        {received ? received.map ((feedback:any) =>(
             <div key={feedback.createdAt}>
               <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
+<<<<<<< HEAD
               <p>{formatTags(feedback.tags)}</p>
             </div>
         )) : "Nenhum feedback recebido!"}     
         <button disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Previous</button> 
         <button disabled={btnDisabledReceived} onClick={() => nextPageReceived()}>Next</button>
+=======
+              <p>{formatTags(feedback.tags)}</p>  
+              {/* <Card key={feedback.createdAt} profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)}/>  */} 
+        </div> 
+            
+        )) : "Nenhum feedback recebido!"}
+>>>>>>> 8a5c82eebc1c191832db5c4bc1bab9cc64097db3
         </>
       </Tab>
       <Tab title="Enviados">
         <>
         <h1>Enviados</h1>
-        {data ? data.map ((feedback:GivedFeedbackDTO) =>(
+        {data ? data.map ((feedback:any) =>(
             <div key={feedback.feedbackId}>
               <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
