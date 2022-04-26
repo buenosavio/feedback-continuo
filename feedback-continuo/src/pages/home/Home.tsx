@@ -25,6 +25,8 @@ const Home = () => {
   const [totalPagesGived, setTotalPagesGived] = useState(0);
   const [btnDisabledReceived, setBtnDisabledReceived] = useState<boolean>(false);
   const [btnDisabledGived, setBtnDisabledGived] = useState<boolean>(false);
+  const [btnDisabledReceivedPrevious, setBtnDisabledReceivedPrevious] = useState<boolean>(true);
+  const [btnDisabledGivedPrevious, setBtnDisabledGivedPrevious] = useState<boolean>(true);
 
   useEffect(() => {
     isLogged();
@@ -50,6 +52,7 @@ const Home = () => {
 
   const nextPageGived = () => {
     setCurrentPageGived(currentPageGived + 1);
+    setBtnDisabledGivedPrevious(false)
     if (currentPageGived + 1 >= totalPagesGived-1) {
       setBtnDisabledGived(true);
     }        
@@ -57,17 +60,26 @@ const Home = () => {
 
   const nextPageReceived = () => {
     setCurrentPageReceveid(currentPageReceived + 1);
+    setBtnDisabledReceivedPrevious(false)
     if (currentPageReceived+1 >= totalPagesReceived-1) {
       setBtnDisabledReceived(true)      
     }
   }
 
   const previousPageGived = () => {
-    setCurrentPageGived(currentPageGived - 1);      
+    setBtnDisabledGived(false);
+    setCurrentPageGived(currentPageGived - 1);
+    if (currentPageGived <= 1) {
+      setBtnDisabledGivedPrevious(true);
+    }      
   }
 
   const previousPageReceived = () => {
+    setBtnDisabledReceived(false)     
     setCurrentPageReceveid(currentPageReceived - 1); 
+    if (currentPageReceived <= 1) {
+      setBtnDisabledReceivedPrevious(true)       
+    }
   }
 
   const getReceveidFeedback = async () =>{
@@ -77,6 +89,7 @@ const Home = () => {
       setTotalPagesReceived(data.totalPages)
       if (data.totalPages === 1){
         setBtnDisabledReceived(true)
+        setBtnDisabledReceivedPrevious(true)
       }
       setLoading(false)
     } catch (error) {
@@ -119,7 +132,7 @@ const Home = () => {
               <p>{formatTags(feedback.tags)}</p>
             </div>
         )) : "Nenhum feedback recebido!"}     
-        <button disabled={false} onClick={() => previousPageReceived()}>Previous</button> 
+        <button disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Previous</button> 
         <button disabled={btnDisabledReceived} onClick={() => nextPageReceived()}>Next</button>
         </>
       </Tab>
@@ -134,7 +147,7 @@ const Home = () => {
               <p>{formatTags(feedback.tags)}</p>              
             </div>
         )): "Nenhum feedback enviado!"}
-        <button disabled={false} onClick={() => previousPageGived()}>Previous</button>
+        <button disabled={btnDisabledGivedPrevious} onClick={() => previousPageGived()}>Previous</button>
         <button disabled={btnDisabledGived} onClick={() => nextPageGived()}>Next</button>
        </>
       </Tab>
