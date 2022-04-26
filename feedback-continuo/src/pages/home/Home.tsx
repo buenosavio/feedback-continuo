@@ -39,8 +39,11 @@ const Home = () => {
       console.log('entrei na function', data)
       setData(data.content)  
       setTotalPagesGived(data.totalPages)
-      if (data.totalPages === 1){
+      if (data.totalPages <= 1){
         setBtnDisabledGived(true)
+        setBtnDisabledReceived(true)
+        setBtnDisabledReceivedPrevious(true)
+        setBtnDisabledGivedPrevious(true)
       }
       getReceveidFeedback();
     } catch (error) {
