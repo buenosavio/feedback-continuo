@@ -31,7 +31,7 @@ const Home = () => {
   
   const getGivedFeedback = async () => {
     try {
-      const {data} = await api.get('/feedback/gived')
+      const {data} = await api.get('/feedback/gived?page=1')
       console.log('enviados',data)
       setData(data)
       getReceveidFeedback();
@@ -44,7 +44,7 @@ const Home = () => {
 
   const getReceveidFeedback = async () =>{
     try {
-      const{data} = await api.get('/feedback/receveid')
+      const{data} = await api.get('/feedback/receveid?page=1')
       console.log('recebidos',data)
       setReceived(data)
       setLoading(false)
@@ -80,7 +80,7 @@ const Home = () => {
       <Tab title="Recebidos">
         <>
         <h1>Recebidos</h1>
-        {received ? received.map ((feedback:GivedFeedbackDTO) =>(
+        {received ? received.map ((feedback:any) =>(
             <div key={feedback.createdAt}>
               <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
@@ -95,7 +95,7 @@ const Home = () => {
       <Tab title="Enviados">
         <>
         <h1>Enviados</h1>
-        {data ? data.map ((feedback:GivedFeedbackDTO) =>(
+        {data ? data.map ((feedback:any) =>(
             <div key={feedback.feedbackId}>
               <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
