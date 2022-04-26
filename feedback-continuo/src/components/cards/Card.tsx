@@ -1,11 +1,11 @@
-import {GivedFeedbackDTO} from '../../model/FeedbackDTO'
 import { FC } from 'react'
 import {
-  CardContainer,
-  CardImg,
   CardName,
   CardText,
   CardTags,
+  CardData,
+  CardImage,
+  CardContainer,
 } from './Card.styled'
 
 
@@ -14,12 +14,13 @@ type cardDTO = {
   profileUserImage: string,
   tags: string,
   userName: string,
+  createdAt: string
 }
 
-  const Card : FC<cardDTO> = ({message,profileUserImage,tags,userName,}) => {
+  const Card : FC<cardDTO> = ({message,profileUserImage,tags,userName,createdAt,}) => {
   return (
     <CardContainer>
-      <CardImg background={profileUserImage}/>
+     <CardImage src={profileUserImage} alt="" width="80px" height="80px"/>
         <CardName>
           {userName}
         </CardName>
@@ -29,6 +30,9 @@ type cardDTO = {
         <CardTags>
           {tags}
         </CardTags>
+        <CardData>
+          {createdAt}
+        </CardData>
     </CardContainer>
   )
 }

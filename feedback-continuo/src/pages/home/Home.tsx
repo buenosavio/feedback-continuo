@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
 import { GivedFeedbackDTO } from "../../model/FeedbackDTO";
 import { useContext, useEffect, useState } from "react";
+import moment from "moment";
 
 import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
@@ -31,9 +32,9 @@ const Home = () => {
   
   const getGivedFeedback = async () => {
     try {
-      const {data} = await api.get('/feedback/gived?page=1')
+      const {data} = await api.get('/feedback/gived?page=0')
       console.log('enviados',data)
-      setData(data)
+      setData(data.content)
       getReceveidFeedback();
     } catch (error) {
       setLoading(false)
@@ -44,9 +45,9 @@ const Home = () => {
 
   const getReceveidFeedback = async () =>{
     try {
-      const{data} = await api.get('/feedback/receveid?page=1')
+      const{data} = await api.get('/feedback/receveid?page=0')
       console.log('recebidos',data)
-      setReceived(data)
+      setReceived(data.content)
       setLoading(false)
     } catch (error) {
       Notify.failure('Erro ao carregar feedbacks. Tente novamente!');
@@ -60,6 +61,7 @@ const Home = () => {
     }); 
     return response;
   }
+
 
   if (loading) {
     return(
@@ -80,27 +82,27 @@ const Home = () => {
       <Tab title="Recebidos">
         <>
         <h1>Recebidos</h1>
-        {received ? received.map ((feedback:any) =>(
-            <div key={feedback.createdAt}>
-              <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
+        {received ? received.map ((feedback:GivedFeedbackDTO) =>(
+          <div key={feedback.feedbackId}>
+              <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>  
+              {/* <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
-              <p>{formatTags(feedback.tags)}</p>  
-              {/* <Card key={feedback.createdAt} profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)}/>  */} 
-        </div> 
-            
+              <p>{formatTags(feedback.tags)}</p>   */}
+         </div>    
         )) : "Nenhum feedback recebido!"}
         </>
       </Tab>
       <Tab title="Enviados">
         <>
         <h1>Enviados</h1>
-        {data ? data.map ((feedback:any) =>(
+        {data ? data.map ((feedback:GivedFeedbackDTO) =>(
             <div key={feedback.feedbackId}>
-              <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
+                <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/> 
+              {/* <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
-              <p>{formatTags(feedback.tags)}</p>
+              <p>{formatTags(feedback.tags)}</p> */}
             </div>
         )): "Nenhum feedback enviado!"}
        </>
@@ -112,3 +114,5 @@ const Home = () => {
 }
 
 export default Home;
+
+
