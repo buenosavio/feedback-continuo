@@ -29,9 +29,7 @@ const Home = () => {
   const [btnDisabledGived, setBtnDisabledGived] = useState<boolean>(false);
   const [btnDisabledReceivedPrevious, setBtnDisabledReceivedPrevious] = useState<boolean>(true);
   const [btnDisabledGivedPrevious, setBtnDisabledGivedPrevious] = useState<boolean>(true);
-
-  
-
+ 
   useEffect(() => {
     isLogged();
     getGivedFeedback();    
@@ -39,8 +37,7 @@ const Home = () => {
 
   const getGivedFeedback = async () => {
     try {
-      const {data} = await api.get(`/feedback/gived?page=${currentPageGived}`)    
-      console.log('entrei na function', data)
+      const {data} = await api.get(`/feedback/gived?page=${currentPageGived}`)          
       setData(data.content)  
       setTotalPagesGived(data.totalPages)
       if (data.totalPages <= 1){
@@ -122,6 +119,7 @@ const Home = () => {
       <Error />
     ) 
   }
+
   return(
     <>
       <h1>Home</h1>
@@ -131,17 +129,11 @@ const Home = () => {
       <Tab title="Recebidos">
         <>
         <h1>Recebidos</h1>
-        {received ? received.map ((feedback:GivedFeedbackDTO) =>(
+        {received.length > 0 ? received.map ((feedback:GivedFeedbackDTO) =>(
           <div key={feedback.feedbackId}>
-              <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>  
-              {/* <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
-              <p>{feedback.userName}</p>
-              <p>{feedback.message}</p>
-
-              <p>{formatTags(feedback.tags)}</p>   */} 
-
-            </div>
-        )) : "Nenhum feedback recebido!"}     
+              <Card profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>  
+          </div>
+        )) : <h1>Nenhum feedback recebido!</h1>}     
         <button disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Previous</button> 
         <button disabled={btnDisabledReceived} onClick={() => nextPageReceived()}>Next</button>
         </>
@@ -149,15 +141,11 @@ const Home = () => {
       <Tab title="Enviados">
         <>
         <h1>Enviados</h1>
-        {data ? data.map ((feedback:GivedFeedbackDTO) =>(
+        {data.length > 0 ? data.map ((feedback:GivedFeedbackDTO) =>(
             <div key={feedback.feedbackId}>
-                <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/> 
-              {/* <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
-              <p>{feedback.userName}</p>
-              <p>{feedback.message}</p>
-              <p>{formatTags(feedback.tags)}</p> */}            
+                <Card profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>            
             </div>
-        )): "Nenhum feedback enviado!"}
+        )): <h1>Nenhum feedback enviado!</h1>}
         <button disabled={btnDisabledGivedPrevious} onClick={() => previousPageGived()}>Previous</button>
         <button disabled={btnDisabledGived} onClick={() => nextPageGived()}>Next</button>
        </>
