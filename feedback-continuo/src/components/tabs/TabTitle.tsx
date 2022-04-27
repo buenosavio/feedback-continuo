@@ -16,7 +16,6 @@ const TabTitle: FC<Props> = ({title, setSelectedTab, index}) => {
   return (
     <li>
       <button onClick={onClick}>{title}</button>
-      {/* <a onClick={onClick}>{title}</a> */}
     </li>
   )
 }

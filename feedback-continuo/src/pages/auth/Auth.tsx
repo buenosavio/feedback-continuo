@@ -4,11 +4,27 @@ import { useFormik } from "formik";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
 import { Form, TextDanger } from '../../Global.styles';
-import { useContext, useEffect } from "react";
+import { useContext, useEffect,useState } from "react";
+import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
 
 import * as Yup from 'yup';
+import {
+  ContainerLogin,
+  CardForm,
+  CardHeader,
+  TitleLogin,
+  Input,
+  TitleForm,
+  LinkForm,
+} from './Auth.styles'
+
+import {
+  ShowPassword,
+  MinorButton,
+} from '../../Global.styles'
 
 const Auth = () => {
+  const [eyeON, setEyeOn] = useState(true);
 
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email('E-mail inválido').required('Obrigatório').matches(/@dbccompany.com.br/, 'Informe e-mail da DBC'),
@@ -36,11 +52,15 @@ const Auth = () => {
     validationSchema: (SignupSchema)
   });
   return (
-    <>
-      <h1>Fazer Login</h1>
+    <ContainerLogin>
+      <>
+      <CardForm>
+      <CardHeader>
+      <TitleLogin>Fazer Login</TitleLogin>
+      </CardHeader>
       <Form onSubmit={formikProps.handleSubmit}>
-        <label htmlFor="email">E-mail</label>
-        <input id="email" name="email" type="text"
+        <TitleForm htmlFor="email">E-mail</TitleForm>
+        <Input placeholder='Digite seu E-mail' id="email" name="email" type="text"
           onChange={formikProps.handleChange}
           value={formikProps.values.email}
           onBlur={formikProps.handleBlur}
@@ -49,20 +69,26 @@ const Auth = () => {
           ? (<TextDanger>{formikProps.errors.email}</TextDanger>) 
           : null}
 
-        <label htmlFor="password">Password</label>
-        <input id="password" name="password" type="password"
+        <TitleForm htmlFor="password">Password</TitleForm>
+        <Input placeholder='Digite sua Senha' id="password" name="password" type ={eyeON? "password" : "text"}
           onChange={formikProps.handleChange}
           value={formikProps.values.password}
           onBlur={formikProps.handleBlur}
         />
+        <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye/> : < AiOutlineEyeInvisible/>}</ShowPassword>
         {formikProps.errors.password && formikProps.touched.password 
           ? (<TextDanger>{formikProps.errors.password}</TextDanger>)
           : null}
 
-        <button type="submit">Login</button>
+        <MinorButton type="submit">Login</MinorButton>
       </Form>
-      <Link to='/register-user'>Registre-se</Link>
-    </>
+      <Link
+       to='/register-user'>
+         Registre-se
+       </Link>
+      </CardForm>
+      </>
+    </ContainerLogin>
 )
 }
 

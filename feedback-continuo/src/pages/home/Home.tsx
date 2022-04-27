@@ -131,9 +131,13 @@ const Home = () => {
         <h1>Recebidos</h1>
         {received.length > 0 ? received.map ((feedback:GivedFeedbackDTO) =>(
           <div key={feedback.feedbackId}>
-              <Card profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>  
-          </div>
-        )) : <h1>Nenhum feedback recebido!</h1>}     
+              <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>  
+              {/* <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
+              <p>{feedback.userName}</p>
+              <p>{feedback.message}</p>
+              <p>{formatTags(feedback.tags)}</p>   */} 
+            </div>
+        )) : "Nenhum feedback recebido!"}     
         <button disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Previous</button> 
         <button disabled={btnDisabledReceived} onClick={() => nextPageReceived()}>Next</button>
         </>

@@ -2,7 +2,7 @@ import {FC,ReactElement} from 'react'
 
 type Props ={
   title: string,
-  children: any,
+  children: JSX.Element,
 }
 
 const Tab:FC<Props>  = ({children}) => {
