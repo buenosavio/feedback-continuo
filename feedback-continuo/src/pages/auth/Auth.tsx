@@ -80,7 +80,7 @@ const Auth = () => {
           ? (<TextDanger>{formikProps.errors.password}</TextDanger>)
           : null}
 
-        <MinorButton type="submit">Login</MinorButton>
+        <MinorButton type='submit' color={'white'} itemType={'blue'}  >Login</MinorButton>
       </Form>
       <Link
        to='/register-user'>

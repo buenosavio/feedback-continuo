@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 export const Form = styled.form`
   display: flex;
@@ -31,6 +31,9 @@ font-size: 25px;
 
 
 export const MinorButton = styled.button`
+/* input.attrs(props => ({
+  type: 'button',  
+})) */
   display: block;
   width: 90%;
   padding: 10px 0;
@@ -38,8 +41,9 @@ export const MinorButton = styled.button`
   text-align: center;
   font-size: 14px;
   font-weight: 700;
-  color: #fff;
-  background-color: rgba(55, 81, 255, 1);
+  color: ${(props) => props.color};
+  background-color: ${props => props.itemType} ;
+  /* background-color: rgba(55, 81, 255, 1); */
   border: 0;
   border-radius: 35px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
@@ -52,3 +56,4 @@ export const MinorButton = styled.button`
   }
 
 `;
+

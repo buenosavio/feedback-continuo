@@ -6,12 +6,14 @@ import { IAuthContext } from "../../model/TypesDTO";
 import { GivedFeedbackDTO } from "../../model/FeedbackDTO";
 import { useContext, useEffect, useState } from "react";
 import moment from "moment";
+import {AxiosError} from "axios"
 
 import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
 import Loading from "../../components/loading/Loading";
 import Error from "../../components/error/Error";
 import Card from "../../components/cards/Card";
+import handleError from '../../utils/Error'
 
 const Home = () => {
 
@@ -49,7 +51,8 @@ const Home = () => {
     } catch (error) {
       setLoading(false)
       setError(true)
-      Notify.failure('Erro ao carregar feedbacks. Tente novamente!');
+      const errorData = error as AxiosError 
+      handleError(errorData)
     }
   }
 
@@ -96,7 +99,8 @@ const Home = () => {
       }
       setLoading(false)
     } catch (error) {
-      Notify.failure('Erro ao carregar feedbacks. Tente novamente!');
+      const errorData = error as AxiosError 
+      handleError(errorData)
     }
   }
 
@@ -124,32 +128,32 @@ const Home = () => {
       <h1>Home</h1>
       <Link to='/register-feedback'>Register Feedback</Link>
       <>
-        <Tabs>
-          <Tab title="Recebidos">
-            <>           
-            <h1>Recebidos</h1>
-            {received.length > 0 ? received.map ((feedback:GivedFeedbackDTO) =>(
-              <div key={feedback.feedbackId}>
-                <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>               
-              </div>
-            )) : "Nenhum feedback recebido!"}     
-            <button disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Previous</button> 
-            <button disabled={btnDisabledReceived} onClick={() => nextPageReceived()}>Next</button>
-            </>
-          </Tab>
-          <Tab title="Enviados">
-            <>
-            <h1>Enviados</h1>
-            {gived.length > 0 ? gived.map ((feedback:GivedFeedbackDTO) =>(
-              <div key={feedback.feedbackId}>
-                <Card profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>            
-              </div>
-            )): <h1>Nenhum feedback enviado!</h1>}
-            <button disabled={btnDisabledGivedPrevious} onClick={() => previousPageGived()}>Previous</button>
-            <button disabled={btnDisabledGived} onClick={() => nextPageGived()}>Next</button>
-          </>
-          </Tab>
-        </Tabs>
+      <Tabs>
+      <Tab title="Recebidos">
+        <>
+        <h1>Recebidos</h1>
+        {received ? received.map ((feedback:GivedFeedbackDTO) =>(
+          <div key={feedback.feedbackId}>
+              <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>  
+            </div>
+        )) : "Nenhum feedback recebido!"}     
+        <button disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Previous</button> 
+        <button disabled={btnDisabledReceived} onClick={() => nextPageReceived()}>Next</button>
+        </>
+      </Tab>
+      <Tab title="Enviados">
+        <>
+        <h1>Enviados</h1>
+        {gived ? gived.map ((feedback:GivedFeedbackDTO) =>(
+            <div key={feedback.feedbackId}>
+                <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>          
+            </div>
+        )): "Nenhum feedback enviado!"}
+        <button disabled={btnDisabledGivedPrevious} onClick={() => previousPageGived()}>Previous</button>
+        <button disabled={btnDisabledGived} onClick={() => nextPageGived()}>Next</button>
+       </>
+      </Tab>
+    </Tabs>
       </>      
     </>
   )
