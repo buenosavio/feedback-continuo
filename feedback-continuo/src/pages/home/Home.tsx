@@ -137,9 +137,7 @@ const Home = () => {
               {/* <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
               <p>{feedback.userName}</p>
               <p>{feedback.message}</p>
-
               <p>{formatTags(feedback.tags)}</p>   */} 
-
             </div>
         )) : "Nenhum feedback recebido!"}     
         <button disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Previous</button> 

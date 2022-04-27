@@ -4,9 +4,10 @@ import {
   CardText,
   CardTags,
   CardData,
-  CardImage,
   CardContainer,
 } from './Card.styled'
+
+import {Image} from '../../Global.styles'
 
 
 type cardDTO = {
@@ -20,7 +21,7 @@ type cardDTO = {
   const Card : FC<cardDTO> = ({message,profileUserImage,tags,userName,createdAt,}) => {
   return (
     <CardContainer>
-     <CardImage src={profileUserImage} alt="" width="80px" height="80px"/>
+     <Image src={profileUserImage} alt="" width="80px" height="80px"/>
         <CardName>
           {userName}
         </CardName>
