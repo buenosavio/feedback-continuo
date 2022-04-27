@@ -6,6 +6,7 @@ import AuthProvider from './context/AuthContext';
 import RegisterUser from './pages/register-user/RegisterUser';
 import RegisterFeedback from './pages/register-feedback/RegisterFeedback';
 import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 
 const Routers = () => {
   return (
@@ -19,6 +20,7 @@ const Routers = () => {
         <Route path='/register-feedback' element={<RegisterFeedback/>} />
         <Route path='/register-user' element={<RegisterUser/>} />
       </Routes>
+      <Footer/>
     </AuthProvider>
     </BrowserRouter>
   )

@@ -1,18 +1,18 @@
 import { api } from "../../api";
 import { Link } from "react-router-dom";
-import { Image } from "../../Global.styles";
-import { Notify } from "notiflix";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
 import { GivedFeedbackDTO } from "../../model/FeedbackDTO";
 import { useContext, useEffect, useState } from "react";
 import moment from "moment";
+import {AxiosError} from "axios"
 
 import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
 import Loading from "../../components/loading/Loading";
 import Error from "../../components/error/Error";
 import Card from "../../components/cards/Card";
+import handleError from '../../utils/Error'
 
 const Home = () => {
 
@@ -53,7 +53,8 @@ const Home = () => {
     } catch (error) {
       setLoading(false)
       setError(true)
-      Notify.failure('Erro ao carregar feedbacks. Tente novamente!');
+      const errorData = error as AxiosError 
+      handleError(errorData)
     }
   }
 
@@ -100,7 +101,8 @@ const Home = () => {
       }
       setLoading(false)
     } catch (error) {
-      Notify.failure('Erro ao carregar feedbacks. Tente novamente!');
+      const errorData = error as AxiosError 
+      handleError(errorData)
     }
   }
 
@@ -134,10 +136,6 @@ const Home = () => {
         {received ? received.map ((feedback:GivedFeedbackDTO) =>(
           <div key={feedback.feedbackId}>
               <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>  
-              {/* <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
-              <p>{feedback.userName}</p>
-              <p>{feedback.message}</p>
-              <p>{formatTags(feedback.tags)}</p>   */} 
             </div>
         )) : "Nenhum feedback recebido!"}     
         <button disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Previous</button> 
@@ -149,11 +147,7 @@ const Home = () => {
         <h1>Enviados</h1>
         {data ? data.map ((feedback:GivedFeedbackDTO) =>(
             <div key={feedback.feedbackId}>
-                <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/> 
-              {/* <Image src={feedback.profileUserImage} alt="" width="80px" height="80px"/>
-              <p>{feedback.userName}</p>
-              <p>{feedback.message}</p>
-              <p>{formatTags(feedback.tags)}</p> */}            
+                <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>          
             </div>
         )): "Nenhum feedback enviado!"}
         <button disabled={btnDisabledGivedPrevious} onClick={() => previousPageGived()}>Previous</button>

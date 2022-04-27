@@ -18,7 +18,7 @@ const Header = () => {
   profileImage?: string
   }
 
-  const {loginOn, loginOff, handleLogout,isLogged} = useContext(AuthContext) as IAuthContext
+  const {loginOn, handleLogout} = useContext(AuthContext) as IAuthContext
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [data, setData] = useState<UserDataDTO>({

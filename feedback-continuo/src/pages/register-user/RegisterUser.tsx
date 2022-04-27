@@ -1,6 +1,4 @@
 import { api } from "../../api";
-import { Notify } from "notiflix/build/notiflix-notify-aio";
-import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
 import { UserDTO } from "../../model/UserDTO";
 import { useState } from "react";
 import { useFormik } from "formik";
