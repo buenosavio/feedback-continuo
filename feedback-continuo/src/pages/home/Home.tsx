@@ -4,7 +4,6 @@ import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
 import { GivedFeedbackDTO } from "../../model/FeedbackDTO";
 import { useContext, useEffect, useState } from "react";
-import moment from "moment";
 import {AxiosError} from "axios"
 
 import Tabs from '../../components/tabs'
@@ -135,7 +134,7 @@ const Home = () => {
         <h1>Recebidos</h1>
         {received ? received.map ((feedback:GivedFeedbackDTO) =>(
           <div key={feedback.feedbackId}>
-              <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>  
+              <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={feedback.createdAt}/>  
             </div>
         )) : "Nenhum feedback recebido!"}     
         <button disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Previous</button> 
@@ -147,7 +146,7 @@ const Home = () => {
         <h1>Enviados</h1>
         {data ? data.map ((feedback:GivedFeedbackDTO) =>(
             <div key={feedback.feedbackId}>
-                <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={moment(feedback.createdAt).format('DD MM YYYY')}/>          
+                <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={feedback.createdAt}/>          
             </div>
         )): "Nenhum feedback enviado!"}
         <button disabled={btnDisabledGivedPrevious} onClick={() => previousPageGived()}>Previous</button>
