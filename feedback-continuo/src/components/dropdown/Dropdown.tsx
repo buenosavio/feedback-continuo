@@ -23,13 +23,13 @@ const Dropdown = () => {
       </Div>
       <Nav ref={dropDownRef} active={isActive} onClick={toogleClick}>
         <Ul>
-          <Li>
+          <Li onClick={() => {navigate('/change-password')}}>
             <RiLockPasswordFill />
-            <ItemMenu onClick={() => {navigate('/change-password')}}>Alterar senha</ItemMenu> 
+            <ItemMenu>Alterar senha</ItemMenu> 
           </Li>
-          <Li>
+          <Li onClick={() => {handleLogout()}}>
             <FiLogOut />
-            <ItemMenu onClick={() => {handleLogout()}}>Logout</ItemMenu>        
+            <ItemMenu>Logout</ItemMenu>        
           </Li>
         </Ul>
       </Nav>
