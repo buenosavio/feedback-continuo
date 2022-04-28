@@ -13,6 +13,7 @@ import { FlexComponent,  } from "../../Global.styles";
 import { HeaderComponent, UserText, MinorButton, EditImage } from "./Header.styles";
 import convertBase64 from "../../utils/ConvertBase64";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "../dropdown/Dropdown";
 
 const Header = () => {
 
@@ -89,9 +90,8 @@ const Header = () => {
             style={{display: 'none'}}
             onChange={(event) => {updateProfileImage(event)}}/>
           <UserText> Olá, {data.name}! </UserText>          
-        </FlexComponent>        
-        <MinorButton onClick={() => {handleLogout()}}>Logout</MinorButton>
-        <MinorButton onClick={() => {navigate('/change-password')}}>Alterar senha</MinorButton>               
+        </FlexComponent>               
+        <Dropdown />              
       </FlexComponent>
     </HeaderComponent>
     </>
