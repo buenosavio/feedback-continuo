@@ -25,7 +25,7 @@ const RegisterFeedback = () => {
   const RegisterFeedbackSchema = Yup.object().shape({
     feedbackUserId: Yup.string().required('Obrigatório'),
     message: Yup.string().required('Obrigatório'),
-    tags: Yup.array().required('Obrigatório')
+    tags: Yup.array().required('Obrigatório').defined(),
   });
 
   const {isLogged} = useContext(AuthContext) as IAuthContext
@@ -94,7 +94,6 @@ const RegisterFeedback = () => {
     validationSchema: (RegisterFeedbackSchema),
     onSubmit: (values: FeedbackDTO) => {      
       saveFeedback(values)
-      console.log(values)
     },
   });
 
@@ -109,6 +108,8 @@ const RegisterFeedback = () => {
       <Error />
     ) 
   }
+
+  console.log(formikProps.values.tags)
   
   return (
     <>

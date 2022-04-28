@@ -16,7 +16,7 @@ export const TextDanger = styled.p`
 
 export const Image = styled.img`
   border-radius: 50%;
-  border: 2px solid blue;
+  border: 2px solid white;
   width: ${props => props.width};
   height: ${props => props.height};
 `;
@@ -56,4 +56,11 @@ export const MinorButton = styled.button`
   }
 
 `;
+
+export const FlexComponent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+`
 
