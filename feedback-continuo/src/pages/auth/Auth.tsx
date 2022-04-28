@@ -6,21 +6,25 @@ import { IAuthContext } from "../../model/TypesDTO";
 import { Form, TextDanger } from '../../Global.styles';
 import { useContext, useEffect,useState } from "react";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
+import imgLogo from '../../images/feedbacklogo.png'
 
 import * as Yup from 'yup';
 import {
-  ContainerLogin,
+  Input,
+  ImgLogin,
   CardForm,
+  TitleForm, 
   CardHeader,
   TitleLogin,
-  Input,
-  TitleForm,
-  LinkForm,
+  RegisterForm,
+  ContainerLogin,
 } from './Auth.styles'
 
 import {
+  Senha,
   ShowPassword,
   MinorButton,
+  MostrarSenha,
 } from '../../Global.styles'
 
 const Auth = () => {
@@ -55,6 +59,7 @@ const Auth = () => {
     <ContainerLogin>
       <>
       <CardForm>
+      <ImgLogin src={imgLogo}/>
       <CardHeader>
       <TitleLogin>Fazer Login</TitleLogin>
       </CardHeader>
@@ -70,22 +75,28 @@ const Auth = () => {
           : null}
 
         <TitleForm htmlFor="password">Password</TitleForm>
+        <Senha>
         <Input placeholder='Digite sua Senha' id="password" name="password" type ={eyeON? "password" : "text"}
           onChange={formikProps.handleChange}
           value={formikProps.values.password}
           onBlur={formikProps.handleBlur}
         />
-        <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye/> : < AiOutlineEyeInvisible/>}</ShowPassword>
+       <MostrarSenha>
+       <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye/> : < AiOutlineEyeInvisible/>}</ShowPassword>
+        </MostrarSenha>
         {formikProps.errors.password && formikProps.touched.password 
           ? (<TextDanger>{formikProps.errors.password}</TextDanger>)
           : null}
-
+          </Senha>
         <MinorButton type='submit' color={'white'} itemType={'blue'}  >Login</MinorButton>
       </Form>
+      <RegisterForm>
+        Não tem cadastro? 
       <Link
        to='/register-user'>
          Registre-se
        </Link>
+       </RegisterForm>
       </CardForm>
       </>
     </ContainerLogin>

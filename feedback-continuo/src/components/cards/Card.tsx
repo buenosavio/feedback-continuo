@@ -1,9 +1,14 @@
 import { FC } from 'react'
+import moment from "moment";
 import {
   CardName,
   CardText,
+  CardBody,
   CardTags,
   CardData,
+  CardHeader,
+  TextFooter,
+  GlobalCard,
   CardContainer,
 } from './Card.styled'
 
@@ -20,21 +25,29 @@ type cardDTO = {
 
   const Card : FC<cardDTO> = ({message,profileUserImage,tags,userName,createdAt,}) => {
   return (
-    <CardContainer>
-     <Image src={profileUserImage} alt="" width="80px" height="80px"/>
-        <CardName>
-          {userName}
-        </CardName>
-        <CardText>
-          {message}
-        </CardText>
-        <CardTags>
-          {tags}
-        </CardTags>
-        <CardData>
-          {createdAt}
-        </CardData>
-    </CardContainer>
+    <GlobalCard>
+      <CardContainer>
+        <CardHeader>
+          <CardName>
+              {userName}
+            </CardName>
+        </CardHeader> 
+        <CardBody>
+          <Image src={profileUserImage} alt="" width="80px" height="80px"/>
+          <CardText>
+            {message}
+          </CardText>
+          <CardTags>
+            {tags}
+          </CardTags>
+        </CardBody>
+          <CardData>
+            <TextFooter>
+            {moment(createdAt).format('DD / MM / YYYY')}
+            </TextFooter>
+          </CardData>
+      </CardContainer>
+    </GlobalCard>
   )
 }
 

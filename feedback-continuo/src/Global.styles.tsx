@@ -22,12 +22,26 @@ export const Image = styled.img`
 `;
 
 export const ShowPassword = styled.a`
+text-align: center;
 position: absolute;
-margin-left: 300px;
-margin-top: 160px;
-font-size: 25px;
-  cursor: pointer;
+margin: 15px 0 0 120px;
+cursor: pointer;
 `;
+
+export const MostrarSenha = styled.div`
+  position: absolute;
+  top:0; right:0;
+  margin-right: 5%;
+  margin-top: 5%;
+  background:transparent;
+  outline:none;
+  border:none;
+`
+
+export const Senha = styled.div`
+  position: relative;
+  text-align: center;
+`
 
 
 export const MinorButton = styled.button`

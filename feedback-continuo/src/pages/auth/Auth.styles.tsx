@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 
 export const ContainerLogin = styled.div`
-background-color:rgba(54, 55, 64, 1);
-height: 100vh;
+ background-color: #363740;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const CardForm = styled.div`
@@ -19,13 +22,13 @@ align-items: center;
 `;
 
 export const CardHeader = styled.header`
-padding-top: 32px;
-padding-bottom: 32px;
+padding-top: 10px;
+padding-bottom: 10px;
 display: grid;
 `;
 
 export const TitleLogin = styled.h1`
-font-size: 19px;
+font-size: 25px;
 color: rgba(164, 166, 179, 1);
 font-weight: bold;
 text-align: center;
@@ -34,19 +37,20 @@ align-items: center;
 
 export const Input = styled.input`
 padding: 0.5em;
-margin: 0.5em;
-background: rgba(164, 166, 179, 1);
+margin: 5px 10px 5px 20px;
+background: #FFF;
 border: none;
-border-radius: 3px;
-width: 316px;
-height: 42px;
+border-radius: 8px;
+width: 40vh;
+height: 35px;
+
 ::placeholder,
   ::-webkit-input-placeholder {
-    color: blue;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    color: rgba(164, 166, 179, 1);
   }
-  :-ms-input-placeholder {
-     color: blue;
-  }
+  
 `;
 
 export const TitleForm = styled.label`
@@ -60,4 +64,14 @@ margin: 10px 0 5px 20px;
 export const LinkForm = styled.a`
   margin: auto;
 
+`;
+
+export const RegisterForm = styled.p`
+text-align: center;
+`;
+
+export const ImgLogin = styled.img`
+  width: 120px;
+  border-radius: 50%;
+  text-align: center;
 `;
