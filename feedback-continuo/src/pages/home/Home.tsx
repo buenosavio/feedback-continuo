@@ -1,5 +1,6 @@
 import { api } from "../../api";
 import { Link } from "react-router-dom";
+import { Notify } from "notiflix";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
 import { GivedFeedbackDTO } from "../../model/FeedbackDTO";
@@ -16,7 +17,7 @@ import handleError from '../../utils/Error'
 const Home = () => {
 
   const {isLogged} = useContext(AuthContext) as IAuthContext
-  const [data, setData] = useState<any>({});
+  const [gived, setGived] = useState<any>({});
   const [received, setReceived] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -28,9 +29,7 @@ const Home = () => {
   const [btnDisabledGived, setBtnDisabledGived] = useState<boolean>(false);
   const [btnDisabledReceivedPrevious, setBtnDisabledReceivedPrevious] = useState<boolean>(true);
   const [btnDisabledGivedPrevious, setBtnDisabledGivedPrevious] = useState<boolean>(true);
-
-  
-
+ 
   useEffect(() => {
     isLogged();
     getGivedFeedback();    
@@ -38,9 +37,8 @@ const Home = () => {
 
   const getGivedFeedback = async () => {
     try {
-      const {data} = await api.get(`/feedback/gived?page=${currentPageGived}`)    
-      console.log('entrei na function', data)
-      setData(data.content)  
+      const {data} = await api.get(`/feedback/gived?page=${currentPageGived}`)          
+      setGived(data.content)  
       setTotalPagesGived(data.totalPages)
       if (data.totalPages <= 1){
         setBtnDisabledGived(true)
@@ -123,6 +121,7 @@ const Home = () => {
       <Error />
     ) 
   }
+
   return(
     <>
       <h1>Home</h1>
@@ -144,7 +143,7 @@ const Home = () => {
       <Tab title="Enviados">
         <>
         <h1>Enviados</h1>
-        {data ? data.map ((feedback:GivedFeedbackDTO) =>(
+        {gived ? gived.map ((feedback:GivedFeedbackDTO) =>(
             <div key={feedback.feedbackId}>
                 <Card  profileUserImage= {feedback.profileUserImage}userName={feedback.userName} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={feedback.createdAt}/>          
             </div>

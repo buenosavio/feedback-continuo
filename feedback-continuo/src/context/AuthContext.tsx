@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { createContext, ReactElement, ReactNode, useEffect, useState } from "react";
 import { AxiosError } from 'axios';
 import handleError from '../utils/Error';
+import Notiflix from 'notiflix';
 
 export const AuthContext = createContext<IAuthContext | null>(null);
 
@@ -32,10 +33,33 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('token')
-    setLoginOff(true);
-    setLoginOn(false);
-    navigate('/login')
+    Notiflix.Confirm.show(
+      'Logout',
+      'Tem certeza que deseja sair do sistema?',
+      'Sim',
+      'Não',
+      function okCb() {
+        localStorage.removeItem('token')
+        setLoginOff(true);
+        setLoginOn(false);
+        navigate('/login')
+      },
+      function cancelCb() {
+        //nao faz nada
+      },
+      {
+        width: '320px',
+        borderRadius: '8px',
+        fontFamily: 'Roboto',
+        titleColor: 'black',
+        okButtonBackground: '#858282cc',
+        cancelButtonBackground: 'red'        
+      },
+    );    
+  }
+
+  const changePassword = () => {
+    
   }
 
   const isLogged = async () => {      
@@ -60,7 +84,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
   },[]);
 
   return (
-    <AuthContext.Provider value={{handleLogin, handleLogout, token, isLogged, loginOn, loginOff}}>
+    <AuthContext.Provider value={{handleLogin, handleLogout, token, isLogged, loginOn, loginOff, changePassword}}>
       {children}
     </AuthContext.Provider>
   )

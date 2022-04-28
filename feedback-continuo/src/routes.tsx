@@ -7,6 +7,7 @@ import RegisterUser from './pages/register-user/RegisterUser';
 import RegisterFeedback from './pages/register-feedback/RegisterFeedback';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
+import ChangePassword from './pages/ChangePassword';
 
 const Routers = () => {
   return (
@@ -19,6 +20,7 @@ const Routers = () => {
         <Route path='/login' element={<Auth/>} />      
         <Route path='/register-feedback' element={<RegisterFeedback/>} />
         <Route path='/register-user' element={<RegisterUser/>} />
+        <Route path='/change-password' element={<ChangePassword/>} />
       </Routes>
       <Footer/>
     </AuthProvider>

@@ -1,12 +1,11 @@
 import {useCallback, FC} from 'react'
 
-
 type Props = {
   title: string
   index: number
   setSelectedTab: (index: number) => void
 }
-
+ 
 const TabTitle: FC<Props> = ({title, setSelectedTab, index}) => {
 
   const onClick = useCallback(() => {

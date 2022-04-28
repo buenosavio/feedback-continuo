@@ -11,6 +11,7 @@ import * as Yup from 'yup';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { AxiosError } from "axios";
 import handleError from "../../utils/Error";
+import convertBase64 from "../../utils/ConvertBase64";
 
 import {
   RegisterInput,
@@ -48,8 +49,12 @@ const RegisterUser = () => {
 
   const registerUser = async (values: UserDTO) => {
     setLoading(true)
+    const valuesFormatted = {
+      ...values,
+      name: values.name.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase()),
+    }
     try {
-      const {data} = await api.post('auth/sign-up/', values)
+      const {data} = await api.post('auth/sign-up/', valuesFormatted)
       localStorage.setItem('token', data)
       api.defaults.headers.common['Authorization'] = data;
       navigate('/')
@@ -66,21 +71,6 @@ const RegisterUser = () => {
     const base64 = await convertBase64(file);
     setBaseImage(base64);
     formikProps.setFieldValue("profileImage", base64)  
-  };
-
-  const convertBase64 = (file: Blob) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file); 
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
   };
 
   const formikProps = useFormik({

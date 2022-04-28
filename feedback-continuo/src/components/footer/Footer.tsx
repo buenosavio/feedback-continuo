@@ -3,21 +3,13 @@ import Error from "../error/Error";
 import Loading from "../loading/Loading";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
+import { FooterComponent, SmallText } from "./Footer.styles";
 
 const Footer = () => {
   
-
   const {loginOn} = useContext(AuthContext) as IAuthContext
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);  
   
-
-  if (error) {
-    return(
-      <Error />
-    ) 
-  }
-
   if (loading && loginOn) {
     return(
       <Loading/>
@@ -26,8 +18,9 @@ const Footer = () => {
   return (
     <>
     {(loginOn) ? (
-    
-    <h1>Footer</h1>
+      <FooterComponent>
+        <SmallText>Desenvolvido por Vem Ser DBC - 2022</SmallText>
+      </FooterComponent>
     ) : null}
 </>
 
