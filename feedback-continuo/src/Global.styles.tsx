@@ -225,33 +225,33 @@ export const InsertImage = styled.label<IProps>`
   }  
   `;
 
-declare module 'styled-components' {
-  export interface DefaultTheme{
-    color:{
-      AzulForte: string;
-      Azulmeioforte: string;
-      Azulclaro: string;
-      Azulmuitoclaro:string;
-      cinzaforte: string;
-      cinzafraco:string;
-      branco: string;
-      vermelhoWarning:string;
-      background: string;
-    },
-    fontSize:{
-      extraSmall: string;
-      small: string;
-      medium: string;
-      large: string;
-      extraLarge: string;
-      superLarge: string;
-    },
-    Container:{
-      minHeight: string;
-      widthLogin:string;
-      heightLogin: string;
-      widhtRegister: string;
-      heightRegister:string;
-    }
-}
-}
+// declare module 'styled-components' {
+//   export interface DefaultTheme{
+//     color:{
+//       AzulForte: string;
+//       Azulmeioforte: string;
+//       Azulclaro: string;
+//       Azulmuitoclaro:string;
+//       cinzaforte: string;
+//       cinzafraco:string;
+//       branco: string;
+//       vermelhoWarning:string;
+//       background: string;
+//     },
+//     fontSize:{
+//       extraSmall: string;
+//       small: string;
+//       medium: string;
+//       large: string;
+//       extraLarge: string;
+//       superLarge: string;
+//     },
+//     Container:{
+//       minHeight: string;
+//       widthLogin:string;
+//       heightLogin: string;
+//       widhtRegister: string;
+//       heightRegister:string;
+//     }
+// }
+// }

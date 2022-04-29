@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import { useFormik } from "formik";
 import { AxiosError } from "axios";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom";
 import {  FlexButton, Form, InsertImage, TextDanger } from "../../Global.styles";
@@ -17,6 +18,9 @@ import {
   BackArrow,
   TitlePrincipal,
   CardHeader,
+  ShowPassword,
+  MostrarSenha,
+  Senha,
 } from '../../Global.styles';
 
 import * as Yup from 'yup';
@@ -47,7 +51,8 @@ const RegisterUser = () => {
       .required('Obrigatório')
       .oneOf([Yup.ref('password')], 'A senha deve ser igual')      
   });
-
+  const [eyeON, setEyeOn] = useState(true);
+  const [eyeForm, setEyeForm] = useState(true);
   const [baseImage, setBaseImage] = useState<any>(DEFAULT_IMAGE);
   const [profileImage, setProfileImage] = useState<any>(DEFAULT_IMAGE);
   const [loading, setLoading] = useState<boolean>(false);
@@ -113,7 +118,7 @@ const RegisterUser = () => {
             onChange={(event) => {uploadImage(event)}}
           />           
           <TitleForm htmlFor="name">Nome Completo</TitleForm>
-          <Input id="name" name="name" type="text"
+          <Input placeholder="Digite seu nome completo" id="name" name="name" type="text"
             onChange={formikProps.handleChange}
             value={formikProps.values.name}
             onBlur={formikProps.handleBlur}
@@ -124,7 +129,7 @@ const RegisterUser = () => {
           }       
 
           <TitleForm htmlFor="email">E-mail</TitleForm>
-          <Input id="email" name="email" type="text"
+          <Input placeholder='Digite seu e-mail' id="email" name="email" type="text"
             onChange={formikProps.handleChange}
             value={formikProps.values.email.toLowerCase()}
             onBlur={formikProps.handleBlur}                          
@@ -135,27 +140,36 @@ const RegisterUser = () => {
           }
 
           <TitleForm htmlFor="password">Senha</TitleForm>
-          <Input id="password" name="password" type="password"
+          <Senha>
+          <Input placeholder='Digite sua senha' id="password" name="password" type ={eyeON? "password" : "text"}
             onChange={formikProps.handleChange}
             value={formikProps.values.password}
             onBlur={formikProps.handleBlur}
           />
+            <MostrarSenha>
+              <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
+            </MostrarSenha>
           <PasswordStrengthBar style={{ marginLeft: 25, width: 335 }} password={formikProps.values.password} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={8} shortScoreWord={['Muito curta']}/>
           {formikProps.errors.password && formikProps.touched.password 
             ? (<TextDanger marginLeft='25px'>{formikProps.errors.password}</TextDanger>) 
             : null
           }
-
+        </Senha>
           <TitleForm htmlFor="confirm_password">Repita sua senha</TitleForm>
-          <Input id="confirm_password" name="confirm_password" type="password"
+          <Senha>
+          <Input placeholder="Confirme a senha" id="confirm_password" name="confirm_password" type ={eyeForm? "password" : "text"}
             onChange={formikProps.handleChange}
             value={formikProps.values.confirm_password}
             onBlur={formikProps.handleBlur}
           />
+           <MostrarSenha>
+              <ShowPassword onClick={() => setEyeForm(!eyeForm)}>{eyeForm ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
+            </MostrarSenha>
           {formikProps.errors.confirm_password && formikProps.touched.confirm_password 
             ? (<TextDanger marginLeft='25px'>{formikProps.errors.confirm_password}</TextDanger>) 
             : null
           }   
+            </Senha>
           <FlexButton>
             <MinorButton color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
             <MinorButton color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Cadastrar</MinorButton>    
