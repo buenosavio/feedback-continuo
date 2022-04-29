@@ -6,6 +6,8 @@ interface IProps {
   marginLeft?: string;  
   content?: string;
   backgroundColor?: string;
+  widht?:string;
+  height?: string;
 }
 
 export const Container = styled.div<{minHeight:string}>`
@@ -31,12 +33,12 @@ export const Form = styled.form<IProps>`
   margin-top: ${props => props.marginLeft || '0px'} ;
 `;
 
-export const CardForm = styled.div`
+export const CardForm = styled.div<IProps>`
   background-color: rgba(255, 255, 255, 1);
   overflow: hidden;
   margin: auto;
-  width: 380px;
-  height: 640px;
+  width: ${props => props.widht};
+  height: ${props => props.height};
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   text-align: center;

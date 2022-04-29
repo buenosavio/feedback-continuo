@@ -25,9 +25,9 @@ export const Theme = {
   Container:{
     minHeight: '100vh',
     widthLogin: '380px',
-    heightLogin: '582px',
+    heightLogin: '650px',
     widhtRegister: '480px',
-    heightRegister:'800px',
+    heightRegister:'700px',
   }
 }
 

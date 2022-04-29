@@ -62,7 +62,8 @@ const Auth = () => {
   });
   return (
     <Container minHeight={Theme.Container.minHeight}>
-      <CardForm>
+      <CardForm widht={Theme.Container.widthLogin}
+      height={Theme.Container.heightLogin}>
         <ImgLogin src={imgLogo}/>
           <TitlePrincipal>Login - Feedback</TitlePrincipal>      
         <Form onSubmit={formikProps.handleSubmit} marginLeft={'50px'}>

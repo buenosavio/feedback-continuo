@@ -6,7 +6,6 @@ import { useFormik } from "formik";
 import { AxiosError } from "axios";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
-
 import { useNavigate } from "react-router-dom";
 import {  FlexButton, Form, InsertImage, TextDanger } from "../../Global.styles";
 import {
@@ -104,7 +103,8 @@ const RegisterUser = () => {
 
   return(
     <Container minHeight={Theme.Container.minHeight}>
-      <CardForm>        
+      <CardForm widht={Theme.Container.widhtRegister}
+      height={Theme.Container.heightRegister}>        
         <TitlePrincipal>Cadastrar Usuário</TitlePrincipal>      
         <Form onSubmit={formikProps.handleSubmit}>              
           <InsertImage htmlFor="uploadImage" itemType={baseImage} marginLeft={'140px'}/>        
