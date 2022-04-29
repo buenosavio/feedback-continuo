@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderComponent = styled.header`
-  background-color: #858282cc;
+  background-color: #040848;
 `;
 
 export const UserText = styled.p`

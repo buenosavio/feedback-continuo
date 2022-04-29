@@ -16,8 +16,8 @@ export const Nav = styled.nav<IProps>`
     opacity: 1;
     display: block;
     position: absolute;
-    top: 50%;
-    left: -360%;    
+    top: 40%;
+    left: -265%;    
   `}
 `;
 
@@ -28,10 +28,11 @@ export const Div = styled.div`
 `;
 
 export const Ul = styled.ul`
-  background-color: #858282cc;
+  background-color: #040848;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  border: 1px solid #5c5b5bcc;
+  border-top-left-radius: 15px;
+  border: 1px solid #0337A4;
   width: 120%;
 `
 
@@ -42,7 +43,8 @@ export const ItemMenu = styled.a`
 export const Li = styled.li`
   font-size: 20px;
   color: white;  
-  border: 1px solid white;  
+  background-color: #0337A4 ;
+  
   border-radius: 10px;
   padding: 5px;
   display: flex;

@@ -1,8 +1,11 @@
 import React from 'react'
+import { Container } from '../../Global.styles'
 
 const Error = () => {
   return (
-    <h1>Error...</h1>
+    <Container>
+      <h1>Error...</h1>
+    </Container>
   )
 }
 

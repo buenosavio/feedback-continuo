@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { FeedbackDTO } from "../../model/FeedbackDTO";
 import { IAuthContext } from "../../model/TypesDTO";
 import { ItemDTO, ListDTO } from "../../model/ListDTO";
-import { Form, TextDanger } from "../../Global.styles";
+import { Container, Form, TextDanger } from "../../Global.styles";
 import { useContext, useEffect, useState } from "react";
 
 import Error from "../../components/error/Error";
@@ -112,73 +112,73 @@ const RegisterFeedback = () => {
   console.log(formikProps.values.tags)
   
   return (
-    <>
-    <Link to='/'>Voltar</Link>
-    <h1>Register Feedback</h1>
-    <Form onSubmit={formikProps.handleSubmit}>      
+    <Container>
+      <Link to='/'>Voltar</Link>
+      <h1>Register Feedback</h1>
+      <Form onSubmit={formikProps.handleSubmit}>      
 
-      <label htmlFor="feedbackUserId">Selecione a pessoa</label>
-      <select id="feedbackUserId" name="feedbackUserId" 
-        onChange={formikProps.handleChange} 
-        onBlur={formikProps.handleBlur} 
-        value={formikProps.values.feedbackUserId}>
-        <option value=''></option>
-        {
-          users ? users.map((user: ItemDTO) => (
-            <option key={user.id} value={user.id}>{user.name}</option>
-          ))
+        <label htmlFor="feedbackUserId">Selecione a pessoa</label>
+        <select id="feedbackUserId" name="feedbackUserId" 
+          onChange={formikProps.handleChange} 
+          onBlur={formikProps.handleBlur} 
+          value={formikProps.values.feedbackUserId}>
+          <option value=''></option>
+          {
+            users ? users.map((user: ItemDTO) => (
+              <option key={user.id} value={user.id}>{user.name}</option>
+            ))
+            : null
+          }      
+        </select>
+        {formikProps.errors.feedbackUserId && formikProps.touched.feedbackUserId
+            ? (<TextDanger>{formikProps.errors.feedbackUserId}</TextDanger>)
+            : null
+        }  
+        
+        <label htmlFor="message">Feedback</label>
+        <textarea id="message" name="message"
+          onChange={formikProps.handleChange}
+          value={formikProps.values.message}
+          onBlur={formikProps.handleBlur}
+        />     
+        {formikProps.errors.message && formikProps.touched.message
+          ? (<TextDanger>{formikProps.errors.message}</TextDanger>)
           : null
-        }      
-      </select>
-      {formikProps.errors.feedbackUserId && formikProps.touched.feedbackUserId
-          ? (<TextDanger>{formikProps.errors.feedbackUserId}</TextDanger>)
-          : null
-      }  
-       
-      <label htmlFor="message">Feedback</label>
-      <textarea id="message" name="message"
-        onChange={formikProps.handleChange}
-        value={formikProps.values.message}
-        onBlur={formikProps.handleBlur}
-      />     
-      {formikProps.errors.message && formikProps.touched.message
-        ? (<TextDanger>{formikProps.errors.message}</TextDanger>)
-        : null
-      }
+        }
 
-      <label htmlFor="tags">Selecione a Tag</label>
-      <select id="tags" name="tags" 
-        onChange={formikProps.handleChange} 
-        onBlur={formikProps.handleBlur} 
-        value={formikProps.values.tags}
-        multiple={true}>
-        <option value=''></option>
-        {
-          tags ?
-          tags.map((tag: ItemDTO) => (
-            <option key={tag.id+tag.name} value={tag.name.toUpperCase()}>{tag.name}</option>
-          ))
-          : null
-        }      
-      </select>
-      {formikProps.errors.tags && formikProps.touched.tags
-          ? (<TextDanger>{formikProps.errors.tags}</TextDanger>)
-          : null
-      }  
+        <label htmlFor="tags">Selecione a Tag</label>
+        <select id="tags" name="tags" 
+          onChange={formikProps.handleChange} 
+          onBlur={formikProps.handleBlur} 
+          value={formikProps.values.tags}
+          multiple={true}>
+          <option value=''></option>
+          {
+            tags ?
+            tags.map((tag: ItemDTO) => (
+              <option key={tag.id+tag.name} value={tag.name.toUpperCase()}>{tag.name}</option>
+            ))
+            : null
+          }      
+        </select>
+        {formikProps.errors.tags && formikProps.touched.tags
+            ? (<TextDanger>{formikProps.errors.tags}</TextDanger>)
+            : null
+        }  
 
-      <label htmlFor="isAnonymous">Anônimo</label>
-      <input id="isAnonymous" name="isAnonymous" type="checkbox"
-        onChange={formikProps.handleChange}      
-        onBlur={formikProps.handleBlur}
-      />
-      {formikProps.errors.isAnonymous && formikProps.touched.isAnonymous
-        ? (<TextDanger>{formikProps.errors.isAnonymous}</TextDanger>)
-        : null
-      }
+        <label htmlFor="isAnonymous">Anônimo</label>
+        <input id="isAnonymous" name="isAnonymous" type="checkbox"
+          onChange={formikProps.handleChange}      
+          onBlur={formikProps.handleBlur}
+        />
+        {formikProps.errors.isAnonymous && formikProps.touched.isAnonymous
+          ? (<TextDanger>{formikProps.errors.isAnonymous}</TextDanger>)
+          : null
+        }
 
-      <button type="submit">Registrar</button>    
-    </Form>
-    </>
+        <button type="submit">Registrar</button>    
+      </Form>
+    </Container>
   )
 }
 

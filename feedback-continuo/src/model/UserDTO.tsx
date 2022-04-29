@@ -3,7 +3,6 @@ export interface UserDTO {
   name: string,
   password: string,
   confirm_password?: string,
-  profileImage: string
 }
 
 export interface UserDataDTO {
