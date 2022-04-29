@@ -1,11 +1,11 @@
 import styled, {DefaultTheme} from 'styled-components/'
-import {theme} from './theme';
+import {Theme} from './Theme';
 import { Link } from 'react-router-dom';
-
-
 
 interface IProps {
   marginLeft?: string;  
+  content?: string;
+  backgroundColor?: string;
 }
 
 export const Container = styled.div<{minHeight:string}>`
@@ -16,28 +16,50 @@ justify-content: center;
 align-items: center;
 `;
 
-export const Form = styled.form`
+export const Containerr = styled.div`
+  background-color: #DEDFE1;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Form = styled.form<IProps>`
   display: flex;
   flex-direction: column;
   max-width: 50%;
+  margin-top: ${props => props.marginLeft || '0px'} ;
+`;
+
+export const CardForm = styled.div`
+  background-color: rgba(255, 255, 255, 1);
+  overflow: hidden;
+  margin: auto;
+  width: 380px;
+  height: 640px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  text-align: center;
+  align-items: center;
+  position: relative;
 `;
 
 export const ContainerLogin = styled.div`
- background-color: ${theme.color.background};
-  min-height: ${theme.Container.minHeight};
+ background-color: ${Theme.color.background};
+  min-height: ${Theme.Container.minHeight};
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const CardFormRegister = styled.div`
-background-color:  ${theme.color.branco};
+background-color:  ${Theme.color.branco};
 overflow: hidden;
 margin: auto;
-width: ${theme.Container.widhtRegister};
-height: ${theme.Container.heightRegister};
+width: ${Theme.Container.widhtRegister};
+height: ${Theme.Container.heightRegister};
 box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
-border-radius: ${theme.fontSize.small}; ;
+border-radius: ${Theme.fontSize.small}; ;
 text-align: center;
 align-items: center;
 `;
@@ -49,53 +71,60 @@ display: flex;
 text-align: center;
 align-items: center;
 justify-content: center;
+  background-color: ${Theme.color.branco};
+  overflow: hidden;
+  margin: auto;
+  width: ${Theme.Container.widhtRegister};
+  height: ${Theme.Container.heightRegister};
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+  border-radius: ${Theme.fontSize.extraSmall};
+  text-align: center;
+  align-items: center;
 `;
-
-
 
 export const TextDanger = styled.p<IProps>`  
   margin: 0;
   margin-left: ${props => props.marginLeft || 0};	
   padding: 0;
   font-size: 14px;
-  color: ${theme.color.vermelhoWarning};
+  color: ${Theme.color.vermelhoWarning};
   font-weight: bolder;
   width: 100%;
   text-align: start;
-`
-
-export const TitleForm = styled.label`
-font-size: 15px;
-color: rgba(164, 166, 179, 1);
-font-weight: bold;
-text-align: left;
-margin: 10px 0 5px 20px;
 `;
 
+export const TitlePrincipal = styled.h1`
+  font-size: 25px;
+  color: #000000;
+  font-weight: 400;
+  text-align: center;
+  align-items: center;
+`;
 
-export const Image = styled.img`
-  border-radius: 50%;
-  border: 2px solid white;
-  width: ${props => props.width};
-  height: ${props => props.height};
+export const TitleForm = styled.label`
+  font-size: 15px;
+  color: #000000;
+  font-weight: 300;
+  text-align: left;
+  margin: 5px 0px 2px 20px;
 `;
 
 export const ShowPassword = styled.a`
-text-align: center;
-position: absolute;
-margin: 15px 0 0 120px;
-cursor: pointer;
+  text-align: center;
+  position: absolute;
+  margin: 15px 0 0 120px;
+  cursor: pointer;
 `;
 
 export const MostrarSenha = styled.div`
   position: absolute;
-  top: -8%; right:-15%;
+  top: -21%; right:-15%;
   margin-right: 5%;
   margin-top: 5%;
   background:transparent;
   outline:none;
   border:none;
-`
+`;
 
 export const BackArrow = styled(Link)`
   color: black;
@@ -104,17 +133,20 @@ export const BackArrow = styled(Link)`
 export const Senha = styled.div`
   position: relative;
   text-align: center;
-`
+`;
 
-export const MinorButton = styled.button`
-  display: block;
-  width: 90%;
+export const MinorButton = styled.button<IProps>`  
+  width: 150px;
   padding: 10px 0;
   margin: 20px 0 10px 100px;
   text-align: center;
-  font-size: ${theme.fontSize.small};
-  color: ${theme.color.branco};
-  background-color: ${theme.color.Azulclaro} ;
+  font-size: ${Theme.fontSize.small};
+  color: ${Theme.color.branco};
+  background-color: ${Theme.color.Azulclaro} ;
+  margin-left: ${props => props.marginLeft || 0};
+  font-size: ${Theme.fontSize.small};
+  color: ${(props) => Theme.color.branco};
+  background-color: ${props => props.backgroundColor} ;
   font-weight: 500;
   border: 0;
   border-radius: 35px;
@@ -134,11 +166,19 @@ export const FlexComponent = styled.div`
   padding: 10px;
 `
 
-export const MyComponent = styled.div`
-  color: ${theme.color.background};
+export const FlexButton = styled.div`
+  display: flex;  
+  justify-content: space-evenly;
+  width: 380px;  
+  position: absolute;
+  top: 93%;
 `;
 
-export const GlobalInput = styled.input`
+export const MyComponent = styled.div`
+  color: ${Theme.color.background};
+`;
+
+export const Input = styled.input`
   padding: 0.5em;
   margin: 5px 10px 5px 20px;
   background: #FFF;
@@ -146,6 +186,7 @@ export const GlobalInput = styled.input`
   border-radius: 8px;
   width: 172%;
   height: 35px;
+  height: 25px;
   ::placeholder,
   ::-webkit-input-placeholder {
     font-size: 14px;    
@@ -159,7 +200,28 @@ export const GlobalInput = styled.input`
   }
 `;
 
-
+export const InsertImage = styled.label<IProps>`
+  margin-left: ${props => props.marginLeft || 0};
+  width: 80px;
+  height: 80px; 
+  border-radius: 50%;
+  border: 2px solid white;
+  background-image: url(${props => props.itemType});
+  background-size: 100% 100%; 
+  :hover {    
+    opacity: 0.7; 
+    ::before {
+      display: flex;
+      text-align: center;      
+      font-weight: bold;           
+      margin-top: 25%;
+      content: 'Selecionar Imagem';            
+      background-color: white;
+      color: black; 
+      border-radius: 10px;      
+    }
+  }  
+  `;
 
 declare module 'styled-components' {
   export interface DefaultTheme{

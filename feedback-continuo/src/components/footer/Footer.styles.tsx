@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { Theme } from "../../theme";
 
 export const FooterComponent = styled.header`
-  background-color: #040848 ;  
+  background: ${Theme.color.backgroundGradient};  
   text-align: center;
 `;
 

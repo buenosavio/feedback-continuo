@@ -108,15 +108,12 @@ const RegisterFeedback = () => {
       <Error />
     ) 
   }
-
-  console.log(formikProps.values.tags)
-  
+ 
   return (
     <Container minHeight={theme.Container.minHeight}>
       <Link to='/'>Voltar</Link>
       <h1>Register Feedback</h1>
       <Form onSubmit={formikProps.handleSubmit}>      
-
         <label htmlFor="feedbackUserId">Selecione a pessoa</label>
         <select id="feedbackUserId" name="feedbackUserId" 
           onChange={formikProps.handleChange} 

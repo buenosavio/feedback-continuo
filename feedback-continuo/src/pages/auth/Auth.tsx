@@ -1,45 +1,46 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Theme } from '../../theme';
 import { LoginDTO } from '../../model/LoginDTO';
 import { useFormik } from "formik";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
-import { Form, TextDanger } from '../../Global.styles';
-import { useContext, useEffect,useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
 import imgLogo from '../../images/feedbacklogo.png'
 
-import { theme } from '../../theme';
-
 import * as Yup from 'yup';
-import {
-  CardForm,
-  ImgLogin,
-  TitleForm, 
-  TitleLogin,
+
+
+
+import {  
+  ImgLogin,    
   SimpleText,
   RegisterForm,  
+  TitleLogin,
 } from './Auth.styles'
-
 import {
+  Input,
   Senha,
-  Container,
+  Form,
+  TitleForm,
+  TitlePrincipal,
   ShowPassword,
+  CardForm,
   MinorButton,
   CardHeader,
+  TextDanger,
   MostrarSenha,
-  ContainerLogin,
-  GlobalInput
+  Container
 } from '../../Global.styles'
 
 const Auth = () => {
-  const [eyeON, setEyeOn] = useState(true);
-  
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email('E-mail inválido').required('Obrigatório').matches(/@dbccompany.com.br/, 'Informe e-mail da DBC'),
     password: Yup.string().required('Obrigatório')
   });
 
   const {handleLogin, isLogged, loginOn} = useContext(AuthContext) as IAuthContext;  
+  const [eyeON, setEyeOn] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,15 +61,13 @@ const Auth = () => {
     validationSchema: (SignupSchema)
   });
   return (
-    <Container minHeight={theme.Container.minHeight}>
+    <Container minHeight={Theme.Container.minHeight}>
       <CardForm>
         <ImgLogin src={imgLogo}/>
-        <CardHeader>
-          <TitleLogin>Login - Feedback</TitleLogin>
-        </CardHeader>
-        <Form onSubmit={formikProps.handleSubmit}>
+          <TitlePrincipal>Login - Feedback</TitlePrincipal>      
+        <Form onSubmit={formikProps.handleSubmit} marginLeft={'50px'}>
           <TitleForm htmlFor="email">E-mail</TitleForm>
-          <GlobalInput placeholder='Digite seu e-mail' id="email" name="email" type="text"
+          <Input placeholder='Digite seu e-mail' id="email" name="email" type="text"
             onChange={formikProps.handleChange}
             value={formikProps.values.email.toLowerCase()}
             onBlur={formikProps.handleBlur}
@@ -76,9 +75,9 @@ const Auth = () => {
           {formikProps.errors.email && formikProps.touched.email 
             ? (<TextDanger marginLeft='25px'>{formikProps.errors.email}</TextDanger>) 
             : null}
-          <TitleForm htmlFor="password">Password</TitleForm>
+          <TitleForm htmlFor="password">Senha</TitleForm>
           <Senha>
-            <GlobalInput placeholder='Digite sua senha' id="password" name="password" type ={eyeON? "password" : "text"}
+            <Input placeholder='Digite sua senha' id="password" name="password" type ={eyeON? "password" : "text"}
               onChange={formikProps.handleChange}
               value={formikProps.values.password}
               onBlur={formikProps.handleBlur}
@@ -89,15 +88,10 @@ const Auth = () => {
             {formikProps.errors.password && formikProps.touched.password 
               ? (<TextDanger marginLeft='25px'>{formikProps.errors.password}</TextDanger>)
               : null}
-          </Senha>
-      <RegisterForm>
-        Não tem cadastro? 
-      <Link
-       to='/register-user'>
-         Registre-se
-       </Link>
-       </RegisterForm>
-          <MinorButton type='submit' color={'#FFFFFF'} itemType={'#0166FE'}>Login</MinorButton>
+          </Senha>      
+          <RegisterForm>
+            <MinorButton type='submit' backgroundColor={Theme.color.Azulclaro} marginLeft={'115px'}>Login</MinorButton>
+          </RegisterForm>    
         </Form>
         <RegisterForm>
           <SimpleText> Não tem cadastro?</SimpleText>
