@@ -14,14 +14,15 @@ import { HeaderComponent, UserText, MinorButton, EditImage } from "./Header.styl
 import convertBase64 from "../../utils/ConvertBase64";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "../dropdown/Dropdown";
+import FirstLetterUppercase from "../../utils/FirstLetterUppercase";
 
 const Header = () => {
 
   type UserDataDTO = {
-  userId: string,
-  name: string,
-  email: string,
-  profileImage?: string
+    userId: string,
+    name: string,
+    email: string,
+    profileImage?: string
   }
 
   const navigate = useNavigate()
@@ -56,14 +57,18 @@ const Header = () => {
   }
 
   const updateProfileImage = async (event: any) => {
-    const file = event.target.files[0];
-    const base64 = await convertBase64(file);
-    const value = {base64}    
+    const formData = new FormData();
+    formData.append('profileImage', event.target.files[0]);
     try {      
-      const {data} = await api.put(`/user/update-profile-image`, value)
+      const {data} = await api.put(`/user/update-profile-image`, formData, 
+      {headers:{'Content-Type': 'multipart/form-data'}})
+      userFeedback();
+      Notify.success('Imagem atualizada com sucesso!');
     } catch (error) {
-      Notify.failure('Falhooou')
+      const errorData = error as AxiosError 
+      handleError(errorData)
     }
+    
   }
 
   if (error) {
@@ -85,11 +90,11 @@ const Header = () => {
     <HeaderComponent>
       <FlexComponent key={data.userId}>
         <FlexComponent>          
-          <EditImage htmlFor="uploadImage" itemType={data.profileImage} />
+          <EditImage htmlFor="uploadImage" itemType={`data:image/png;base64,${data.profileImage}`}/>
           <input name ="uploadImage" id="uploadImage" type="file" 
             style={{display: 'none'}}
             onChange={(event) => {updateProfileImage(event)}}/>
-          <UserText> Olá, {data.name}! </UserText>          
+          <UserText> Olá, {FirstLetterUppercase(data.name)}! </UserText>          
         </FlexComponent>               
         <Dropdown />              
       </FlexComponent>

@@ -1,6 +1,10 @@
+import { Container } from "../../Global.styles"
+
 const Loadingg = () => {
   return (
-    <h1>Loading....</h1>
+    <Container>
+      <h1>Loading....</h1>
+    </Container>
   )
 }
 

@@ -4,7 +4,7 @@ import { IAuthContext } from "../../model/TypesDTO";
 import { Div, Nav, Li, Ul, ItemMenu } from "./Dropdown.styles";
 import { AuthContext } from "../../context/AuthContext";
 import { AiOutlineMenu } from "react-icons/ai";
-import { RiLockPasswordFill } from "react-icons/ri";
+import { RiLockPasswordFill, RiArrowDropDownLine, RiArrowDropUpLine, RiArrowDropRightLine, RiArrowDropLeftLine } from "react-icons/ri";
 import { FiLogOut } from "react-icons/fi";
 
 
@@ -19,17 +19,18 @@ const Dropdown = () => {
   return (
     <Div>          
       <Div>
-        <AiOutlineMenu onClick={toogleClick} size={40} cursor={"pointer"}/>          
+      {isActive ? <RiArrowDropUpLine onClick={toogleClick} size={60} cursor={"pointer"} color={'#FFFFFF'}/> 
+                : <RiArrowDropDownLine onClick={toogleClick} size={60} cursor={"pointer"} color={'#FFFFFF'}/>}        
       </Div>
       <Nav ref={dropDownRef} active={isActive} onClick={toogleClick}>
         <Ul>
-          <Li>
+          <Li onClick={() => {navigate('/change-password')}}>
             <RiLockPasswordFill />
-            <ItemMenu onClick={() => {navigate('/change-password')}}>Alterar senha</ItemMenu> 
+            <ItemMenu>Alterar senha</ItemMenu> 
           </Li>
-          <Li>
+          <Li onClick={() => {handleLogout()}}>
             <FiLogOut />
-            <ItemMenu onClick={() => {handleLogout()}}>Logout</ItemMenu>        
+            <ItemMenu>Logout</ItemMenu>        
           </Li>
         </Ul>
       </Nav>

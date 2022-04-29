@@ -4,6 +4,18 @@ import { Theme } from './theme';
 
 import Deafult from './images/feedbacklogo.png'
 
+interface IProps {
+  marginLeft?: string;  
+}
+
+export const Container = styled.div`
+background: linear-gradient(to bottom right, #295ba7, #78b454);
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -37,12 +49,16 @@ display: grid;
 `;
 
 
-export const TextDanger = styled.p`
+
+export const TextDanger = styled.p<IProps>`  
   margin: 0;
+  margin-left: ${props => props.marginLeft || 0};	
   padding: 0;
   font-size: 14px;
   color: ${Theme.color.vermelhoWarning};
   font-weight: bolder;
+  width: 100%;
+  text-align: start;
 `
 
 export const TitleForm = styled.label`
@@ -70,7 +86,7 @@ cursor: pointer;
 
 export const MostrarSenha = styled.div`
   position: absolute;
-  top:0; right:0;
+  top: -8%; right:-15%;
   margin-right: 5%;
   margin-top: 5%;
   background:transparent;
@@ -83,7 +99,6 @@ export const Senha = styled.div`
   text-align: center;
 `
 
-
 export const MinorButton = styled.button`
   display: block;
   width: 90%;
@@ -91,18 +106,17 @@ export const MinorButton = styled.button`
   margin: 20px 0 10px 100px;
   text-align: center;
   font-size: ${Theme.fontSize.small};
-  font-weight: 700;
   color: ${(props) => Theme.color.branco};
   background-color: ${props => props.itemType} ;
+  font-weight: 500;
   border: 0;
   border-radius: 35px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
-
   &:hover {
     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
-    transform: translate(0, -5px);
+    transform: translate(0, -1px);
   }
 `;
 

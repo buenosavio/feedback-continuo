@@ -11,15 +11,17 @@ import imgLogo from '../../images/feedbacklogo.png'
 import * as Yup from 'yup';
 import {
   Input,
-  ImgLogin,
   CardForm,
+  ImgLogin,
   TitleForm, 
   TitleLogin,
-  RegisterForm,
+  SimpleText,
+  RegisterForm,  
 } from './Auth.styles'
 
 import {
   Senha,
+  Container,
   ShowPassword,
   MinorButton,
   CardHeader,
@@ -56,40 +58,36 @@ const Auth = () => {
     validationSchema: (SignupSchema)
   });
   return (
-    <ContainerLogin>
-      <>
+    <Container>
       <CardForm>
-      <ImgLogin src={imgLogo}/>
-      <CardHeader>
-      <TitleLogin>Fazer Login</TitleLogin>
-      </CardHeader>
-      <Form onSubmit={formikProps.handleSubmit}>
-        <TitleForm htmlFor="email">E-mail</TitleForm>
-        <Input placeholder='Digite seu E-mail' id="email" name="email" type="text"
-          onChange={formikProps.handleChange}
-          value={formikProps.values.email}
-          onBlur={formikProps.handleBlur}
-        />
-        {formikProps.errors.email && formikProps.touched.email 
-          ? (<TextDanger>{formikProps.errors.email}</TextDanger>) 
-          : null}
-
-        <TitleForm htmlFor="password">Password</TitleForm>
-        <Senha>
-        <Input placeholder='Digite sua Senha' id="password" name="password" type ={eyeON? "password" : "text"}
-          onChange={formikProps.handleChange}
-          value={formikProps.values.password}
-          onBlur={formikProps.handleBlur}
-        />
-       <MostrarSenha>
-       <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye/> : < AiOutlineEyeInvisible/>}</ShowPassword>
-        </MostrarSenha>
-        {formikProps.errors.password && formikProps.touched.password 
-          ? (<TextDanger>{formikProps.errors.password}</TextDanger>)
-          : null}
+        <ImgLogin src={imgLogo}/>
+        <CardHeader>
+          <TitleLogin>Login - Feedback</TitleLogin>
+        </CardHeader>
+        <Form onSubmit={formikProps.handleSubmit}>
+          <TitleForm htmlFor="email">E-mail</TitleForm>
+          <Input placeholder='Digite seu e-mail' id="email" name="email" type="text"
+            onChange={formikProps.handleChange}
+            value={formikProps.values.email.toLowerCase()}
+            onBlur={formikProps.handleBlur}
+          />
+          {formikProps.errors.email && formikProps.touched.email 
+            ? (<TextDanger marginLeft='25px'>{formikProps.errors.email}</TextDanger>) 
+            : null}
+          <TitleForm htmlFor="password">Password</TitleForm>
+          <Senha>
+            <Input placeholder='Digite sua senha' id="password" name="password" type ={eyeON? "password" : "text"}
+              onChange={formikProps.handleChange}
+              value={formikProps.values.password}
+              onBlur={formikProps.handleBlur}
+            />
+            <MostrarSenha>
+              <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
+            </MostrarSenha>
+            {formikProps.errors.password && formikProps.touched.password 
+              ? (<TextDanger marginLeft='25px'>{formikProps.errors.password}</TextDanger>)
+              : null}
           </Senha>
-        <MinorButton type='submit' color={'white'} itemType={'blue'} >Login</MinorButton>
-      </Form>
       <RegisterForm>
         Não tem cadastro? 
       <Link
@@ -97,9 +95,16 @@ const Auth = () => {
          Registre-se
        </Link>
        </RegisterForm>
+          <MinorButton type='submit' color={'#FFFFFF'} itemType={'#0166FE'}>Login</MinorButton>
+        </Form>
+        <RegisterForm>
+          <SimpleText> Não tem cadastro?</SimpleText>
+          <Link to='/register-user'>
+            <SimpleText itemType='400'>Registre-se</SimpleText>
+          </Link>
+        </RegisterForm>
       </CardForm>
-      </>
-    </ContainerLogin>
+    </Container>
 )
 }
 
