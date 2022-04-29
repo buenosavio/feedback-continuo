@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Theme } from "../../theme";
 
 interface IProps {
   active?: boolean;  
@@ -28,11 +29,11 @@ export const Div = styled.div`
 `;
 
 export const Ul = styled.ul`
-  background-color: #040848;
+  background:${Theme.color.backgroundGradient};
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   border-top-left-radius: 15px;
-  border: 1px solid #0337A4;
+  border: 1px solid ${Theme.color.primary};
   width: 120%;
 `
 
@@ -43,7 +44,7 @@ export const ItemMenu = styled.a`
 export const Li = styled.li`
   font-size: 20px;
   color: white;  
-  background-color: #0337A4 ;
+  background-color: ${Theme.color.secondary}; ;
   
   border-radius: 10px;
   padding: 5px;

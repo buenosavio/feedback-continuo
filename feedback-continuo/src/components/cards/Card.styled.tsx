@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const Image = styled.img`
+  border-radius: 50%;
+  border: 2px solid white;
+  width: ${props => props.width};
+  height: ${props => props.height};
+`;
+
 export const GlobalCard = styled.div`
 justify-content: center;
 align-items: center;

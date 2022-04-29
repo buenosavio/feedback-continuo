@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import moment from "moment";
 import {
+  Image,
   CardName,
   CardText,
   CardBody,
@@ -11,9 +12,6 @@ import {
   GlobalCard,
   CardContainer,
 } from './Card.styled'
-
-import {Image} from '../../Global.styles'
-
 
 type cardDTO = {
   message: string,

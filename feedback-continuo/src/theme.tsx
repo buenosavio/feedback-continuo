@@ -2,15 +2,19 @@ import styled from "styled-components";
 
 export const Theme = {
   color:{
+    primary: '#295ba7',
+    secondary: '#78b454',
     AzulForte: '#040848', //(header e footer),
     Azulmeioforte: '#0337A4',
     Azulclaro: '#0166FE', //(botao),
     Azulmuitoclaro: '#FEFEFE',
     cinzaforte: '#DEDFE1',
-    cinzafraco: ' #EBEFF8', //(cor de fundo de todo o sistema)
+    CinzaFraco: ' #EBEFF8', //(cor de fundo de todo o sistema)
+    CinzaMedio: '#878788',
     branco: '#FFFFFF',
     vermelhoWarning:'#E73532', //(erros, etc)
-    background: '#363740'
+    background: '#363740',
+    backgroundGradient: 'linear-gradient(to bottom right, #295ba7, #78b454)',
   },
   fontSize:{
     extraSmall: '10px',
@@ -26,5 +30,6 @@ export const Theme = {
     heightLogin: '582px',
     widhtRegister: '480px',
     heightRegister:'750px',
-  }
+  },
+  
 }

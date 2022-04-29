@@ -1,46 +1,31 @@
 import { api } from "../../api";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
-import { AuthContext } from "../../context/AuthContext";
-import { IAuthContext } from "../../model/TypesDTO";
-import { useContext, useEffect, useState } from "react";
-import { Image } from "../../Global.styles";
-import Loading from "../loading/Loading";
-import Error from "../error/Error";
-import handleError from '../../utils/Error'
 import { AxiosError } from "axios";
-
-import { FlexComponent,  } from "../../Global.styles";
-import { HeaderComponent, UserText, MinorButton, EditImage } from "./Header.styles";
-import convertBase64 from "../../utils/ConvertBase64";
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { InsertImage } from "../../Global.styles";
+import { UserDataDTO } from "../../model/UserDTO";
+import { IAuthContext } from "../../model/TypesDTO";
+import { FlexComponent } from "../../Global.styles";
+import { HeaderComponent, UserText } from "./Header.styles";
+import { useContext, useEffect, useState } from "react";
+import Error from "../error/Error";
+import Loading from "../loading/Loading";
 import Dropdown from "../dropdown/Dropdown";
+import handleError from '../../utils/Error'
 import FirstLetterUppercase from "../../utils/FirstLetterUppercase";
 
 const Header = () => {
 
-  type UserDataDTO = {
-    userId: string,
-    name: string,
-    email: string,
-    profileImage?: string
-  }
-
-  const navigate = useNavigate()
-  const {loginOn, handleLogout} = useContext(AuthContext) as IAuthContext
-  const [loading, setLoading] = useState<boolean>(true);
+  const {loginOn} = useContext(AuthContext) as IAuthContext
+  const [data, setData] = useState<UserDataDTO>();
   const [error, setError] = useState<boolean>(false);
-  const [data, setData] = useState<UserDataDTO>({
-    userId: '',
-    name: '',
-    email: '',
-    profileImage:'',
-  });
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {    
-    userFeedback();
+    userLogged();
   },[loginOn])
 
-  const userFeedback = async () => {
+  const userLogged = async () => {
     if (loginOn) {
       try {
         const {data} = await api.get('/user/user-loged')      
@@ -62,13 +47,12 @@ const Header = () => {
     try {      
       const {data} = await api.put(`/user/update-profile-image`, formData, 
       {headers:{'Content-Type': 'multipart/form-data'}})
-      userFeedback();
+      userLogged();
       Notify.success('Imagem atualizada com sucesso!');
     } catch (error) {
       const errorData = error as AxiosError 
       handleError(errorData)
-    }
-    
+    }    
   }
 
   if (error) {
@@ -88,13 +72,13 @@ const Header = () => {
     {(loginOn) ? (
     <>
     <HeaderComponent>
-      <FlexComponent key={data.userId}>
+      <FlexComponent key={data ? data.userId : null}>
         <FlexComponent>          
-          <EditImage htmlFor="uploadImage" itemType={`data:image/png;base64,${data.profileImage}`}/>
+          <InsertImage htmlFor="uploadImage" itemType={`data:image/png;base64,${data ? data.profileImage : ''}`}/>
           <input name ="uploadImage" id="uploadImage" type="file" 
             style={{display: 'none'}}
             onChange={(event) => {updateProfileImage(event)}}/>
-          <UserText> Olá, {FirstLetterUppercase(data.name)}! </UserText>          
+          <UserText> Olá, {data ? FirstLetterUppercase(data.name) : null}! </UserText>          
         </FlexComponent>               
         <Dropdown />              
       </FlexComponent>
