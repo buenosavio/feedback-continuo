@@ -103,68 +103,66 @@ const RegisterUser = () => {
   if (error) { return(<Error />) }
 
   return(
-//cesar
-    <>
     <Container minHeight={Theme.Container.minHeight}>
-      <CardForm>
-        <CardHeader>
-          <BackArrow to="/login"><AiOutlineArrowLeft/></BackArrow>
-      <TitlePrincipal>Cadastrar Usuário</TitlePrincipal>
-      </CardHeader>
-      <Form onSubmit={formikProps.handleSubmit}>
-       <label htmlFor="profileImage">Insira sua foto</label>
-       <InsertImage htmlFor="uploadImage" itemType={baseImage} marginLeft={'140px'}/>    
-        <Input type="file" id="uploadImage" name ="uploadImage"  style={{display: 'none'}}
-          onChange={(event) => {uploadImage(event)}}
-        />        
-        <TitleForm htmlFor="name">Nome Completo</TitleForm>
-        <Input id="name" name="name" type="text"
-          onChange={formikProps.handleChange}
-          value={formikProps.values.name}
-          onBlur={formikProps.handleBlur}
-        />       
-        {formikProps.errors.name && formikProps.touched.name 
-          ? (<TextDanger>{formikProps.errors.name}</TextDanger>) 
-          : null
-        }       
+      <CardForm>        
+        <TitlePrincipal>Cadastrar Usuário</TitlePrincipal>      
+        <Form onSubmit={formikProps.handleSubmit}>              
+          <InsertImage htmlFor="uploadImage" itemType={baseImage} marginLeft={'140px'}/>        
+          <input name ="uploadImage" id="uploadImage" type="file" 
+            style={{display: 'none'}}
+            onChange={(event) => {uploadImage(event)}}
+          />           
+          <TitleForm htmlFor="name">Nome Completo</TitleForm>
+          <Input id="name" name="name" type="text"
+            onChange={formikProps.handleChange}
+            value={formikProps.values.name}
+            onBlur={formikProps.handleBlur}
+          />       
+          {formikProps.errors.name && formikProps.touched.name 
+            ? (<TextDanger marginLeft='25px'>{formikProps.errors.name}</TextDanger>) 
+            : null
+          }       
 
-        <TitleForm htmlFor="email">E-mail</TitleForm>
-        <Input id="email" name="email" type="text"
-          onChange={formikProps.handleChange}
-          value={formikProps.values.email.toLowerCase()}
-          onBlur={formikProps.handleBlur}                          
-        />
-        {formikProps.errors.email && formikProps.touched.email
-          ? (<TextDanger>{formikProps.errors.email}</TextDanger>) 
-          : null
-        }
+          <TitleForm htmlFor="email">E-mail</TitleForm>
+          <Input id="email" name="email" type="text"
+            onChange={formikProps.handleChange}
+            value={formikProps.values.email.toLowerCase()}
+            onBlur={formikProps.handleBlur}                          
+          />
+          {formikProps.errors.email && formikProps.touched.email
+            ? (<TextDanger marginLeft='25px'>{formikProps.errors.email}</TextDanger>) 
+            : null
+          }
 
-        <TitleForm htmlFor="password">Senha</TitleForm>
-        <Input id="password" name="password" type="password"
-          onChange={formikProps.handleChange}
-          value={formikProps.values.password}
-          onBlur={formikProps.handleBlur}
-        />
-        <PasswordStrengthBar style={{ marginLeft: 25, width: 335 }} password={formikProps.values.password} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={8} shortScoreWord={['Muito curta']}/>
-        {formikProps.errors.password && formikProps.touched.password 
-          ? (<TextDanger>{formikProps.errors.password}</TextDanger>) 
-          : null
-        }
-        <TitleForm htmlFor="confirm_password">Repita sua senha</TitleForm>
-        <Input id="confirm_password" name="confirm_password" type="password"
-          onChange={formikProps.handleChange}
-          value={formikProps.values.confirm_password}
-          onBlur={formikProps.handleBlur}
-        />
-        {formikProps.errors.confirm_password && formikProps.touched.confirm_password 
-          ? (<TextDanger>{formikProps.errors.confirm_password}</TextDanger>) 
-          : null
-        }   
-      <MinorButton color={'white'} itemType={'blue'} type="submit">Cadastrar</MinorButton>    
-    </Form>
-    </CardForm>
-    </Container>
-  </>
+          <TitleForm htmlFor="password">Senha</TitleForm>
+          <Input id="password" name="password" type="password"
+            onChange={formikProps.handleChange}
+            value={formikProps.values.password}
+            onBlur={formikProps.handleBlur}
+          />
+          <PasswordStrengthBar style={{ marginLeft: 25, width: 335 }} password={formikProps.values.password} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={8} shortScoreWord={['Muito curta']}/>
+          {formikProps.errors.password && formikProps.touched.password 
+            ? (<TextDanger marginLeft='25px'>{formikProps.errors.password}</TextDanger>) 
+            : null
+          }
+
+          <TitleForm htmlFor="confirm_password">Repita sua senha</TitleForm>
+          <Input id="confirm_password" name="confirm_password" type="password"
+            onChange={formikProps.handleChange}
+            value={formikProps.values.confirm_password}
+            onBlur={formikProps.handleBlur}
+          />
+          {formikProps.errors.confirm_password && formikProps.touched.confirm_password 
+            ? (<TextDanger marginLeft='25px'>{formikProps.errors.confirm_password}</TextDanger>) 
+            : null
+          }   
+          <FlexButton>
+            <MinorButton color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
+            <MinorButton color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Cadastrar</MinorButton>    
+          </FlexButton>
+        </Form>
+      </CardForm>
+      </Container>
   
   )
 }

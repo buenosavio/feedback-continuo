@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container } from '../../Global.styles'
-import { theme } from '../../theme'
+import { Theme } from '../../theme'
 const Error = () => {
   return (
-    <Container minHeight={theme.Container.minHeight}>
+    <Container minHeight={Theme.Container.minHeight}>
       <h1>Error...</h1>
     </Container>
   )

@@ -1,8 +1,8 @@
 import { Container } from "../../Global.styles"
-import { theme } from "../../theme"
+import { Theme } from "../../theme"
 const Loadingg = () => {
   return (
-    <Container minHeight={theme.Container.minHeight}>
+    <Container minHeight={Theme.Container.minHeight}>
       <h1>Loading....</h1>
     </Container>
   )

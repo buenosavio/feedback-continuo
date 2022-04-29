@@ -8,7 +8,7 @@ import { IAuthContext } from "../../model/TypesDTO";
 import { ItemDTO, ListDTO } from "../../model/ListDTO";
 import { Container, Form, TextDanger } from "../../Global.styles";
 import { useContext, useEffect, useState } from "react";
-import { theme } from "../../theme";
+import { Theme } from "../../theme";
 import Error from "../../components/error/Error";
 import Loading from "../../components/loading/Loading";
 import * as Yup from 'yup'
@@ -110,7 +110,7 @@ const RegisterFeedback = () => {
   }
  
   return (
-    <Container minHeight={theme.Container.minHeight}>
+    <Container minHeight={Theme.Container.minHeight}>
       <Link to='/'>Voltar</Link>
       <h1>Register Feedback</h1>
       <Form onSubmit={formikProps.handleSubmit}>      
