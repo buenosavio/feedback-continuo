@@ -14,17 +14,17 @@ import {
   ImgLogin,
   CardForm,
   TitleForm, 
-  CardHeader,
   TitleLogin,
   RegisterForm,
-  ContainerLogin,
 } from './Auth.styles'
 
 import {
   Senha,
   ShowPassword,
   MinorButton,
+  CardHeader,
   MostrarSenha,
+  ContainerLogin,
 } from '../../Global.styles'
 
 const Auth = () => {
@@ -88,7 +88,7 @@ const Auth = () => {
           ? (<TextDanger>{formikProps.errors.password}</TextDanger>)
           : null}
           </Senha>
-        <MinorButton type='submit' color={'white'} itemType={'blue'}  >Login</MinorButton>
+        <MinorButton type='submit' color={'white'} itemType={'blue'} >Login</MinorButton>
       </Form>
       <RegisterForm>
         Não tem cadastro? 

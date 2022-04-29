@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-
-export const ContainerLogin = styled.div`
- background-color: #363740;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const CardForm = styled.div`
 background-color: rgba(255, 255, 255, 1);
 overflow: hidden;
