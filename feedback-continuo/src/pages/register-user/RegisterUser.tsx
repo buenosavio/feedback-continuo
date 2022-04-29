@@ -1,6 +1,6 @@
 import { api } from "../../api";
 import { UserDTO } from "../../model/UserDTO";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { Form, Image, TextDanger } from "../../Global.styles";
@@ -14,6 +14,7 @@ import handleError from "../../utils/Error";
 import convertBase64 from "../../utils/ConvertBase64";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
+import { theme } from "../../theme";
 
 import {
   GlobalInput,
@@ -22,6 +23,8 @@ import {
   CardFormRegister,
   CardHeader,
   TitleForm,
+  Container,
+  BackArrow,
 } from '../../Global.styles';
 
 import FirstLetterUppercase from "../../utils/FirstLetterUppercase";
@@ -109,9 +112,10 @@ const RegisterUser = () => {
 
   return(
     <>
-    <ContainerLogin>
+    <Container minHeight={theme.Container.minHeight}>
       <CardFormRegister>
         <CardHeader>
+          <BackArrow to="/login"><AiOutlineArrowLeft/></BackArrow>
       <h1>Inserir usuário</h1>
       </CardHeader>
       <Form onSubmit={formikProps.handleSubmit}>
@@ -167,7 +171,7 @@ const RegisterUser = () => {
       <MinorButton color={'white'} itemType={'blue'} type="submit">Cadastrar</MinorButton>    
     </Form>
     </CardFormRegister>
-    </ContainerLogin>
+    </Container>
   </>
   )
 }

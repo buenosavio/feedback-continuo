@@ -5,7 +5,7 @@ export const CardForm = styled.div`
   overflow: hidden;
   margin: auto;
   width: 380px;
-  height: 582px;
+  height: 600px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   text-align: center;
@@ -26,26 +26,7 @@ export const TitleLogin = styled.h1`
   align-items: center;
 `;
 
-export const Input = styled.input`
-  padding: 0.5em;
-  margin: 5px 10px 5px 20px;
-  background: #FFF;
-  border: 1px solid #d1d1d1;
-  border-radius: 8px;
-  width: 172%;
-  height: 35px;
-  ::placeholder,
-  ::-webkit-input-placeholder {
-    font-size: 14px;    
-    color: rgba(164, 166, 179, 1);
-  }
-  :focus {
-    box-shadow: 0 0 0 0;
-    outline: 0;
-    transition: 2s;
-    border-color: #aeaeb1 ; 
-  }
-`;
+
 
 export const TitleForm = styled.label`
   font-size: 15px;

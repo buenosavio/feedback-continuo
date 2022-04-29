@@ -8,9 +8,10 @@ import { useContext, useEffect,useState } from "react";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
 import imgLogo from '../../images/feedbacklogo.png'
 
+import { theme } from '../../theme';
+
 import * as Yup from 'yup';
 import {
-  Input,
   CardForm,
   ImgLogin,
   TitleForm, 
@@ -27,11 +28,12 @@ import {
   CardHeader,
   MostrarSenha,
   ContainerLogin,
+  GlobalInput
 } from '../../Global.styles'
 
 const Auth = () => {
   const [eyeON, setEyeOn] = useState(true);
-
+  
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email('E-mail inválido').required('Obrigatório').matches(/@dbccompany.com.br/, 'Informe e-mail da DBC'),
     password: Yup.string().required('Obrigatório')
@@ -58,7 +60,7 @@ const Auth = () => {
     validationSchema: (SignupSchema)
   });
   return (
-    <Container>
+    <Container minHeight={theme.Container.minHeight}>
       <CardForm>
         <ImgLogin src={imgLogo}/>
         <CardHeader>
@@ -66,7 +68,7 @@ const Auth = () => {
         </CardHeader>
         <Form onSubmit={formikProps.handleSubmit}>
           <TitleForm htmlFor="email">E-mail</TitleForm>
-          <Input placeholder='Digite seu e-mail' id="email" name="email" type="text"
+          <GlobalInput placeholder='Digite seu e-mail' id="email" name="email" type="text"
             onChange={formikProps.handleChange}
             value={formikProps.values.email.toLowerCase()}
             onBlur={formikProps.handleBlur}
@@ -76,7 +78,7 @@ const Auth = () => {
             : null}
           <TitleForm htmlFor="password">Password</TitleForm>
           <Senha>
-            <Input placeholder='Digite sua senha' id="password" name="password" type ={eyeON? "password" : "text"}
+            <GlobalInput placeholder='Digite sua senha' id="password" name="password" type ={eyeON? "password" : "text"}
               onChange={formikProps.handleChange}
               value={formikProps.values.password}
               onBlur={formikProps.handleBlur}
