@@ -26,11 +26,6 @@ const Tabs: FC<Props> = ({children}) => {
   )
 }
 
-// $("button, input[name*='btnProfile']").on("click", function () {
-//   $(":button").removeClass("selected");
-//   $(":button").addClass("button-nav-profile");
-//   $(this).removeClass("button-nav-profile");
-//   $(this).addClass("selected");
-// });
+
 
 export default Tabs

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Theme } from "../../theme";
 import Select from 'react-select'
+import AsyncSelect from 'react-select/async';
 
 interface IProps {
   checked?: boolean;
@@ -42,6 +43,7 @@ export const TextArea = styled.textarea`
 `;
 
 export const Selectstyled = styled(Select)`
+text-transform: capitalize;
   width: 530px;  
   height: 40px;
   border: 1px solid #d1d1d1;

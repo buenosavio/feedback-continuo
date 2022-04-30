@@ -7,7 +7,7 @@ import { FeedbackDTO } from "../../model/FeedbackDTO";
 import { IAuthContext } from "../../model/TypesDTO";
 import { ItemDTO, ListDTO } from "../../model/ListDTO";
 import { Container, ContainerCenter, Form, MinorButton, TextDanger, TitleForm, TitlePrincipal } from "../../Global.styles";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, Fragment } from "react";
 import Error from "../../components/error/Error";
 import Loading from "../../components/loading/Loading";
 import * as Yup from 'yup'
@@ -50,7 +50,7 @@ const RegisterFeedback = () => {
       })
       setUsers(users)        
       getTags() 
-      options(users)
+      handleNames(users)
     } catch (error) {   
       setLoading(false)
       setError(true)   
@@ -86,7 +86,6 @@ const RegisterFeedback = () => {
   }
 
   const saveFeedback = async (values: FeedbackDTO) => {
-    console.log('--> ', selectedTags)
     const valuesFormatted = {
       ...values,
       tags: selectedTags
@@ -115,12 +114,14 @@ const RegisterFeedback = () => {
     },
   });
 
-  const options = (users:any) => {
-    const names = users ? users.map((user: ItemDTO) => (
-      {value: user.name, label: user.name}
+  const handleNames:any = (users:any) => {
+    const names = users ? users.map((user: any) => (
+      {value: user.id, label: user.name}
     )) : null
     setallUsers(names)
+    console.log(names)
   }
+
 
 
 
@@ -148,6 +149,9 @@ const RegisterFeedback = () => {
             value={formikProps.values.feedbackUserId}
             placeholder={"Escolha um usuário "}
             options ={allUsers}  
+            defaultValue={allUsers[0]}
+            classNamePrefix="select"
+          
             />
             {/* {
               users ? users.map((user: ItemDTO) => (
