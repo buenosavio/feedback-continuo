@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface IProps {
+  width?: string;
+};
+
 export const CardForm = styled.div`
   background-color: rgba(255, 255, 255, 1);
   overflow: hidden;
@@ -53,9 +57,9 @@ export const ImgLogin = styled.img`
   margin-top: 20px;
 `;
 
-export const SimpleText = styled.p`
+export const SimpleText = styled.p<IProps>`
   display: inline;
-  font-size: 15px;  
+  font-size: ${props => props.width || '15px'};
   margin: 0px 3px;  
-  font-weight: ${props => props.itemType || 300} ;
+  font-weight: ${props => props.itemType || 300} ;  
 `

@@ -83,24 +83,27 @@ const Auth = () => {
               onChange={formikProps.handleChange}
               value={formikProps.values.password}
               onBlur={formikProps.handleBlur}
-            />
+            />            
             <MostrarSenha>
               <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
             </MostrarSenha>
             {formikProps.errors.password && formikProps.touched.password 
               ? (<TextDanger marginLeft='25px'>{formikProps.errors.password}</TextDanger>)
-              : null}
+              : null}           
           </Senha>      
-          <RegisterForm>
+          <RegisterForm>            
             <MinorButton type='submit' backgroundColor={Theme.color.Azulclaro} marginLeft={'115px'}>Login</MinorButton>
           </RegisterForm>    
         </Form>
         <RegisterForm>
           <SimpleText> Não tem cadastro?</SimpleText>
           <Link to='/register-user'>
-            <SimpleText itemType='400'>Registre-se</SimpleText>
-          </Link>
-        </RegisterForm>
+            <SimpleText itemType='300'>Registre-se</SimpleText>
+          </Link>                 
+        </RegisterForm><br/>
+        <Link to='/forget-password'>
+          <SimpleText width='15px' itemType='300'>Esqueci minha senha</SimpleText>
+        </Link>
       </CardForm>
     </ContainerForm>
 )

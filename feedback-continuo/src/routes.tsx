@@ -8,6 +8,7 @@ import RegisterFeedback from './pages/register-feedback/RegisterFeedback';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import ChangePassword from './pages/change-password/ChangePassword';
+import ForgetPassword from './pages/forget-password/ForgetPassword';
 
 
 const Routers = () => {
@@ -23,6 +24,7 @@ const Routers = () => {
         <Route path='/register-feedback' element={<RegisterFeedback/>} />
         <Route path='/register-user' element={<RegisterUser/>} />
         <Route path='/change-password' element={<ChangePassword/>} />
+        <Route path='/forget-password' element={<ForgetPassword/>} />
       </Routes>
       <Footer/>
     </AuthProvider>
