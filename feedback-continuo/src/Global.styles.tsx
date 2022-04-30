@@ -56,6 +56,7 @@ export const CardForm = styled.div<IProps>`
   overflow: hidden;
   margin: auto;
   width: ${props => props.widht};
+  max-width: ${props => props.widht};
   height: ${props => props.height};
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
   border-radius: 8px;

@@ -7,7 +7,7 @@ import RegisterUser from './pages/register-user/RegisterUser';
 import RegisterFeedback from './pages/register-feedback/RegisterFeedback';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
-import ChangePassword from './pages/ChangePassword';
+import ChangePassword from './pages/change-password/ChangePassword';
 
 
 const Routers = () => {
