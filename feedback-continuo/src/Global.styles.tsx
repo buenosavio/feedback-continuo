@@ -53,7 +53,7 @@ export const Form = styled.form<IProps>`
 
 export const CardForm = styled.div<IProps>`
   background-color: rgba(255, 255, 255, 1);
-  overflow: hidden;
+  //overflow: hidden;
   margin: auto;
   width: ${props => props.widht};
   max-width: ${props => props.widht};
@@ -195,7 +195,7 @@ export const FlexButton = styled.div`
   top: 93%;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<IProps>`
   padding: 0.5em;
   margin: 5px 10px 5px 20px;
   background: #FFF;
