@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Theme } from "../../theme";
+import Select from 'react-select'
 
 interface IProps {
   checked?: boolean;
@@ -40,7 +41,7 @@ export const TextArea = styled.textarea`
   } 
 `;
 
-export const Select = styled.select`
+export const Selectstyled = styled(Select)`
   width: 530px;  
   height: 40px;
   border: 1px solid #d1d1d1;

@@ -7,5 +7,7 @@ export interface ItemDTO {
   name: string,
   id: string,
   tagId?: string,
-  userId?: string
+  userId?: string,
+  value: string,
+  label: string,
 }

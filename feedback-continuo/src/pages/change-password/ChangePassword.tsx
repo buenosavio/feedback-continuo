@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { IAuthContext, IChangePasswordDTO } from "../../model/TypesDTO";
 import * as Yup from 'yup'
 import { useContext } from "react";
@@ -22,7 +22,7 @@ const ChangePassword = () => {
   });
 
   const {changePassword} = useContext(AuthContext) as IAuthContext
-  
+  const navigate = useNavigate()
   const formikProps = useFormik({
     initialValues: {
       oldPassword: '',
@@ -73,7 +73,7 @@ const ChangePassword = () => {
             : null
           }
           <FlexButton>
-            <MinorButton marginLeft={'40px'} type="button" backgroundColor={Theme.color.CinzaMedio}>Voltar</MinorButton>
+            <MinorButton onClick={() => navigate('/')} marginLeft={'40px'} type="button" backgroundColor={Theme.color.CinzaMedio}>Voltar</MinorButton>
             <MinorButton marginLeft={'-20px'} type="submit" backgroundColor={Theme.color.Azulclaro}>Atualizar</MinorButton>   
           </FlexButton>
         </Form>

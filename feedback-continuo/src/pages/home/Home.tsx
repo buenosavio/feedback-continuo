@@ -132,7 +132,7 @@ const Home = () => {
     <Container minHeight={Theme.Container.minHeight}>
       <Menualign>
       <TitlePrincipal>Feedbacks</TitlePrincipal>
-      <LinkFeedback to='/register-feedback'>Escrever um Feedback <BiPaperPlane size={30}/> </LinkFeedback>
+      {/* <LinkFeedback to='/register-feedback'>Escrever um Feedback <BiPaperPlane size={30}/> </LinkFeedback> */}
       <Tabs>
         <Tab title="Recebidos">   
         <>

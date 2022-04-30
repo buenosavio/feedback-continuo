@@ -7,8 +7,8 @@ export const ButtonTab = styled.button`
   border: 1px solid #E7E7E7;
   color: rgba(24, 24, 24, 1);
   border-radius: 4px;
-
- &:hover{
+  
+  .selected{
   transform: scaleY(1.2);
   background: linear-gradient(180deg, #0166FE 0%, #295ba7 100%);
   color: #FFFFFF;
@@ -16,6 +16,7 @@ export const ButtonTab = styled.button`
   border-radius: 4px;
   cursor: pointer;
 }
+ 
 `;
 
 export const LiTab = styled.li`

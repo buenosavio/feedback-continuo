@@ -14,7 +14,7 @@ import * as Yup from 'yup'
 import { AxiosError } from "axios";
 import handleError from "../../utils/Error";
 import { Theme } from "../../theme";
-import { FlexComponent, Input, Select, FlexButton,  TextArea, CardForm } from "./RegisterFeedback.styles";
+import { FlexComponent, Input, Selectstyled, FlexButton,  TextArea, CardForm } from "./RegisterFeedback.styles";
 import Checkbox from "../../components/checkbox/Checkbox";
 import { TagList } from "../../components/checkbox/Checkbox.styles";
 import { FaUserSecret } from "react-icons/fa";
@@ -29,6 +29,7 @@ const RegisterFeedback = () => {
 
   const {isLogged} = useContext(AuthContext) as IAuthContext
   const [users, setUsers] = useState<ListDTO>();
+  const [allUsers, setallUsers] = useState([]);
   const [tags, setTags] = useState<ListDTO>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -37,7 +38,7 @@ const RegisterFeedback = () => {
   
   useEffect(() => {
     isLogged()
-    getUsers()    
+    getUsers()  
   },[])     
 
   const getUsers = async () => {
@@ -49,6 +50,7 @@ const RegisterFeedback = () => {
       })
       setUsers(users)        
       getTags() 
+      options(users)
     } catch (error) {   
       setLoading(false)
       setError(true)   
@@ -113,6 +115,15 @@ const RegisterFeedback = () => {
     },
   });
 
+  const options = (users:any) => {
+    const names = users ? users.map((user: ItemDTO) => (
+      {value: user.name, label: user.name}
+    )) : null
+    setallUsers(names)
+  }
+
+
+
   if (loading) {
     return(
       <Loading />
@@ -124,25 +135,27 @@ const RegisterFeedback = () => {
       <Error />
     ) 
   }
- 
+  
   return (
     <Container minHeight={'100vh'}>
       <CardForm>          
         <TitlePrincipal>Cadastrar Feedback</TitlePrincipal>
         <Form onSubmit={formikProps.handleSubmit}>      
           <TitleForm htmlFor="feedbackUserId">Selecione a pessoa</TitleForm>
-          <Select id="feedbackUserId" name="feedbackUserId" 
+          <Selectstyled id="feedbackUserId" name="feedbackUserId" 
             onChange={formikProps.handleChange} 
             onBlur={formikProps.handleBlur} 
-            value={formikProps.values.feedbackUserId}>
-            <option value=''></option>
-            {
+            value={formikProps.values.feedbackUserId}
+            placeholder={"Escolha um usuário "}
+            options ={allUsers}  
+            />
+            {/* {
               users ? users.map((user: ItemDTO) => (
                 <option key={user.id} value={user.id}>{user.name}</option>
               ))
               : null
-            }      
-          </Select>
+            }       */}
+
           {formikProps.errors.feedbackUserId && formikProps.touched.feedbackUserId
               ? (<TextDanger>{formikProps.errors.feedbackUserId}</TextDanger>)
               : null
