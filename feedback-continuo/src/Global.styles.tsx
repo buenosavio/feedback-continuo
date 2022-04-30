@@ -8,6 +8,7 @@ interface IProps {
   backgroundColor?: string;
   widht?:string;
   height?: string;
+  fontSize?:string;
 }
 
 export const Container = styled.div<{minHeight:string}>`
@@ -140,13 +141,12 @@ export const Senha = styled.div`
 export const MinorButton = styled.button<IProps>`  
   width: 150px;
   padding: 10px 0;
-  margin: 20px 0 10px 100px;
+  margin: auto;
+  align-items: center;
   text-align: center;
-  font-size: ${Theme.fontSize.small};
+  font-size: ${props => props.fontSize};
   color: ${Theme.color.branco};
-  background-color: ${Theme.color.Azulclaro} ;
   margin-left: ${props => props.marginLeft || 0};
-  font-size: ${Theme.fontSize.small};
   color: ${(props) => Theme.color.branco};
   background-color: ${props => props.backgroundColor} ;
   font-weight: 500;
@@ -173,11 +173,8 @@ export const FlexButton = styled.div`
   justify-content: space-evenly;
   width: 380px;  
   position: absolute;
+ margin-left: 4%;
   top: 93%;
-`;
-
-export const MyComponent = styled.div`
-  color: ${Theme.color.background};
 `;
 
 export const Input = styled.input`
@@ -224,34 +221,3 @@ export const InsertImage = styled.label<IProps>`
     }
   }  
   `;
-
-// declare module 'styled-components' {
-//   export interface DefaultTheme{
-//     color:{
-//       AzulForte: string;
-//       Azulmeioforte: string;
-//       Azulclaro: string;
-//       Azulmuitoclaro:string;
-//       cinzaforte: string;
-//       cinzafraco:string;
-//       branco: string;
-//       vermelhoWarning:string;
-//       background: string;
-//     },
-//     fontSize:{
-//       extraSmall: string;
-//       small: string;
-//       medium: string;
-//       large: string;
-//       extraLarge: string;
-//       superLarge: string;
-//     },
-//     Container:{
-//       minHeight: string;
-//       widthLogin:string;
-//       heightLogin: string;
-//       widhtRegister: string;
-//       heightRegister:string;
-//     }
-// }
-// }

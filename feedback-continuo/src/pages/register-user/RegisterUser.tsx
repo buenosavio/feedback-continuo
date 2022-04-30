@@ -4,7 +4,6 @@ import { UserDTO } from "../../model/UserDTO";
 import { useState, useContext } from "react";
 import { useFormik } from "formik";
 import { AxiosError } from "axios";
-import { AiOutlineArrowLeft } from "react-icons/ai";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom";
@@ -108,11 +107,11 @@ const RegisterUser = () => {
 
   return(
     <Container minHeight={Theme.Container.minHeight}>
-      <CardForm widht={Theme.Container.widhtRegister}
+      <CardForm widht={Theme.Container.widthLogin}
       height={Theme.Container.heightRegister}>        
         <TitlePrincipal>Cadastrar Usuário</TitlePrincipal>      
         <Form onSubmit={formikProps.handleSubmit}>              
-          <InsertImage htmlFor="uploadImage" itemType={baseImage} marginLeft={'140px'}/>        
+          <InsertImage htmlFor="uploadImage" itemType={baseImage} marginLeft={'75%'}/>        
           <input name ="uploadImage" id="uploadImage" type="file" 
             style={{display: 'none'}}
             onChange={(event) => {uploadImage(event)}}
@@ -171,8 +170,8 @@ const RegisterUser = () => {
           }   
             </Senha>
           <FlexButton>
-            <MinorButton color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
-            <MinorButton color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Cadastrar</MinorButton>    
+            <MinorButton fontSize={Theme.fontSize.medium} color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
+            <MinorButton fontSize={Theme.fontSize.large} color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Cadastrar</MinorButton>    
           </FlexButton>
         </Form>
       </CardForm>
