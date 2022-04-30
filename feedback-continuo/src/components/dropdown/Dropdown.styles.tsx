@@ -52,8 +52,7 @@ export const Li = styled.li`
   align-items: center;
   margin: 10px 10px 10px -30px;  
   transition: 2s;
-  :hover {
-    background-color: #858282cc;
+  :hover {    
     cursor: pointer;
     transition: 2s;
     transform: scale(1.05);

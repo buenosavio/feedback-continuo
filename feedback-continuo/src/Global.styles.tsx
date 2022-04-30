@@ -1,10 +1,14 @@
-import styled from 'styled-components/'
+import styled, {DefaultTheme} from 'styled-components/'
 import { Theme } from './theme';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   marginLeft?: string;  
   content?: string;
   backgroundColor?: string;
+  widht?:string;
+  height?: string;
+  fontSize?:string;
 }
 
 export const ContainerForm = styled.div`
@@ -16,7 +20,15 @@ export const ContainerForm = styled.div`
   align-items: center;
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<{minHeight:string}>`
+background: ${Theme.color.cinzaforte };
+min-height: ${props => props.minHeight};
+display: flex;
+justify-content: center;
+align-items: center;
+`;
+
+export const Containerr = styled.div`
   background-color: #DEDFE1;
   min-height: 100vh;
 `;
@@ -39,12 +51,12 @@ export const Form = styled.form<IProps>`
   margin-top: ${props => props.marginLeft || '0px'} ;
 `;
 
-export const CardForm = styled.div`
+export const CardForm = styled.div<IProps>`
   background-color: rgba(255, 255, 255, 1);
   overflow: hidden;
   margin: auto;
-  width: 380px;
-  height: 640px;
+  width: ${props => props.widht};
+  height: ${props => props.height};
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   text-align: center;
@@ -52,7 +64,33 @@ export const CardForm = styled.div`
   position: relative;
 `;
 
+export const ContainerLogin = styled.div`
+ background-color: ${Theme.color.background};
+  min-height: ${Theme.Container.minHeight};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const CardFormRegister = styled.div`
+background-color:  ${Theme.color.branco};
+overflow: hidden;
+margin: auto;
+width: ${Theme.Container.widhtRegister};
+height: ${Theme.Container.heightRegister};
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+border-radius: ${Theme.fontSize.small}; ;
+text-align: center;
+align-items: center;
+`;
+
+export const CardHeader = styled.header`
+padding-top: 10px;
+padding-bottom: 10px;
+display: flex;
+text-align: center;
+align-items: center;
+justify-content: center;
   background-color: ${Theme.color.branco};
   overflow: hidden;
   margin: auto;
@@ -108,6 +146,10 @@ export const MostrarSenha = styled.div`
   border:none;
 `;
 
+export const BackArrow = styled(Link)`
+  color: black;
+`;
+
 export const Senha = styled.div`
   position: relative;
   text-align: center;
@@ -116,8 +158,12 @@ export const Senha = styled.div`
 export const MinorButton = styled.button<IProps>`    
   width: 150px;
   padding: 10px 0;
+  margin: auto;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  color: ${Theme.color.branco};
   margin-left: ${props => props.marginLeft || 0};
-  font-size: ${Theme.fontSize.small};
   color: ${(props) => Theme.color.branco};
   background-color: ${props => props.backgroundColor} ;
   font-weight: 500;
@@ -144,11 +190,8 @@ export const FlexButton = styled.div`
   justify-content: space-evenly;
   width: 380px;  
   position: absolute;
+  margin-left: 4%;
   top: 93%;
-`;
-
-export const MyComponent = styled.div`
-  color: ${props => props.theme.colors.main};
 `;
 
 export const Input = styled.input`
@@ -158,6 +201,7 @@ export const Input = styled.input`
   border: 1px solid #d1d1d1;
   border-radius: 8px;
   width: 172%;
+  height: 35px;
   height: 25px;
   ::placeholder,
   ::-webkit-input-placeholder {
@@ -193,4 +237,4 @@ export const InsertImage = styled.label<IProps>`
       border-radius: 10px;      
     }
   }  
-  `;
+`;

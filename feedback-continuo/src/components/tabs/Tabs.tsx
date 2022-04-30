@@ -1,6 +1,8 @@
 import {FC, ReactElement, useState} from 'react'
 import TabTitle from './TabTitle'
-
+import {
+  UlTab,
+} from './Tabs.styles'
 
 type Props = {
   children: ReactElement[]
@@ -9,7 +11,7 @@ const Tabs: FC<Props> = ({children}) => {
   const [selectedTab, setSelectedTab] = useState(0)
   return (
       <div>
-      <ul>
+      <UlTab>
         {children.map((item, index) => (
           <TabTitle
             key={index}
@@ -18,7 +20,7 @@ const Tabs: FC<Props> = ({children}) => {
             setSelectedTab={setSelectedTab}
           />
         ))}
-      </ul>
+      </UlTab>
       {children[selectedTab]}
     </div>
   )

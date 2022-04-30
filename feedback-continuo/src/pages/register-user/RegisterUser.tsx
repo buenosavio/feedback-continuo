@@ -1,17 +1,25 @@
 import { api } from "../../api";
 import { Theme } from "../../theme";
 import { UserDTO } from "../../model/UserDTO";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useFormik } from "formik";
 import { AxiosError } from "axios";
+import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
+
 import { useNavigate } from "react-router-dom";
-import { ContainerForm, FlexButton, Form, InsertImage, TextDanger } from "../../Global.styles";
+import {  ContainerForm, FlexButton, Form, InsertImage, TextDanger } from "../../Global.styles";
 import {
   Input,
   MinorButton,
   CardForm,  
   TitleForm,
+  Container,
+  BackArrow,
   TitlePrincipal,
+  CardHeader,
+  ShowPassword,
+  MostrarSenha,
+  Senha,
 } from '../../Global.styles';
 
 import * as Yup from 'yup';
@@ -42,7 +50,8 @@ const RegisterUser = () => {
       .required('Obrigatório')
       .oneOf([Yup.ref('password')], 'A senha deve ser igual')      
   });
-
+  const [eyeON, setEyeOn] = useState(true);
+  const [eyeForm, setEyeForm] = useState(true);
   const [baseImage, setBaseImage] = useState<any>(DEFAULT_IMAGE);
   const [profileImage, setProfileImage] = useState<any>(DEFAULT_IMAGE);
   const [loading, setLoading] = useState<boolean>(false);
@@ -98,16 +107,17 @@ const RegisterUser = () => {
 
   return(
     <ContainerForm>
-      <CardForm>        
+      <CardForm widht={Theme.Container.widthLogin}
+      height={Theme.Container.heightRegister}>        
         <TitlePrincipal>Cadastrar Usuário</TitlePrincipal>      
         <Form onSubmit={formikProps.handleSubmit}>              
-          <InsertImage htmlFor="uploadImage" itemType={baseImage} marginLeft={'140px'}/>        
+          <InsertImage htmlFor="uploadImage" itemType={baseImage} marginLeft={'75%'}/>        
           <input name ="uploadImage" id="uploadImage" type="file" 
             style={{display: 'none'}}
             onChange={(event) => {uploadImage(event)}}
           />           
           <TitleForm htmlFor="name">Nome Completo</TitleForm>
-          <Input id="name" name="name" type="text"
+          <Input placeholder="Digite seu nome completo" id="name" name="name" type="text"
             onChange={formikProps.handleChange}
             value={formikProps.values.name}
             onBlur={formikProps.handleBlur}
@@ -118,7 +128,7 @@ const RegisterUser = () => {
           }       
 
           <TitleForm htmlFor="email">E-mail</TitleForm>
-          <Input id="email" name="email" type="text"
+          <Input placeholder='Digite seu e-mail' id="email" name="email" type="text"
             onChange={formikProps.handleChange}
             value={formikProps.values.email.toLowerCase()}
             onBlur={formikProps.handleBlur}                          
@@ -129,34 +139,44 @@ const RegisterUser = () => {
           }
 
           <TitleForm htmlFor="password">Senha</TitleForm>
-          <Input id="password" name="password" type="password"
+          <Senha>
+          <Input placeholder='Digite sua senha' id="password" name="password" type ={eyeON? "password" : "text"}
             onChange={formikProps.handleChange}
             value={formikProps.values.password}
             onBlur={formikProps.handleBlur}
           />
+            <MostrarSenha>
+              <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
+            </MostrarSenha>
           <PasswordStrengthBar style={{ marginLeft: 25, width: 335 }} password={formikProps.values.password} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={8} shortScoreWord={['Muito curta']}/>
           {formikProps.errors.password && formikProps.touched.password 
             ? (<TextDanger marginLeft='25px'>{formikProps.errors.password}</TextDanger>) 
             : null
           }
-
+        </Senha>
           <TitleForm htmlFor="confirm_password">Repita sua senha</TitleForm>
-          <Input id="confirm_password" name="confirm_password" type="password"
+          <Senha>
+          <Input placeholder="Confirme a senha" id="confirm_password" name="confirm_password" type ={eyeForm? "password" : "text"}
             onChange={formikProps.handleChange}
             value={formikProps.values.confirm_password}
             onBlur={formikProps.handleBlur}
           />
+           <MostrarSenha>
+              <ShowPassword onClick={() => setEyeForm(!eyeForm)}>{eyeForm ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
+            </MostrarSenha>
           {formikProps.errors.confirm_password && formikProps.touched.confirm_password 
             ? (<TextDanger marginLeft='25px'>{formikProps.errors.confirm_password}</TextDanger>) 
             : null
           }   
+            </Senha>
           <FlexButton>
-            <MinorButton backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
-            <MinorButton backgroundColor={Theme.color.Azulclaro} type="submit">Cadastrar</MinorButton>    
+            <MinorButton fontSize={Theme.fontSize.medium} color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
+            <MinorButton fontSize={Theme.fontSize.large} color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Cadastrar</MinorButton>    
           </FlexButton>
         </Form>
       </CardForm>
     </ContainerForm>
+  
   )
 }
 

@@ -8,7 +8,6 @@ import { IAuthContext } from "../../model/TypesDTO";
 import { ItemDTO, ListDTO } from "../../model/ListDTO";
 import { Container, ContainerCenter, Form, MinorButton, TextDanger, TitleForm, TitlePrincipal } from "../../Global.styles";
 import { useContext, useEffect, useState } from "react";
-
 import Error from "../../components/error/Error";
 import Loading from "../../components/loading/Loading";
 import * as Yup from 'yup'
@@ -138,7 +137,7 @@ const RegisterFeedback = () => {
   }
  
   return (
-    <Container>
+    <Container minHeight={'100vh'}>
       <CardForm>
           
       <TitlePrincipal>Cadastrar Feedback</TitlePrincipal>
@@ -199,9 +198,9 @@ const RegisterFeedback = () => {
           ? (<TextDanger>{formikProps.errors.isAnonymous}</TextDanger>)
           : null
         }
-        <FlexButton >
-          <MinorButton marginLeft={'-20px'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/')}>Voltar</MinorButton>    
-          <MinorButton marginLeft={'20px'} backgroundColor={Theme.color.Azulclaro} type="submit">Registrar</MinorButton>    
+        <FlexButton>
+          <MinorButton marginLeft={'80px'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/')}>Voltar</MinorButton>    
+          <MinorButton backgroundColor={Theme.color.Azulclaro} type="submit">Registrar</MinorButton>    
         </FlexButton>
       </Form>
       

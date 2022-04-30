@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 export const Image = styled.img`
@@ -15,13 +16,15 @@ min-width: 100vh;
 `;
 
 export const CardContainer = styled.div`
-width: 90%;
+min-width: 180vh;
 min-height: 3%;
-margin: 50px 10px 10px 10px;
-background-color: aqua;
-;
-border-radius: 20px;
+margin: 0px 0px 2px 0px;
+background-color: rgba(255, 255, 255, 1);
 box-shadow: 0px 20px 60px 0px rgba(241, 244, 248, 0.5);
+border: 1px inset #E5E5E5 ;
+&:hover{
+  background-color: #E5E5E5;
+}
 
 `;
 
@@ -56,3 +59,4 @@ export const TextFooter = styled.small`
 padding-top: 10px;
   margin: 10px 0px 10px 30px;
 `;
+

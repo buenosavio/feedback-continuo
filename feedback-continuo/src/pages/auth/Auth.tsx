@@ -4,30 +4,37 @@ import { useFormik } from "formik";
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/TypesDTO";
 import { Link, useNavigate } from 'react-router-dom';
-import { ContainerForm, Form, TextDanger } from '../../Global.styles';
 import { useContext, useEffect, useState } from "react";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
+import imgLogo from '../../images/feedbacklogo.png'
+
+import * as Yup from 'yup';
+
+
+
 import {  
-  ImgLogin,   
+  ImgLogin,    
   SimpleText,
   RegisterForm,  
+  TitleLogin,
 } from './Auth.styles'
 import {
   Input,
   Senha,
+  Form,
   TitleForm,
   TitlePrincipal,
   ShowPassword,
   CardForm,
   MinorButton,
-  MostrarSenha,  
+  CardHeader,
+  TextDanger,
+  MostrarSenha,
+  Container,
+  ContainerForm
 } from '../../Global.styles'
 
-import * as Yup from 'yup';
-import imgLogo from '../../images/feedbacklogo.png'
-
 const Auth = () => {
-
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email('E-mail inválido').required('Obrigatório').matches(/@dbccompany.com.br/, 'Informe e-mail da DBC'),
     password: Yup.string().required('Obrigatório')
@@ -56,7 +63,8 @@ const Auth = () => {
   });
   return (
     <ContainerForm>
-      <CardForm>
+      <CardForm widht={Theme.Container.widthLogin}
+      height={Theme.Container.heightLogin}>
         <ImgLogin src={imgLogo}/>
           <TitlePrincipal>Login - Feedback</TitlePrincipal>      
         <Form onSubmit={formikProps.handleSubmit} marginLeft={'50px'}>

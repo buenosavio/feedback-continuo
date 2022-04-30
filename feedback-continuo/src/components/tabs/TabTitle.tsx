@@ -1,5 +1,8 @@
 import {useCallback, FC} from 'react'
-
+import {
+  ButtonTab,
+  LiTab,
+} from './Tabs.styles'
 type Props = {
   title: string
   index: number
@@ -13,9 +16,9 @@ const TabTitle: FC<Props> = ({title, setSelectedTab, index}) => {
   }, [setSelectedTab, index])
 
   return (
-    <li>
-      <button onClick={onClick}>{title}</button>
-    </li>
+    <LiTab>
+      <ButtonTab onClick={onClick}>{title}</ButtonTab>
+    </LiTab>
   )
 }
 

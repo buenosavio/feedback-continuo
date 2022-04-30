@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 export const Theme = {
   color:{
     primary: 'rgb(6, 44, 168)',
@@ -27,11 +25,14 @@ export const Theme = {
     superLarge: '25px',
   },
   Container:{
-    minHeigh: '100vh',
+    minHeight: '100vh',
     widthLogin: '380px',
-    heightLogin: '582px',
+    heightLogin: '650px',
     widhtRegister: '480px',
-    heightRegister:'750px',
-  },
-  
+    heightRegister:'700px',
+  }
 }
+
+   
+  
+
