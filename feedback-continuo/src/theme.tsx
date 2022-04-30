@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const Theme = {
   color:{
-    primary: '#295ba7',
+    primary: 'rgb(6, 44, 168)',
+    primaryDark: 'rgb(0, 21, 96)',
     secondary: '#78b454',
-    AzulForte: '#040848', //(header e footer),
+    AzulForte: 'linear-gradient(rgb(0, 27, 116) 0%, rgb(0, 21, 96) 100%)', //(header e footer),
     Azulmeioforte: '#0337A4',
     Azulclaro: '#0166FE', //(botao),
     Azulmuitoclaro: '#FEFEFE',
@@ -14,7 +15,8 @@ export const Theme = {
     branco: '#FFFFFF',
     vermelhoWarning:'#E73532', //(erros, etc)
     background: '#363740',
-    backgroundGradient: 'linear-gradient(to bottom right, #295ba7, #78b454)',
+    backgroundGradient: 'linear-gradient(rgb(6, 44, 168) 0%, rgb(0, 21, 96) 100%)',//'linear-gradient(to bottom right, #295ba7, #78b454)',
+    backgroundGradientBlur: 'linear-gradient(rgb(0, 21, 96) 0%, rgb(255, 255, 255) 120%)',
   },
   fontSize:{
     extraSmall: '10px',

@@ -6,7 +6,7 @@ import { InsertImage } from "../../Global.styles";
 import { UserDataDTO } from "../../model/UserDTO";
 import { IAuthContext } from "../../model/TypesDTO";
 import { FlexComponent } from "../../Global.styles";
-import { HeaderComponent, UserText } from "./Header.styles";
+import { HeaderComponent, Itens, UserText } from "./Header.styles";
 import { useContext, useEffect, useState } from "react";
 import Error from "../error/Error";
 import Loading from "../loading/Loading";
@@ -72,16 +72,18 @@ const Header = () => {
     {(loginOn) ? (
     <>
     <HeaderComponent>
-      <FlexComponent key={data ? data.userId : null}>
-        <FlexComponent>          
-          <InsertImage htmlFor="uploadImage" itemType={`data:image/png;base64,${data ? data.profileImage : ''}`}/>
-          <input name ="uploadImage" id="uploadImage" type="file" 
-            style={{display: 'none'}}
-            onChange={(event) => {updateProfileImage(event)}}/>
-          <UserText> Olá, {data ? FirstLetterUppercase(data.name) : null}! </UserText>          
-        </FlexComponent>               
-        <Dropdown />              
-      </FlexComponent>
+      <Itens>
+        <FlexComponent key={data ? data.userId : null}>
+          <FlexComponent>          
+            <InsertImage htmlFor="uploadImage" itemType={`data:image/png;base64,${data ? data.profileImage : ''}`}/>
+            <input name ="uploadImage" id="uploadImage" type="file" 
+              style={{display: 'none'}}
+              onChange={(event) => {updateProfileImage(event)}}/>
+            <UserText> Olá, {data ? FirstLetterUppercase(data.name) : null}! </UserText>          
+          </FlexComponent>               
+          <Dropdown />              
+        </FlexComponent>
+      </Itens>
     </HeaderComponent>
     </>
     ) : null}

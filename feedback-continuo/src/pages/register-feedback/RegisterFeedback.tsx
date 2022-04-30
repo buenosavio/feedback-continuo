@@ -1,12 +1,12 @@
 import { api } from "../../api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Notify } from "notiflix";
 import { useFormik } from "formik";
 import { AuthContext } from "../../context/AuthContext";
 import { FeedbackDTO } from "../../model/FeedbackDTO";
 import { IAuthContext } from "../../model/TypesDTO";
 import { ItemDTO, ListDTO } from "../../model/ListDTO";
-import { Container, Form, TextDanger } from "../../Global.styles";
+import { Container, ContainerCenter, Form, MinorButton, TextDanger, TitleForm, TitlePrincipal } from "../../Global.styles";
 import { useContext, useEffect, useState } from "react";
 
 import Error from "../../components/error/Error";
@@ -14,6 +14,12 @@ import Loading from "../../components/loading/Loading";
 import * as Yup from 'yup'
 import { AxiosError } from "axios";
 import handleError from "../../utils/Error";
+import { Theme } from "../../theme";
+import { FlexComponent, Input, Select, FlexButton,  TextArea, CardForm } from "./RegisterFeedback.styles";
+import Checkbox from "../../components/checkbox/Checkbox";
+import { TagList } from "../../components/checkbox/Checkbox.styles";
+import { FaUserSecret } from "react-icons/fa";
+
 
 //A FAZER:
 // componentizar select e options. nao foi possivel pois o formik precisa do value
@@ -25,7 +31,7 @@ const RegisterFeedback = () => {
   const RegisterFeedbackSchema = Yup.object().shape({
     feedbackUserId: Yup.string().required('Obrigatório'),
     message: Yup.string().required('Obrigatório'),
-    tags: Yup.array().required('Obrigatório').defined(),
+    //tags: Yup.array().required('Obrigatório').defined(),
   });
 
   const {isLogged} = useContext(AuthContext) as IAuthContext
@@ -33,11 +39,15 @@ const RegisterFeedback = () => {
   const [tags, setTags] = useState<ListDTO>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const [selectedTags, setSelectedTags] = useState<any>([]);
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [checked, setChecked] = useState(false);
+  const navigate = useNavigate();
   
   useEffect(() => {
     isLogged()
     getUsers()    
-  },[])
+  },[])     
 
   const getUsers = async () => {
     let users: any = [];
@@ -73,9 +83,27 @@ const RegisterFeedback = () => {
     }
   }
 
+  const listTags = (value: any) => {    
+    if (selectedTags.includes(value.toUpperCase())) {
+      const index = selectedTags.indexOf(value.toUpperCase());
+      selectedTags.splice(index, 1);  
+      setIsClicked(true)    
+    } else {
+      selectedTags.push(value.toUpperCase())             
+      setIsClicked(false)
+    }
+    console.log(selectedTags)
+  }
+
   const saveFeedback = async (values: FeedbackDTO) => {
+    console.log('--> ', selectedTags)
+    const valuesFormatted = {
+      ...values,
+      tags: selectedTags
+    }
+    console.log(valuesFormatted)
     try {      
-      await api.post("/feedback/", values)
+      await api.post("/feedback/", valuesFormatted)
       Notify.success("Feedback enviado com sucesso!")
       formikProps.resetForm()
     } catch (error) {
@@ -92,7 +120,7 @@ const RegisterFeedback = () => {
       tags: [''],      
     },
     validationSchema: (RegisterFeedbackSchema),
-    onSubmit: (values: FeedbackDTO) => {      
+    onSubmit: (values: FeedbackDTO) => {            
       saveFeedback(values)
     },
   });
@@ -111,11 +139,12 @@ const RegisterFeedback = () => {
  
   return (
     <Container>
-      <Link to='/'>Voltar</Link>
-      <h1>Register Feedback</h1>
+      <CardForm>
+          
+      <TitlePrincipal>Cadastrar Feedback</TitlePrincipal>
       <Form onSubmit={formikProps.handleSubmit}>      
-        <label htmlFor="feedbackUserId">Selecione a pessoa</label>
-        <select id="feedbackUserId" name="feedbackUserId" 
+        <TitleForm htmlFor="feedbackUserId">Selecione a pessoa</TitleForm>
+        <Select id="feedbackUserId" name="feedbackUserId" 
           onChange={formikProps.handleChange} 
           onBlur={formikProps.handleBlur} 
           value={formikProps.values.feedbackUserId}>
@@ -126,14 +155,14 @@ const RegisterFeedback = () => {
             ))
             : null
           }      
-        </select>
+        </Select>
         {formikProps.errors.feedbackUserId && formikProps.touched.feedbackUserId
             ? (<TextDanger>{formikProps.errors.feedbackUserId}</TextDanger>)
             : null
         }  
         
-        <label htmlFor="message">Feedback</label>
-        <textarea id="message" name="message"
+        <TitleForm htmlFor="message">Feedback</TitleForm>
+        <TextArea id="message" name="message"
           onChange={formikProps.handleChange}
           value={formikProps.values.message}
           onBlur={formikProps.handleBlur}
@@ -143,38 +172,40 @@ const RegisterFeedback = () => {
           : null
         }
 
-        <label htmlFor="tags">Selecione a Tag</label>
-        <select id="tags" name="tags" 
-          onChange={formikProps.handleChange} 
-          onBlur={formikProps.handleBlur} 
-          value={formikProps.values.tags}
-          multiple={true}>
-          <option value=''></option>
+        <TitleForm htmlFor="tags">Selecione as tags desejadas</TitleForm>  
+        <TagList>
           {
             tags ?
             tags.map((tag: ItemDTO) => (
-              <option key={tag.id+tag.name} value={tag.name.toUpperCase()}>{tag.name}</option>
+              <div key={tag.id+tag.name}>                
+                <Checkbox listTags={listTags}>{tag.name}</Checkbox>                
+              </div>
             ))
             : null
-          }      
-        </select>
+          }
+        </TagList>              
         {formikProps.errors.tags && formikProps.touched.tags
             ? (<TextDanger>{formikProps.errors.tags}</TextDanger>)
             : null
         }  
-
-        <label htmlFor="isAnonymous">Anônimo</label>
-        <input id="isAnonymous" name="isAnonymous" type="checkbox"
-          onChange={formikProps.handleChange}      
-          onBlur={formikProps.handleBlur}
-        />
+        <FlexComponent>               
+          <Input id="isAnonymous" name="isAnonymous" type="checkbox"
+            onChange={formikProps.handleChange}      
+            onBlur={formikProps.handleBlur}
+          />
+          <FaUserSecret size={25}/>          
+        </FlexComponent>
         {formikProps.errors.isAnonymous && formikProps.touched.isAnonymous
           ? (<TextDanger>{formikProps.errors.isAnonymous}</TextDanger>)
           : null
         }
-
-        <button type="submit">Registrar</button>    
+        <FlexButton >
+          <MinorButton marginLeft={'-20px'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/')}>Voltar</MinorButton>    
+          <MinorButton marginLeft={'20px'} backgroundColor={Theme.color.Azulclaro} type="submit">Registrar</MinorButton>    
+        </FlexButton>
       </Form>
+      
+      </CardForm>
     </Container>
   )
 }

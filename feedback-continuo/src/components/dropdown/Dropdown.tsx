@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { IAuthContext } from "../../model/TypesDTO";
 import { Div, Nav, Li, Ul, ItemMenu } from "./Dropdown.styles";
 import { AuthContext } from "../../context/AuthContext";
-import { AiOutlineMenu } from "react-icons/ai";
-import { RiLockPasswordFill, RiArrowDropDownLine, RiArrowDropUpLine, RiArrowDropRightLine, RiArrowDropLeftLine } from "react-icons/ri";
+import { RiLockPasswordFill, RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 import { FiLogOut } from "react-icons/fi";
+import { VscFeedback } from "react-icons/vsc";
+
 
 
 const Dropdown = () => {
@@ -28,10 +29,14 @@ const Dropdown = () => {
             <RiLockPasswordFill />
             <ItemMenu>Alterar senha</ItemMenu> 
           </Li>
+          <Li onClick={() => {navigate('/register-feedback')}}>
+            <VscFeedback />
+            <ItemMenu>Cadastrar Feedback</ItemMenu>        
+          </Li>
           <Li onClick={() => {handleLogout()}}>
             <FiLogOut />
             <ItemMenu>Logout</ItemMenu>        
-          </Li>
+          </Li>          
         </Ul>
       </Nav>
     </Div>

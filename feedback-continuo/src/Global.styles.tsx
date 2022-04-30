@@ -8,7 +8,8 @@ interface IProps {
 }
 
 export const ContainerForm = styled.div`
-  background: linear-gradient(to bottom right, #295ba7, #78b454);
+  background: ${Theme.color.backgroundGradientBlur};
+  backdrop-filter: blur(24px);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -18,10 +19,18 @@ export const ContainerForm = styled.div`
 export const Container = styled.div`
   background-color: #DEDFE1;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
+
+export const ContainerCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  //background-color: ${Theme.color.CinzaMedio};
+`
 
 export const Form = styled.form<IProps>`
   display: flex;
@@ -43,14 +52,6 @@ export const CardForm = styled.div`
   position: relative;
 `;
 
-export const ContainerLogin = styled.div`
-  background-color: ${Theme.color.background};
-  min-height: ${Theme.Container.minHeigh};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const CardFormRegister = styled.div`
   background-color: ${Theme.color.branco};
   overflow: hidden;
@@ -65,7 +66,7 @@ export const CardFormRegister = styled.div`
 
 export const TextDanger = styled.p<IProps>`  
   margin: 0;
-  margin-left: ${props => props.marginLeft || 0};	
+  margin-left: ${props => props.marginLeft || '20px'};	
   padding: 0;
   font-size: 14px;
   color: ${Theme.color.vermelhoWarning};
@@ -87,7 +88,7 @@ export const TitleForm = styled.label`
   color: #000000;
   font-weight: 300;
   text-align: left;
-  margin: 5px 0px 2px 20px;
+  margin: 5px 0px 7px 20px;
 `;
 
 export const ShowPassword = styled.a`
@@ -112,7 +113,7 @@ export const Senha = styled.div`
   text-align: center;
 `;
 
-export const MinorButton = styled.button<IProps>`  
+export const MinorButton = styled.button<IProps>`    
   width: 150px;
   padding: 10px 0;
   margin-left: ${props => props.marginLeft || 0};
@@ -166,17 +167,17 @@ export const Input = styled.input`
   :focus {
     box-shadow: 0 0 0 0;
     outline: 0;
-    transition: 2s;
-    border-color: #aeaeb1 ; 
+    transition: 2s;    
+    border: 1px solid ${Theme.color.Azulclaro};
   }
 `;
 
 export const InsertImage = styled.label<IProps>`
   margin-left: ${props => props.marginLeft || 0};
-  width: 80px;
-  height: 80px; 
+  width: 100px;
+  height: 100px; 
   border-radius: 50%;
-  border: 2px solid white;
+  border: 1px solid white;
   background-image: url(${props => props.itemType});
   background-size: 100% 100%; 
   :hover {    
@@ -193,32 +194,3 @@ export const InsertImage = styled.label<IProps>`
     }
   }  
   `;
-
-/* background-image: url(${Deafult});
-background-repeat: no-repeat;
-background-size: 30%;
-height: 30vh;
-width: 30vh;
-border: solid 5px; */
-
-
-// declare module 'styled-components' {
-//   export interface DefaultTheme{
-//     borderRadius: string;
-
-//     colors: {
-//       main: any;
-//       secondary: any;
-//     }
-//   }
-// }
-
-// const myTheme: DefaultTheme = {
-//   borderRadius: '5px',
-
-//   colors: {
-//     main: 'cyan',
-//     secondary: 'magenta',
-//   },
-// };
-

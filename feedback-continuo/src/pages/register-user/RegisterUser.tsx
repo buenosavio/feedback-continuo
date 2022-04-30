@@ -151,8 +151,8 @@ const RegisterUser = () => {
             : null
           }   
           <FlexButton>
-            <MinorButton color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
-            <MinorButton color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Cadastrar</MinorButton>    
+            <MinorButton backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
+            <MinorButton backgroundColor={Theme.color.Azulclaro} type="submit">Cadastrar</MinorButton>    
           </FlexButton>
         </Form>
       </CardForm>

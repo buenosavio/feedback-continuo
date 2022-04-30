@@ -18,7 +18,7 @@ export const Nav = styled.nav<IProps>`
     display: block;
     position: absolute;
     top: 40%;
-    left: -265%;    
+    left: -310%;    
   `}
 `;
 
@@ -29,12 +29,12 @@ export const Div = styled.div`
 `;
 
 export const Ul = styled.ul`
-  background:${Theme.color.backgroundGradient};
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-top-left-radius: 15px;
+  background:${Theme.color.primaryDark}; 
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
   border: 1px solid ${Theme.color.primary};
-  width: 120%;
+  width: 85%;
 `
 
 export const ItemMenu = styled.a`  
@@ -42,11 +42,11 @@ export const ItemMenu = styled.a`
 `
 
 export const Li = styled.li`
+  width: 250px;
   font-size: 20px;
   color: white;  
-  background-color: ${Theme.color.secondary}; ;
-  
-  border-radius: 10px;
+  background-color: ${Theme.color.primary}; ;
+  border-radius: 5px;
   padding: 5px;
   display: flex;
   align-items: center;
