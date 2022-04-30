@@ -6,6 +6,7 @@ import { FlexButton } from "./ForgetPassword.styles";
 import * as Yup from "yup";
 import { AxiosError } from "axios";
 import handleError from "../../utils/Error";
+import { Report } from "notiflix";
 
 const ForgetPassword = () => {
 
@@ -20,7 +21,18 @@ const ForgetPassword = () => {
 
   const recoverPassword = (email: string) => {
     try {
-      
+      Report.success(
+        'Recuperação de senha',
+        'Tudo certo. Acabamos de enviar uma nova senha para sua caixa de e-mail!',
+        'OK',
+        {
+          backOverlayColor: 'rgba(0,0,0,0.5)',
+          success: {
+            svgColor: '#32c682',            
+            buttonBackground: Theme.color.Azulclaro,            
+          },            
+        }
+      );
     } catch (error) {
       const errorData = error as AxiosError
       handleError(errorData)
