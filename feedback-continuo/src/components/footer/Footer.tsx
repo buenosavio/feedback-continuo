@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Error from "../error/Error";
 import Loading from "../loading/Loading";
 import { AuthContext } from "../../context/AuthContext";

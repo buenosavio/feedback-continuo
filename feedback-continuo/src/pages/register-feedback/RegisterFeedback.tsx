@@ -122,7 +122,6 @@ const RegisterFeedback = () => {
       {value: user.id, label: user.name}
     )) : null
     setallUsers(names)
-    console.log(names)
   }
 
   if (loading) {

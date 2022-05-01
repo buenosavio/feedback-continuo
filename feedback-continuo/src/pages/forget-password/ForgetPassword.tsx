@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { AxiosError } from "axios";
 import handleError from "../../utils/Error";
 import { Report } from "notiflix";
+import { api } from "../../api";
 
 const ForgetPassword = () => {
 
@@ -19,9 +20,10 @@ const ForgetPassword = () => {
 
   const navigate = useNavigate();
 
-  const recoverPassword = (email: string) => {
+  const recoverPassword = async (email: string) => {
     try {
-      Report.success(
+        await api.post(`/auth/forgot-password/${formikProps.values.email}`,email)
+        Report.success(
         'Recuperação de senha',
         'Se endereço existente, em breve você receberá um e-mail com a nova senha!',
         'OK',
@@ -33,6 +35,8 @@ const ForgetPassword = () => {
           },            
         }
       );
+      formikProps.resetForm()
+      navigate('/login')
     } catch (error) {
       const errorData = error as AxiosError
       handleError(errorData)
