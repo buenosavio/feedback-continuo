@@ -132,9 +132,7 @@ const Home = () => {
         <Tab title="Recebidos">   
         <>
           {received ? received.map ((feedback:GivedFeedbackDTO) =>(
-            <div key={feedback.feedbackId}>
-                <Card profileUserImage={feedback.profileUserImage ? `data:image/png;base64,${feedback.profileUserImage}` : DEFAULT_IMAGE} userName={FirstLetterUppercase(feedback.userName)} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={feedback.createdAt}/>  
-            </div>
+                <Card key={feedback.feedbackId} profileUserImage={feedback.profileUserImage ? `data:image/png;base64,${feedback.profileUserImage}` : DEFAULT_IMAGE} userName={FirstLetterUppercase(feedback.userName)} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={feedback.createdAt}/>    
           )) : "Nenhum feedback recebido!"}     
           <Pagination disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Anterior<AiOutlineLeftCircle size={30}/></Pagination> 
           <Pagination disabled={btnDisabledReceived} onClick={() => nextPageReceived()}><AiOutlineRightCircle size={30}/>Mais</Pagination>
@@ -143,9 +141,7 @@ const Home = () => {
         <Tab title="Enviados">        
         <>
           {gived ? gived.map ((feedback:GivedFeedbackDTO) =>(
-              <div key={feedback.feedbackId}>
-                  <Card profileUserImage={feedback.profileUserImage ? `data:image/png;base64,${feedback.profileUserImage}` : DEFAULT_IMAGE} userName={FirstLetterUppercase(feedback.userName)} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={feedback.createdAt}/>          
-              </div>
+                  <Card key={feedback.feedbackId}   profileUserImage={feedback.profileUserImage ? `data:image/png;base64,${feedback.profileUserImage}` : DEFAULT_IMAGE} userName={FirstLetterUppercase(feedback.userName)} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={feedback.createdAt}/>          
           )): "Nenhum feedback enviado!"}
           <PaginationDiv>
         <Pagination disabled={btnDisabledGivedPrevious} onClick={() => previousPageGived()}>Anterior<AiOutlineLeftCircle size={30}/></Pagination>

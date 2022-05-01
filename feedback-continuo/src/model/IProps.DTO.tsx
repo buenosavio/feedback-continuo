@@ -1,3 +1,5 @@
+import { FormikProps } from "formik";
+
 export interface IPropsDTO {
   checked?: boolean;
   width?: string;
@@ -9,4 +11,10 @@ export interface IPropsDTO {
   fontSize?:string;
   minHeight?:string;
   setSelectedTab?:string
+  active?: boolean;  
 }
+
+export type IPropss = {
+  error?: string | string[];
+  formikProps: FormikProps<any>; 
+};

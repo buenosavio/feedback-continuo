@@ -117,7 +117,6 @@ const RegisterFeedback = () => {
     validationSchema: (RegisterFeedbackSchema),
     onSubmit: (values: FeedbackDTO) => {            
       saveFeedback(values)
-      console.log(values.tags)
     },
   });
 
