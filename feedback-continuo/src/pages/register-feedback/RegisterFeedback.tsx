@@ -121,8 +121,7 @@ const RegisterFeedback = () => {
     const names = users ? users.map((user: any) => (
       {value: user.id, label: user.name}
     )) : null
-    setallUsers(names)
-    console.log(names)
+    setallUsers(names)    
   }
 
   if (loading) {
