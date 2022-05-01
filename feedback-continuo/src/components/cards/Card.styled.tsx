@@ -12,15 +12,18 @@ export const GlobalCard = styled.div`
 justify-content: center;
 align-items: center;
 display: flex;
-min-width: 100vh;
+min-width: 722px;
+min-width: 722px;
 max-width: 1200px;
+max-height: 1200px;
 margin: auto;
 `;
 
 export const CardContainer = styled.div`
-min-width: 166vh;
+min-width: 1198.52px;
 max-width: 1200px;
-min-height: 3%;
+min-height: 20px;
+max-height: 1200px;
 margin: auto;
 background-color: rgba(255, 255, 255, 1) ;
 box-shadow: 0px 20px 60px 0px rgba(241, 244, 248, 0.5);
@@ -53,6 +56,7 @@ text-align: justify;
 
 export const CardText = styled.h5`
 margin:  20px 10px 0 30px;
+max-width: 800px;
 width: 80%;
 font-size: 20px;
 white-space: normal;
@@ -65,6 +69,7 @@ text-align: justify;
 
 export const CardTags = styled.div`
 text-align: center;
+max-width: 400px;
 width: 20%;
 font-size: 16px;
 color: #000000;
