@@ -2,10 +2,9 @@ import { api } from "../../api";
 import { Theme } from "../../theme";
 import { Report } from "notiflix";
 import { useFormik } from "formik";
-import { FlexButton } from "./ForgetPassword.styles";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
-import { CardForm, ContainerForm, Form, Input, MinorButton, TextDanger, TitleForm, TitlePrincipal } from "../../Global.styles";
+import { CardForm, ContainerForm, Form, Input, MinorButton, TextDanger, TitleForm, TitlePrincipal, FlexButton } from "../../Global.styles";
 
 import * as Yup from "yup";
 import handleError from "../../utils/Error";
@@ -55,7 +54,6 @@ const ForgetPassword = () => {
   });
 
   return(
-    <>
     <ContainerForm>
       <CardForm widht={Theme.Container.widthLogin} height={'220px'}>
         <TitlePrincipal>Recuperar Senha</TitlePrincipal> 
@@ -71,15 +69,13 @@ const ForgetPassword = () => {
               : null
             }    
 
-          <FlexButton>
-            <MinorButton fontSize={Theme.fontSize.medium} color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
-            <MinorButton fontSize={Theme.fontSize.large} color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Recuperar</MinorButton>    
+          <FlexButton widht="380px" marginLeft="4%" top="80%">
+            <MinorButton marginLeft="5px" color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
+            <MinorButton color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Recuperar</MinorButton>    
           </FlexButton>
           </Form>
       </CardForm>
     </ContainerForm>
-
-    </>
   )
 
 }

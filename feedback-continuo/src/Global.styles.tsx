@@ -9,6 +9,7 @@ interface IProps {
   widht?:string;
   height?: string;
   fontSize?:string;
+  top?: string;
 }
 
 export const ContainerForm = styled.div`
@@ -20,9 +21,9 @@ export const ContainerForm = styled.div`
   align-items: center;
 `;
 
-export const Container = styled.div<{minHeight:string}>`
-background: ${Theme.color.cinzaforte };
-min-height: ${props => props.minHeight};
+export const Container = styled.div`
+background: ${Theme.color.cinzaforte};
+min-height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -186,14 +187,14 @@ export const FlexComponent = styled.div`
   padding: 10px;
 `
 
-export const FlexButton = styled.div`
+export const FlexButton = styled.div<IProps>`
   display: flex;  
   justify-content: space-evenly;
-  width: 380px;  
+  width: ${props => props.widht};  //380
   position: absolute;
-  margin-left: 4%;
-  top: 93%;
-`;
+  margin-left: ${props => props.marginLeft || 0}; //4%
+  top: ${props => props.top}; //93%
+`; 
 
 export const Input = styled.input<IProps>`
   padding: 0.5em;

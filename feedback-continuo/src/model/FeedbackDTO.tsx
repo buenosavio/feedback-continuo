@@ -5,16 +5,11 @@ export interface FeedbackDTO {
   tags: [];
 }
 
-export interface GivedFeedbackDTO{
+export interface FeedbacksDTO{
     createdAt: string,
     feedbackId: string,
     message: string,
     profileUserImage: string,
-    tags: [],
+    tags: [''],
     userName: string,
-}
-
-export interface ReceveidFeedbackDTO{
-  
-
 }

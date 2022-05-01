@@ -141,7 +141,7 @@ const RegisterFeedback = () => {
   }
   
   return (
-    <Container minHeight={'100vh'}>
+    <Container>
       <CardForm>          
         <TitlePrincipal>Cadastrar Feedback</TitlePrincipal>
         <Form onSubmit={formikProps.handleSubmit}>      

@@ -1,12 +1,11 @@
 import { Theme } from "../../theme";
 import { useFormik } from "formik";
-import { FlexButton } from "./ChangePassword.styles";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useState } from "react";
 import { IAuthContext, IChangePasswordDTO } from "../../model/TypesDTO";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
-import { CardForm, Container, Form, Input, MinorButton, TextDanger, TitleForm, TitlePrincipal,Senha,MostrarSenha,ShowPassword } from "../../Global.styles";
+import { CardForm, Container, Form, Input, MinorButton, TextDanger, TitleForm, TitlePrincipal,Senha,MostrarSenha,ShowPassword, FlexButton } from "../../Global.styles";
 
 import * as Yup from 'yup'
 import PasswordStrengthBar from "react-password-strength-bar";
@@ -22,6 +21,7 @@ const ChangePassword = () => {
     confirmPassword: Yup.string().required('Obrigatório')
       .oneOf([Yup.ref('newPassword')], 'A senha deve ser igual') ,
   });
+
   const [eyeON, setEyeOn] = useState(true);
   const [eyeONN, setEyeOnn] = useState(true);
   const [eyesON, setEyesOn] = useState(true);
@@ -40,7 +40,7 @@ const ChangePassword = () => {
     },
   });
   return(
-    <Container minHeight={"100vh"}>
+    <Container>
       <CardForm widht={'400px'} height={'450px'}>      
         <TitlePrincipal>Alterar Senha</TitlePrincipal>            
         <Form onSubmit={formikProps.handleSubmit}>          
@@ -55,9 +55,9 @@ const ChangePassword = () => {
               <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
             </MostrarSenha>                       
             {formikProps.errors.oldPassword && formikProps.touched.oldPassword 
-            ? (<TextDanger marginLeft='25px'>{formikProps.errors.oldPassword}</TextDanger>) 
-            : null
-          }             
+              ? (<TextDanger marginLeft='25px'>{formikProps.errors.oldPassword}</TextDanger>) 
+              : null
+            }             
           </Senha>
           <TitleForm htmlFor="newPassword">Digite a nova senha</TitleForm>
           <Senha>
@@ -90,7 +90,7 @@ const ChangePassword = () => {
             : null
             }             
           </Senha>          
-          <FlexButton>
+          <FlexButton widht="400px" top="89%">
             <MinorButton onClick={() => navigate('/')} marginLeft={'40px'} type="button" backgroundColor={Theme.color.CinzaMedio}>Voltar</MinorButton>
             <MinorButton marginLeft={'-20px'} type="submit" backgroundColor={Theme.color.Azulclaro}>Atualizar</MinorButton>   
           </FlexButton>

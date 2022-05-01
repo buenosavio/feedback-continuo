@@ -4,7 +4,7 @@ import imgError from '../../images/error.gif'
 
 const Error = () => {
   return (
-    <Container minHeight={Theme.Container.minHeight}>
+    <Container>
       <img src={imgError} alt="Logo de erro do sistema" />
       <TitlePrincipal>Error...</TitlePrincipal>
     </Container>
