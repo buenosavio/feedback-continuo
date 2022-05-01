@@ -40,7 +40,7 @@ const ChangePassword = () => {
     },
   });
   return(
-    <Container minHeight={"100vh"}>
+    <Container>
       <CardForm widht={'400px'} height={'450px'}>      
         <TitlePrincipal>Alterar Senha</TitlePrincipal>            
         <Form onSubmit={formikProps.handleSubmit}>          

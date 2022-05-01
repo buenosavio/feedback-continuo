@@ -1,15 +1,7 @@
 import styled from 'styled-components/'
 import { Theme } from './theme';
-import { Link } from 'react-router-dom';
+import {IPropsDTO} from './model/IProps.DTO'
 
-interface IProps {
-  marginLeft?: string;  
-  content?: string;
-  backgroundColor?: string;
-  widht?:string;
-  height?: string;
-  fontSize?:string;
-}
 
 export const ContainerForm = styled.div`
   background: ${Theme.color.backgroundGradientBlur};
@@ -20,40 +12,23 @@ export const ContainerForm = styled.div`
   align-items: center;
 `;
 
-export const Container = styled.div<{minHeight:string}>`
-background: ${Theme.color.cinzaforte };
-min-height: ${props => props.minHeight};
-display: flex;
-justify-content: center;
-align-items: center;
-`;
-
-export const Containerr = styled.div`
-  background-color: #DEDFE1;
+export const Container = styled.div<IPropsDTO>`
+  background: ${Theme.color.cinzaforte };
   min-height: 100vh;
-`;
-
-export const ContainerCenter = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  max-width: 1200px;
-  min-height: 100vh;
-  width: 100%;
-  margin: 0 auto;
-  //background-color: ${Theme.color.CinzaMedio};
-`
+`;
 
-export const Form = styled.form<IProps>`
+export const Form = styled.form<IPropsDTO>`
   display: flex;
   flex-direction: column;
   max-width: 50%;
   margin-top: ${props => props.marginLeft || '0px'} ;
 `;
 
-export const CardForm = styled.div<IProps>`
+export const CardForm = styled.div<IPropsDTO>`
   background-color: rgba(255, 255, 255, 1);
-  //overflow: hidden;
   margin: auto;
   width: ${props => props.widht};
   max-width: ${props => props.widht};
@@ -65,33 +40,25 @@ export const CardForm = styled.div<IProps>`
   position: relative;
 `;
 
-export const ContainerLogin = styled.div`
- background-color: ${Theme.color.background};
-  min-height: ${Theme.Container.minHeight};
-  display: flex;
-  justify-content: center;
+export const CardFormRegister = styled.div`
+  background-color:  ${Theme.color.branco};
+  overflow: hidden;
+  margin: auto;
+  width: ${Theme.Container.widhtRegister};
+  height: ${Theme.Container.heightRegister};
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+  border-radius: ${Theme.fontSize.small}; ;
+  text-align: center;
   align-items: center;
 `;
 
-export const CardFormRegister = styled.div`
-background-color:  ${Theme.color.branco};
-overflow: hidden;
-margin: auto;
-width: ${Theme.Container.widhtRegister};
-height: ${Theme.Container.heightRegister};
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
-border-radius: ${Theme.fontSize.small}; ;
-text-align: center;
-align-items: center;
-`;
-
 export const CardHeader = styled.header`
-padding-top: 10px;
-padding-bottom: 10px;
-display: flex;
-text-align: center;
-align-items: center;
-justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
   background-color: ${Theme.color.branco};
   overflow: hidden;
   margin: auto;
@@ -103,7 +70,7 @@ justify-content: center;
   align-items: center;
 `;
 
-export const TextDanger = styled.p<IProps>`  
+export const TextDanger = styled.p<IPropsDTO>`  
   margin: 0;
   margin-left: ${props => props.marginLeft || '20px'};	
   padding: 0;
@@ -147,16 +114,12 @@ export const MostrarSenha = styled.div`
   border:none;
 `;
 
-export const BackArrow = styled(Link)`
-  color: black;
-`;
-
 export const Senha = styled.div`
   position: relative;
   text-align: center;
 `;
 
-export const MinorButton = styled.button<IProps>`    
+export const MinorButton = styled.button<IPropsDTO>`    
   width: 150px;
   padding: 10px 0;
   margin: auto;
@@ -174,8 +137,8 @@ export const MinorButton = styled.button<IProps>`
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
   &:hover {
-    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
-    transform: translate(0, -1px);
+      box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
+      transform: translate(0, -1px);
   }
 `;
 
@@ -195,7 +158,7 @@ export const FlexButton = styled.div`
   top: 93%;
 `;
 
-export const Input = styled.input<IProps>`
+export const Input = styled.input<IPropsDTO>`
   padding: 0.5em;
   margin: 5px 10px 5px 20px;
   background: #FFF;
@@ -206,18 +169,17 @@ export const Input = styled.input<IProps>`
   height: 25px;
   ::placeholder,
   ::-webkit-input-placeholder {
-    font-size: 14px;    
-    color: rgba(164, 166, 179, 1);
+      font-size: 14px;    
+      color: rgba(164, 166, 179, 1);
   }
   :focus {
-    box-shadow: 0 0 0 0;
-    outline: 0;
-    transition: 2s;    
-    border: 1px solid ${Theme.color.Azulclaro};
-  }
+        box-shadow: 0 0 0 0;
+        outline: 0;
+        transition: 2s;    
+        border: 1px solid ${Theme.color.Azulclaro};
+    }
 `;
-
-export const InsertImage = styled.label<IProps>`
+export const InsertImage = styled.label<IPropsDTO>`
   margin-left: ${props => props.marginLeft || 0};
   width: 100px;
   height: 100px; 

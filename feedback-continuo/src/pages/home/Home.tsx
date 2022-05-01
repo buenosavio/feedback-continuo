@@ -4,7 +4,6 @@ import { IAuthContext } from "../../model/TypesDTO";
 import { GivedFeedbackDTO } from "../../model/FeedbackDTO";
 import { useContext, useEffect, useState } from "react";
 import {AxiosError} from "axios"
-import { Theme } from "../../theme";
 import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
 import Loading from "../../components/loading/Loading";
@@ -126,7 +125,7 @@ const Home = () => {
   if (error) { return(<Error />) }
 
   return(
-    <Container minHeight={Theme.Container.minHeight}>
+    <Container>
       <Menualign>
       <TitlePrincipal>Feedbacks</TitlePrincipal>
       <Tabs>

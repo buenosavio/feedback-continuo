@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import { Theme } from "../../theme";
 
@@ -91,13 +90,12 @@ export const TextFooter = styled.small`
   margin: 10px 0px 10px 30px;
   
 `;
-
 export const Tag = styled.p`
-background: ${Theme.color.primaryClear};
-margin-right: 5px ;
-border-radius: 20px;
-padding: 5px;
-color: white;
+  background: ${Theme.color.primaryClear};
+  margin-right: 5px ;
+  border-radius: 20px;
+  padding: 5px;
+  color: white;
 `;
 
 

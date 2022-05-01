@@ -1,7 +1,7 @@
 import { api } from "../../api";
 import { Theme } from "../../theme";
 import { UserDTO } from "../../model/UserDTO";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import { AxiosError } from "axios";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
@@ -13,10 +13,7 @@ import {
   MinorButton,
   CardForm,  
   TitleForm,
-  Container,
-  BackArrow,
   TitlePrincipal,
-  CardHeader,
   ShowPassword,
   MostrarSenha,
   Senha,

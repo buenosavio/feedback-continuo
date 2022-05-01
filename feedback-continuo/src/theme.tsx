@@ -14,7 +14,7 @@ export const Theme = {
     branco: '#FFFFFF',
     vermelhoWarning:'#E73532', //(erros, etc)
     background: '#363740',
-    backgroundGradient: 'linear-gradient(rgb(6, 44, 168) 0%, rgb(0, 21, 96) 100%)',//'linear-gradient(to bottom right, #295ba7, #78b454)',
+    backgroundGradient: 'linear-gradient(rgb(6, 44, 168) 0%, rgb(0, 21, 96) 100%)',
     backgroundGradientBlur: 'linear-gradient(rgb(0, 21, 96) 0%, rgb(255, 255, 255) 120%)',
   },
   fontSize:{

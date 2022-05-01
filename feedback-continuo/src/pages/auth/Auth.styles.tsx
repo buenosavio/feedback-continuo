@@ -1,8 +1,5 @@
 import styled from "styled-components";
-
-interface IProps {
-  width?: string;
-};
+import {IPropsDTO} from '../../model/IProps.DTO' 
 
 export const CardForm = styled.div`
   background-color: rgba(255, 255, 255, 1);
@@ -29,9 +26,6 @@ export const TitleLogin = styled.h1`
   text-align: center;
   align-items: center;
 `;
-
-
-
 export const TitleForm = styled.label`
   font-size: 15px;
   color: #000000;
@@ -57,7 +51,7 @@ export const ImgLogin = styled.img`
   margin-top: 20px;
 `;
 
-export const SimpleText = styled.p<IProps>`
+export const SimpleText = styled.p<IPropsDTO>`
   display: inline;
   font-size: ${props => props.width || '15px'};
   margin: 0px 3px;  

@@ -2,9 +2,6 @@ import styled from "styled-components";
 import { Theme } from "../../theme";
 import Select from 'react-select'
 
-interface IProps {
-  checked?: boolean;
-}
 
 export const FlexComponent = styled.div`
   display: flex;
