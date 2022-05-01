@@ -1,23 +1,24 @@
 import { api } from "../../api";
-import { Link, useNavigate } from "react-router-dom";
+import { Theme } from "../../theme";
 import { Notify } from "notiflix";
+import { TagList } from "../../components/checkbox/Checkbox.styles";
 import { useFormik } from "formik";
+import { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { FeedbackDTO } from "../../model/FeedbackDTO";
 import { IAuthContext } from "../../model/TypesDTO";
+import { FaUserSecret } from "react-icons/fa";
 import { ItemDTO, ListDTO } from "../../model/ListDTO";
-import { Container, ContainerCenter, Form, MinorButton, TextDanger, TitleForm, TitlePrincipal } from "../../Global.styles";
-import { useContext, useEffect, useState, Fragment } from "react";
+import { useContext, useEffect, useState } from "react";
+import { FlexComponent, Input, FlexButton,  TextArea, CardForm } from "./RegisterFeedback.styles";
+import { Container, Form, MinorButton, TitleForm, TitlePrincipal } from "../../Global.styles";
+
+import * as Yup from 'yup'
 import Error from "../../components/error/Error";
 import Loading from "../../components/loading/Loading";
-import * as Yup from 'yup'
-import { AxiosError } from "axios";
-import handleError from "../../utils/Error";
-import { Theme } from "../../theme";
-import { FlexComponent, Input, Selectstyled, FlexButton,  TextArea, CardForm } from "./RegisterFeedback.styles";
 import Checkbox from "../../components/checkbox/Checkbox";
-import { TagList } from "../../components/checkbox/Checkbox.styles";
-import { FaUserSecret } from "react-icons/fa";
+import handleError from "../../utils/Error";
 import SelectFinder from "../../components/select/SelectFinder";
 import ValidationError from "../../components/error/ValidationError";
 

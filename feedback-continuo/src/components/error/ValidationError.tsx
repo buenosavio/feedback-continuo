@@ -1,6 +1,12 @@
 import { TextDanger } from "../../Global.styles";
+import { FormikProps } from "formik";
 
-const ValidationError = ({formikProps, error }: any) => {
+type IProps = {
+  error?: string | string[];
+  formikProps: FormikProps<any>;
+};
+
+const ValidationError = ({formikProps, error }: IProps) => {
   if (formikProps.errors && formikProps.touched) {
     return (
       <TextDanger>{error}</TextDanger>
