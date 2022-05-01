@@ -12,7 +12,7 @@ import { FaUserSecret } from "react-icons/fa";
 import { ItemDTO, ListDTO } from "../../model/ListDTO";
 import { useContext, useEffect, useState } from "react";
 import { FlexComponent, Input, FlexButton,  TextArea, CardForm } from "./RegisterFeedback.styles";
-import { Container, Form, MinorButton, TitleForm, TitlePrincipal } from "../../Global.styles";
+import { Container, Form, MinorButton, TextDanger, TitleForm, TitlePrincipal } from "../../Global.styles";
 
 import * as Yup from 'yup'
 import Error from "../../components/error/Error";
@@ -20,14 +20,12 @@ import Loading from "../../components/loading/Loading";
 import Checkbox from "../../components/checkbox/Checkbox";
 import handleError from "../../utils/Error";
 import SelectFinder from "../../components/select/SelectFinder";
-import ValidationError from "../../components/error/ValidationError";
 
 const RegisterFeedback = () => {
   
   const RegisterFeedbackSchema = Yup.object().shape({
     feedbackUserId: Yup.string().required('Obrigatório'),
-    message: Yup.string().required('Obrigatório'),
-    tags: Yup.array().required('Obrigatório'),
+    message: Yup.string().required('Obrigatório'),    
   });
 
   const {isLogged} = useContext(AuthContext) as IAuthContext
@@ -84,7 +82,7 @@ const RegisterFeedback = () => {
       const index = selectedTags.indexOf(value.toUpperCase());
       selectedTags.splice(index, 1);        
     } else {
-      selectedTags.push(value.toUpperCase())                   
+      selectedTags.push(value.toUpperCase())                 
     }
   }
 
@@ -93,15 +91,20 @@ const RegisterFeedback = () => {
       ...values,
       tags: selectedTags
     }
-    try {      
-      await api.post("/feedback/", valuesFormatted)
-      Notify.success("Feedback enviado com sucesso!")
-      formikProps.resetForm()
-      navigate('/')
-    } catch (error) {
-      const errorData = error as AxiosError 
-      handleError(errorData)
+    if (valuesFormatted.tags.length > 0) {
+      try {      
+        await api.post("/feedback/", valuesFormatted)
+        Notify.success("Feedback enviado com sucesso!")
+        formikProps.resetForm()
+        navigate('/')
+      } catch (error) {
+        const errorData = error as AxiosError 
+        handleError(errorData)
+      }
+    } else {
+      Notify.warning('Selecione ao menos uma tag!')
     }
+
   }
 
   const formikProps = useFormik({
@@ -109,11 +112,12 @@ const RegisterFeedback = () => {
       feedbackUserId: '', 
       isAnonymous: false,      
       message: '',
-      tags: [''],      
+      tags: [],      
     },
     validationSchema: (RegisterFeedbackSchema),
     onSubmit: (values: FeedbackDTO) => {            
       saveFeedback(values)
+      console.log(values.tags)
     },
   });
 
@@ -121,7 +125,7 @@ const RegisterFeedback = () => {
     const names = users ? users.map((user: any) => (
       {value: user.id, label: user.name}
     )) : null
-    setallUsers(names)
+    setallUsers(names)        
   }
 
   if (loading) {
@@ -147,7 +151,10 @@ const RegisterFeedback = () => {
             onChange={(e: any) => formikProps.setFieldValue("feedbackUserId", e.value)}            
             options={allUsers}                          
           />          
-          <ValidationError formikProps={formikProps} error={formikProps.errors.feedbackUserId} />
+          {formikProps.errors.feedbackUserId && formikProps.touched.feedbackUserId 
+            ? (<TextDanger marginLeft='25px'>{formikProps.errors.feedbackUserId}</TextDanger>) 
+            : null
+          }    
           
           <TitleForm htmlFor="message">Feedback</TitleForm>
           <TextArea id="message" name="message"
@@ -155,7 +162,10 @@ const RegisterFeedback = () => {
             value={formikProps.values.message}
             onBlur={formikProps.handleBlur}
           />     
-          <ValidationError formikProps={formikProps} error={formikProps.errors.message} />
+          {formikProps.errors.message && formikProps.touched.message 
+            ? (<TextDanger marginLeft='25px'>{formikProps.errors.message}</TextDanger>) 
+            : null
+          }    
 
           <TitleForm htmlFor="tags">Selecione as tags desejadas</TitleForm>  
           <TagList>
@@ -169,7 +179,10 @@ const RegisterFeedback = () => {
               : null
             }
           </TagList> 
-          <ValidationError formikProps={formikProps} error={formikProps.errors.tags} />             
+          {formikProps.errors.tags && formikProps.touched.tags
+            ? (<TextDanger marginLeft='25px'>{formikProps.errors.tags}</TextDanger>) 
+            : null
+          }    
                     
           <FlexComponent>               
             <Input id="isAnonymous" name="isAnonymous" type="checkbox"

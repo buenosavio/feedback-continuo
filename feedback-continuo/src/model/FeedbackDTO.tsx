@@ -2,7 +2,7 @@ export interface FeedbackDTO {
   feedbackUserId: string;
   isAnonymous: boolean;
   message: string;
-  tags: [string];
+  tags: [];
 }
 
 export interface GivedFeedbackDTO{

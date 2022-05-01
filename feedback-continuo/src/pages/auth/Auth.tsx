@@ -6,17 +6,11 @@ import { IAuthContext } from "../../model/TypesDTO";
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from "react";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
-import imgLogo from '../../images/feedbacklogo.png'
-
-import * as Yup from 'yup';
-
-
 
 import {  
   ImgLogin,    
   SimpleText,
-  RegisterForm,  
-  TitleLogin,
+  RegisterForm,    
 } from './Auth.styles'
 import {
   Input,
@@ -27,10 +21,13 @@ import {
   ShowPassword,
   CardForm,
   MinorButton,
-  TextDanger,
   MostrarSenha,
-  ContainerForm
+  ContainerForm,
+  TextDanger
 } from '../../Global.styles'
+
+import * as Yup from 'yup';
+import imgLogo from '../../images/feedbacklogo.png'
 
 const Auth = () => {
   const SignupSchema = Yup.object().shape({
@@ -64,7 +61,7 @@ const Auth = () => {
       <CardForm widht={Theme.Container.widthLogin}
       height={Theme.Container.heightLogin}>
         <ImgLogin src={imgLogo}/>
-          <TitlePrincipal>Login - Feedback</TitlePrincipal>      
+        <TitlePrincipal>Login - Feedback</TitlePrincipal>      
         <Form onSubmit={formikProps.handleSubmit} marginLeft={'50px'}>
           <TitleForm htmlFor="email">E-mail</TitleForm>
           <Input placeholder='Digite seu e-mail' id="email" name="email" type="text"
@@ -74,7 +71,9 @@ const Auth = () => {
           />
           {formikProps.errors.email && formikProps.touched.email 
             ? (<TextDanger marginLeft='25px'>{formikProps.errors.email}</TextDanger>) 
-            : null}
+            : null
+          }    
+
           <TitleForm htmlFor="password">Senha</TitleForm>
           <Senha>
             <Input placeholder='Digite sua senha' id="password" name="password" type ={eyeON? "password" : "text"}
@@ -84,11 +83,13 @@ const Auth = () => {
             />            
             <MostrarSenha>
               <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
-            </MostrarSenha>
+            </MostrarSenha>               
             {formikProps.errors.password && formikProps.touched.password 
-              ? (<TextDanger marginLeft='25px'>{formikProps.errors.password}</TextDanger>)
-              : null}           
+              ? (<TextDanger marginLeft='25px'>{formikProps.errors.password}</TextDanger>) 
+              : null
+            }                      
           </Senha>      
+
           <RegisterForm>            
             <MinorButton type='submit' backgroundColor={Theme.color.Azulclaro} marginLeft={'115px'}>Login</MinorButton>
           </RegisterForm>    
