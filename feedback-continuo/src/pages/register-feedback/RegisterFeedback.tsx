@@ -178,12 +178,7 @@ const RegisterFeedback = () => {
               ))
               : null
             }
-          </TagList> 
-          {formikProps.errors.tags && formikProps.touched.tags
-            ? (<TextDanger marginLeft='25px'>{formikProps.errors.tags}</TextDanger>) 
-            : null
-          }    
-                    
+          </TagList>                               
           <FlexComponent>               
             <Input id="isAnonymous" name="isAnonymous" type="checkbox"
               onChange={formikProps.handleChange}      
