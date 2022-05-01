@@ -17,7 +17,6 @@ const TabTitle: FC<Props> = ({title, setSelectedTab, index}) => {
     setSelectedTab(index)
   }, [setSelectedTab, index])
 
-  
   return (
     <LiTab>
       <ButtonTab setSelectedTab='is-selected' onClick={onClick}>{title}</ButtonTab>
@@ -26,3 +25,4 @@ const TabTitle: FC<Props> = ({title, setSelectedTab, index}) => {
 }
 
 export default TabTitle
+  

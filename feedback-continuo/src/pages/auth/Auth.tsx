@@ -27,10 +27,8 @@ import {
   ShowPassword,
   CardForm,
   MinorButton,
-  CardHeader,
   TextDanger,
   MostrarSenha,
-  Container,
   ContainerForm
 } from '../../Global.styles'
 

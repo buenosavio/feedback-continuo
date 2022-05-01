@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Theme } from "../../theme";
 import Select from 'react-select'
-import AsyncSelect from 'react-select/async';
 
 interface IProps {
   checked?: boolean;

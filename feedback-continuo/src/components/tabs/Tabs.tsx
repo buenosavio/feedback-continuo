@@ -9,6 +9,8 @@ type Props = {
 }
 const Tabs: FC<Props> = ({children}) => {
   const [selectedTab, setSelectedTab] = useState(0)
+
+
   return (
       <div>
       <UlTab>
