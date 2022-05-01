@@ -3,7 +3,7 @@ import { FormikProps } from "formik";
 
 type IProps = {
   error?: string | string[];
-  formikProps: FormikProps<any>;
+  formikProps: FormikProps<any>;  
 };
 
 const ValidationError = ({formikProps, error }: IProps) => {

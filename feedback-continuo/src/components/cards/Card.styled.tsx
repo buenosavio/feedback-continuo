@@ -25,13 +25,16 @@ background-color:rgba(241, 244, 248, 0.5);
 `;
 
 export const CardContainer = styled.div`
-min-width: 150vh;
+min-width: 167vh;
 max-width: 1200px;
 min-height: 3%;
 margin: auto;
 background-color: rgba(255, 255, 255, 1) ;
 box-shadow: 0px 20px 60px 0px rgba(241, 244, 248, 0.5);
 border: 1px inset #E5E5E5 ;
+&:hover{
+background-color:rgba(241, 244, 248, 0.5);
+}
 `;
 
 export const CardBody = styled.body`

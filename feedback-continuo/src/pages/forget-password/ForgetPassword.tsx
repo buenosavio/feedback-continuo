@@ -1,12 +1,14 @@
+import { api } from "../../api";
+import { Theme } from "../../theme";
+import { Report } from "notiflix";
 import { useFormik } from "formik";
+import { FlexButton } from "./ForgetPassword.styles";
+import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { CardForm, ContainerForm, Form, Input, MinorButton, TextDanger, TitleForm, TitlePrincipal } from "../../Global.styles";
-import { Theme } from "../../theme";
-import { FlexButton } from "./ForgetPassword.styles";
+
 import * as Yup from "yup";
-import { AxiosError } from "axios";
 import handleError from "../../utils/Error";
-import { Report } from "notiflix";
 
 const ForgetPassword = () => {
 
@@ -19,20 +21,23 @@ const ForgetPassword = () => {
 
   const navigate = useNavigate();
 
-  const recoverPassword = (email: string) => {
+  const recoverPassword = async (email: string) => {
     try {
+      await api.post(`/auth/forgot-password/${formikProps.values.email}`,email)
       Report.success(
-        'Recuperação de senha',
-        'Se endereço existente, em breve você receberá um e-mail com a nova senha!',
-        'OK',
-        {
-          backOverlayColor: 'rgba(0,0,0,0.5)',
-          success: {
-            svgColor: '#32c682',            
-            buttonBackground: Theme.color.Azulclaro,                      
-          },            
-        }
+      'Recuperação de senha',
+      'Se endereço existente, em breve você receberá um e-mail com a nova senha!',
+      'OK',
+      {
+        backOverlayColor: 'rgba(0,0,0,0.5)',
+        success: {
+          svgColor: '#32c682',            
+          buttonBackground: Theme.color.Azulclaro,                      
+        },            
+      }
       );
+      formikProps.resetForm()
+      navigate('/login')
     } catch (error) {
       const errorData = error as AxiosError
       handleError(errorData)
@@ -60,11 +65,12 @@ const ForgetPassword = () => {
               onChange={formikProps.handleChange}
               value={formikProps.values.email.toLowerCase()}
               onBlur={formikProps.handleBlur}                          
-            />
-            {formikProps.errors.email && formikProps.touched.email
+            />          
+            {formikProps.errors.email && formikProps.touched.email 
               ? (<TextDanger marginLeft='25px'>{formikProps.errors.email}</TextDanger>) 
               : null
-            }
+            }    
+
           <FlexButton>
             <MinorButton fontSize={Theme.fontSize.medium} color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
             <MinorButton fontSize={Theme.fontSize.large} color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Recuperar</MinorButton>    
