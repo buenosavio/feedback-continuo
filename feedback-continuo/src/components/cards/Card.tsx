@@ -11,6 +11,7 @@ import {
   TextFooter,
   GlobalCard,
   CardContainer,
+  Background,
 } from './Card.styled'
 
 type cardDTO = {
@@ -23,8 +24,9 @@ type cardDTO = {
 
   const Card : FC<cardDTO> = ({message,profileUserImage,tags,userName,createdAt,}) => {
   return (
-    <GlobalCard>
+    <GlobalCard>   
       <CardContainer>
+      <Background>
         <CardHeader>
           <CardName>
               {userName}
@@ -44,6 +46,7 @@ type cardDTO = {
             {moment(createdAt).format('DD / MM / YYYY')}
             </TextFooter>
           </CardData>
+          </Background>
       </CardContainer>
     </GlobalCard>
   )

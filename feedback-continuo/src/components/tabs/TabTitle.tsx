@@ -1,4 +1,4 @@
-import {useCallback, FC} from 'react'
+import {useCallback, FC, useState} from 'react'
 import {
   ButtonTab,
   LiTab,
@@ -9,7 +9,9 @@ type Props = {
   setSelectedTab: (index: number) => void
 }
  
+
 const TabTitle: FC<Props> = ({title, setSelectedTab, index}) => {
+
 
   const onClick = useCallback(() => {
     setSelectedTab(index)
@@ -17,9 +19,10 @@ const TabTitle: FC<Props> = ({title, setSelectedTab, index}) => {
 
   return (
     <LiTab>
-      <ButtonTab onClick={onClick}>{title}</ButtonTab>
+      <ButtonTab setSelectedTab='is-selected' onClick={onClick}>{title}</ButtonTab>
     </LiTab>
   )
 }
 
 export default TabTitle
+  

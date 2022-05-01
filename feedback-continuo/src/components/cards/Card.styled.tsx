@@ -13,23 +13,33 @@ justify-content: center;
 align-items: center;
 display: flex;
 min-width: 100vh;
+max-width: 1200px;
+margin: auto;
+`;
+
+export const Background = styled.div`
+background-color: rgba(255, 255, 255, 1) ;
+&:hover{
+background-color:rgba(241, 244, 248, 0.5);
+}
 `;
 
 export const CardContainer = styled.div`
-min-width: 180vh;
+min-width: 150vh;
+max-width: 1200px;
 min-height: 3%;
-margin: 0px 0px 2px 0px;
-background-color: rgba(255, 255, 255, 1);
+margin: auto;
+background-color: rgba(255, 255, 255, 1) ;
 box-shadow: 0px 20px 60px 0px rgba(241, 244, 248, 0.5);
 border: 1px inset #E5E5E5 ;
-&:hover{
-  background-color: #E5E5E5;
-}
-
 `;
 
 export const CardBody = styled.body`
   display: flex;
+  background-color:rgba(255, 255, 255, 1) ;
+  &:hover{
+background-color:rgba(241, 244, 248, 0.5);
+}
 `;
 export const CardHeader = styled.header`
   size: 10px;
