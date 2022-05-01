@@ -18,6 +18,8 @@ import { FlexComponent, Input, Selectstyled, FlexButton,  TextArea, CardForm } f
 import Checkbox from "../../components/checkbox/Checkbox";
 import { TagList } from "../../components/checkbox/Checkbox.styles";
 import { FaUserSecret } from "react-icons/fa";
+import SelectFinder from "../../components/select/SelectFinder";
+import ValidationError from "../../components/error/ValidationError";
 
 const RegisterFeedback = () => {
   
@@ -122,9 +124,6 @@ const RegisterFeedback = () => {
     console.log(names)
   }
 
-
-
-
   if (loading) {
     return(
       <Loading />
@@ -143,27 +142,12 @@ const RegisterFeedback = () => {
         <TitlePrincipal>Cadastrar Feedback</TitlePrincipal>
         <Form onSubmit={formikProps.handleSubmit}>      
           <TitleForm htmlFor="feedbackUserId">Selecione a pessoa</TitleForm>
-          <Selectstyled id="feedbackUserId" name="feedbackUserId" 
-            onChange={formikProps.handleChange} 
-            onBlur={formikProps.handleBlur} 
+          <SelectFinder id="feedbackUserId" name="feedbackUserId"                        
             value={formikProps.values.feedbackUserId}
-            placeholder={"Escolha um usuário "}
-            options ={allUsers}  
-            defaultValue={allUsers[0]}
-            classNamePrefix="select"
-          
-            />
-            {/* {
-              users ? users.map((user: ItemDTO) => (
-                <option key={user.id} value={user.id}>{user.name}</option>
-              ))
-              : null
-            }       */}
-
-          {formikProps.errors.feedbackUserId && formikProps.touched.feedbackUserId
-              ? (<TextDanger>{formikProps.errors.feedbackUserId}</TextDanger>)
-              : null
-          }  
+            onChange={(e: any) => formikProps.setFieldValue("feedbackUserId", e.value)}            
+            options={allUsers}                          
+          />          
+          <ValidationError formikProps={formikProps} error={formikProps.errors.feedbackUserId} />
           
           <TitleForm htmlFor="message">Feedback</TitleForm>
           <TextArea id="message" name="message"
@@ -171,10 +155,7 @@ const RegisterFeedback = () => {
             value={formikProps.values.message}
             onBlur={formikProps.handleBlur}
           />     
-          {formikProps.errors.message && formikProps.touched.message
-            ? (<TextDanger>{formikProps.errors.message}</TextDanger>)
-            : null
-          }
+          <ValidationError formikProps={formikProps} error={formikProps.errors.message} />
 
           <TitleForm htmlFor="tags">Selecione as tags desejadas</TitleForm>  
           <TagList>
@@ -187,22 +168,16 @@ const RegisterFeedback = () => {
               ))
               : null
             }
-          </TagList>              
-          {formikProps.errors.tags && formikProps.touched.tags
-              ? (<TextDanger>{formikProps.errors.tags}</TextDanger>)
-              : null
-          }  
+          </TagList> 
+          <ValidationError formikProps={formikProps} error={formikProps.errors.tags} />             
+                    
           <FlexComponent>               
             <Input id="isAnonymous" name="isAnonymous" type="checkbox"
               onChange={formikProps.handleChange}      
               onBlur={formikProps.handleBlur}
             />
             <FaUserSecret size={25}/>          
-          </FlexComponent>
-          {formikProps.errors.isAnonymous && formikProps.touched.isAnonymous
-            ? (<TextDanger>{formikProps.errors.isAnonymous}</TextDanger>)
-            : null
-          }
+          </FlexComponent>      
           <FlexButton>
             <MinorButton marginLeft={'80px'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/')}>Voltar</MinorButton>    
             <MinorButton backgroundColor={Theme.color.Azulclaro} type="submit">Registrar</MinorButton>    
