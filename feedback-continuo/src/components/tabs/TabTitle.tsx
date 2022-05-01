@@ -1,4 +1,4 @@
-import {useCallback, FC, useState} from 'react'
+import {useCallback, FC} from 'react'
 import {
   ButtonTab,
   LiTab,

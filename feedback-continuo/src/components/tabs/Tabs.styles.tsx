@@ -26,11 +26,6 @@ export const ButtonTab = styled.button<TabsProps>`
   }
 `;
 
-
-
-
-
-
 export const LiTab = styled.li<TabsProps>`
 display: flex;
 
@@ -40,7 +35,6 @@ export const UlTab = styled.ul`
 display: flex;
 margin: 0 0 1px -40px;
 `;
-
 
 interface TabsProps{
   setSelectedTab?:string
