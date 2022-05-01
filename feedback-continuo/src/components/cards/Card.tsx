@@ -1,13 +1,14 @@
 import { FC } from 'react'
 import moment from "moment";
 import {
+  Tag,
   Image,
+  DivCard,
   CardName,
   CardText,
   CardBody,
   CardTags,
   CardData,
-  CardHeader,
   TextFooter,
   GlobalCard,
   CardContainer,
@@ -25,25 +26,27 @@ type cardDTO = {
   return (
     <GlobalCard>   
       <CardContainer>
-        <CardHeader>
+        <CardBody>
+          <Image src={profileUserImage} alt="" width="80px" height="80px"/>
+          <DivCard>
           <CardName>
               {userName}
             </CardName>
-        </CardHeader> 
-        <CardBody>
-          <Image src={profileUserImage} alt="" width="80px" height="80px"/>
           <CardText>
             {message}
           </CardText>
           <CardTags>
-            {tags}
+            {tags.split('#').slice(1).map((tag:string | boolean) =>(             
+              <Tag> #{tag} </Tag>
+            ))}
           </CardTags>
-        </CardBody>
           <CardData>
             <TextFooter>
             Enviado em : {moment(createdAt).format('DD / MM / YYYY')}
             </TextFooter>
           </CardData>
+          </DivCard>  
+        </CardBody>
       </CardContainer>
     </GlobalCard>
   )

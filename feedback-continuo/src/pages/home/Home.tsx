@@ -117,7 +117,7 @@ const Home = () => {
   const formatTags = (tagList: string[]) => {
     let response = "";
     tagList.map((tag) => {
-      response = response + " #" + tag
+      response = response + "#" + tag
     }); 
     return response;
   }

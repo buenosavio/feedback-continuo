@@ -1,6 +1,7 @@
 export const Theme = {
   color:{
     primary: 'rgb(6, 44, 168)',
+    primaryClear: 'rgb(98, 123, 206)',
     primaryDark: 'rgb(0, 21, 96)',
     secondary: '#78b454',
     AzulForte: 'linear-gradient(rgb(0, 27, 116) 0%, rgb(0, 21, 96) 100%)', //(header e footer),
