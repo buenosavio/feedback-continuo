@@ -11,7 +11,6 @@ import {
   TextFooter,
   GlobalCard,
   CardContainer,
-  Background,
 } from './Card.styled'
 
 type cardDTO = {
@@ -26,7 +25,6 @@ type cardDTO = {
   return (
     <GlobalCard>   
       <CardContainer>
-      <Background>
         <CardHeader>
           <CardName>
               {userName}
@@ -43,10 +41,9 @@ type cardDTO = {
         </CardBody>
           <CardData>
             <TextFooter>
-            {moment(createdAt).format('DD / MM / YYYY')}
+            Enviado em : {moment(createdAt).format('DD / MM / YYYY')}
             </TextFooter>
           </CardData>
-          </Background>
       </CardContainer>
     </GlobalCard>
   )
