@@ -23,7 +23,7 @@ const handleError = (errorData: AxiosError) => {
         Notify.warning('Arquivo ultrapassou o tamanho máximo permitido de 128KB');
       break;
       default:
-        Notify.failure('Erro. Tente novamente!');
+        Notify.failure('Erro desconhecido. Tente novamente!');
     }      
   } else {
     Notify.failure('Erro desconhecido. Tente novamente!'); 

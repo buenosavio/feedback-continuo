@@ -169,7 +169,7 @@ export const MinorButton = styled.button<IProps>`
   background-color: ${props => props.backgroundColor} ;
   font-weight: 500;
   border: 0;
-  border-radius: 35px;
+  border-radius: 8px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);

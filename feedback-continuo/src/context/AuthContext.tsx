@@ -6,6 +6,7 @@ import { createContext, ReactElement, ReactNode, useEffect, useState } from "rea
 import { AxiosError } from 'axios';
 import handleError from '../utils/Error';
 import Notiflix, { Notify } from 'notiflix';
+import { Theme } from '../theme';
 
 export const AuthContext = createContext<IAuthContext | null>(null);
 
@@ -53,7 +54,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
         fontFamily: 'Roboto',
         titleColor: 'black',
         okButtonBackground: '#858282cc',
-        cancelButtonBackground: 'red'        
+        cancelButtonBackground: Theme.color.Azulclaro,        
       },
     );    
   }

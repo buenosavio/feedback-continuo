@@ -23,13 +23,13 @@ const ForgetPassword = () => {
     try {
       Report.success(
         'Recuperação de senha',
-        'Tudo certo. Acabamos de enviar uma nova senha para sua caixa de e-mail!',
+        'Se endereço existente, em breve você receberá um e-mail com a nova senha!',
         'OK',
         {
           backOverlayColor: 'rgba(0,0,0,0.5)',
           success: {
             svgColor: '#32c682',            
-            buttonBackground: Theme.color.Azulclaro,            
+            buttonBackground: Theme.color.Azulclaro,                      
           },            
         }
       );
