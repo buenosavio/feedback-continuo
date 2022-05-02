@@ -19,4 +19,12 @@ export const NavOptions = styled.div`
   display: flex;  
   justify-content: center;  
   margin-top: 10px;
-`
+`;
+
+export const TitlePage = styled.h1`
+  font-size: 30px;
+  color: #000000;
+  font-weight: 500;
+  text-align: center;
+  align-items: center;
+`;
