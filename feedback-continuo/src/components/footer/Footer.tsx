@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import Loading from "../loading/Loading";
 import { AuthContext } from "../../context/AuthContext";
-import { IAuthContext } from "../../model/TypesDTO";
+import { IAuthContext } from "../../model/AuthDTO";
 import { FooterComponent, SmallText } from "./Footer.styles";
 
 const Footer = () => {

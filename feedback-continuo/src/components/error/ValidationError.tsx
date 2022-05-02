@@ -1,5 +1,5 @@
 import { TextDanger } from "../../Global.styles";
-import { IPropss} from "../../model/IProps.DTO"
+import { IPropss} from "../../model/IPropsDTO"
 
 
 const ValidationError = ({formikProps, error }: IPropss) => {

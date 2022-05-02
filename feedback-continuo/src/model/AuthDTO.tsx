@@ -1,5 +1,5 @@
+import { IChangePasswordDTO } from "./ChangePasswordDTO";
 import { LoginDTO } from "./LoginDTO";
-import { UserDTO } from "./UserDTO";
 
 export interface IAuthContext {
   token: string;
@@ -9,11 +9,5 @@ export interface IAuthContext {
   changePassword: (values: IChangePasswordDTO) => void;
   loginOn:  boolean;
   loginOff: boolean;
-}
-
-export interface IChangePasswordDTO {
-  oldPassword: string,
-  newPassword: string,
-  confirmPassword: string,
 }
 

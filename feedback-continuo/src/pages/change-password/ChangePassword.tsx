@@ -3,7 +3,8 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useState } from "react";
-import { IAuthContext, IChangePasswordDTO } from "../../model/TypesDTO";
+import { IAuthContext } from "../../model/AuthDTO";
+import { IChangePasswordDTO } from "../../model/ChangePasswordDTO";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
 import { CardForm, Container, Form, Input, MinorButton, TextDanger, TitleForm, TitlePrincipal,Senha,MostrarSenha,ShowPassword, FlexButton } from "../../Global.styles";
 
@@ -15,8 +16,8 @@ const ChangePassword = () => {
   const ChangePasswordSchema = Yup.object().shape({
     oldPassword: Yup.string().required('Obrigatório'),
     newPassword: Yup.string().required('Obrigatório')
-      .min(8, 'Mínimo 8 dígitos')
-      .max(20, 'Máximo 20 dígitos')
+      .min(6, 'Mínimo 6 dígitos')
+      .max(40, 'Máximo 40 dígitos')
       .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/, "Senha deve conter um número, uma letra maiúscula, uma letra minúscula e um caractere especial"),
     confirmPassword: Yup.string().required('Obrigatório')
       .oneOf([Yup.ref('newPassword')], 'A senha deve ser igual') ,
@@ -69,7 +70,7 @@ const ChangePassword = () => {
             <MostrarSenha>
               <ShowPassword onClick={() => setEyeOnn(!eyeONN)}>{eyeONN ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
             </MostrarSenha>     
-            <PasswordStrengthBar style={{ marginLeft: 25, width: 350 }} password={formikProps.values.newPassword} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={8} shortScoreWord={['Muito curta']}/>
+            <PasswordStrengthBar style={{ marginLeft: 25, width: 350 }} password={formikProps.values.newPassword} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={6} shortScoreWord={['Muito curta']}/>
             {formikProps.errors.newPassword && formikProps.touched.newPassword 
               ? (<TextDanger marginLeft='25px'>{formikProps.errors.newPassword}</TextDanger>) 
               : null

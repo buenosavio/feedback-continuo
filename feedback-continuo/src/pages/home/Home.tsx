@@ -2,7 +2,7 @@ import { api } from "../../api";
 import { Container } from "../../Global.styles";
 import { AxiosError } from "axios"
 import { AuthContext } from "../../context/AuthContext";
-import { IAuthContext } from "../../model/TypesDTO";
+import { IAuthContext } from "../../model/AuthDTO";
 import { TitlePrincipal } from '../../Global.styles'
 import { FeedbacksDTO } from "../../model/FeedbackDTO";
 import { useContext, useEffect, useState } from "react";

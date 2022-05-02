@@ -4,7 +4,7 @@ import { AxiosError } from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { InsertImage } from "../../Global.styles";
 import { UserDataDTO } from "../../model/UserDTO";
-import { IAuthContext } from "../../model/TypesDTO";
+import { IAuthContext } from "../../model/AuthDTO";
 import { FlexComponent } from "../../Global.styles";
 import { HeaderComponent, Itens, UserText } from "./Header.styles";
 import { useContext, useEffect, useState } from "react";

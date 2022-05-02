@@ -40,8 +40,8 @@ const RegisterUser = () => {
       .matches(/@dbccompany.com.br/, 'Informe e-mail da DBC'),
     password: Yup.string()
       .required('Obrigatório')
-      .min(8, 'Mínimo 8 dígitos')
-      .max(20, 'Máximo 20 dígitos')
+      .min(6, 'Mínimo 6 dígitos')
+      .max(40, 'Máximo 40 dígitos')
       .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/, "Senha deve conter um número, uma letra maiúscula, uma letra minúscula e um caractere especial"),
     confirm_password: Yup.string()
       .required('Obrigatório')
@@ -145,7 +145,7 @@ const RegisterUser = () => {
             <MostrarSenha>
               <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
             </MostrarSenha>
-          <PasswordStrengthBar style={{ marginLeft: 25, width: 335 }} password={formikProps.values.password} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={8} shortScoreWord={['Muito curta']}/>
+          <PasswordStrengthBar style={{ marginLeft: 25, width: 335 }} password={formikProps.values.password} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={6} shortScoreWord={['Muito curta']}/>
           {formikProps.errors.password && formikProps.touched.password 
             ? (<TextDanger marginLeft='25px'>{formikProps.errors.password}</TextDanger>) 
             : null

@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IAuthContext } from "../../model/TypesDTO";
+import { IAuthContext } from "../../model/AuthDTO";
 import { Div, Nav, Li, Ul, ItemMenu } from "./Dropdown.styles";
 import { AuthContext } from "../../context/AuthContext";
 import { RiLockPasswordFill, RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";

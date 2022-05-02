@@ -1,12 +1,13 @@
 import { api } from '../api';
 import { LoginDTO } from "../model/LoginDTO";
-import { IAuthContext, IChangePasswordDTO } from "../model/TypesDTO";
+import { IAuthContext } from "../model/AuthDTO";
 import { useNavigate } from "react-router-dom";
 import { createContext, ReactElement, ReactNode, useEffect, useState } from "react";
 import { AxiosError } from 'axios';
 import handleError from '../utils/Error';
 import Notiflix, { Notify } from 'notiflix';
 import { Theme } from '../theme';
+import { IChangePasswordDTO } from '../model/ChangePasswordDTO';
 
 export const AuthContext = createContext<IAuthContext | null>(null);
 
@@ -60,8 +61,12 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
   }
 
   const changePassword = async (values: IChangePasswordDTO) => {
+    const valuesFormatted = {
+      newPassword: values.newPassword,
+      oldPassword: values.oldPassword
+    }
     try {
-      await api.put(`/user/update-password?newPassword=${values.newPassword}&oldPassword=${values.oldPassword}`)
+      await api.put(`/user/update-password?newPassword`, valuesFormatted)
       Notify.success('Senha alterada com sucesso!')
       navigate('/')
     } catch (error) {

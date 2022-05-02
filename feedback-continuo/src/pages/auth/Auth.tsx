@@ -2,7 +2,7 @@ import { Theme } from '../../theme';
 import { LoginDTO } from '../../model/LoginDTO';
 import { useFormik } from "formik";
 import { AuthContext } from "../../context/AuthContext";
-import { IAuthContext } from "../../model/TypesDTO";
+import { IAuthContext } from "../../model/AuthDTO";
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from "react";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";

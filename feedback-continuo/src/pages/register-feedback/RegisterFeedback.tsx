@@ -7,7 +7,7 @@ import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { FeedbackDTO } from "../../model/FeedbackDTO";
-import { IAuthContext } from "../../model/TypesDTO";
+import { IAuthContext } from "../../model/AuthDTO";
 import { FaUserSecret } from "react-icons/fa";
 import { ItemDTO, ListDTO } from "../../model/ListDTO";
 import { useContext, useEffect, useState } from "react";

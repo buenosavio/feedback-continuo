@@ -1,5 +1,5 @@
 import { Theme } from './theme';
-import { IPropsDTO } from './model/IProps.DTO'
+import { IPropsDTO } from './model/IPropsDTO'
 
 import styled from 'styled-components/'
 

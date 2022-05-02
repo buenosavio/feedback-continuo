@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Theme } from "../../theme";
-import {IPropsDTO} from "../../model/IProps.DTO"
+import {IPropsDTO} from "../../model/IPropsDTO"
 
 export const Nav = styled.nav<IPropsDTO>`
   outline: 0;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {IPropsDTO} from "../../model/IProps.DTO"
+import {IPropsDTO} from "../../model/IPropsDTO"
 
 export const TagList = styled.div`
   display: grid;
