@@ -3,10 +3,8 @@ import {Selectstyled} from '../../pages/register-feedback/RegisterFeedback.style
 export default ({ onChange, options, value }: any) => {
 
   const defaultValue = (options: any[], value:any ) => {
-    console.log(options)
     return options ? options.find(option => option.value === value) : "";
   };
-  
   return (      
     <Selectstyled
       value={defaultValue(options, value)}
