@@ -9,7 +9,7 @@ const handleError = (errorData: AxiosError) => {
         Notify.failure('Não é possível atribuir feedbacks a você mesmo.');
         break;
       case 'Email inválido ou já existente.':
-        Notify.failure('E-mail ou senha inválidos. Tente novamente!');
+        Notify.failure('E-mail já existente. Tente novamente!');
       break;
       case 'Senha fraca demais.':
         Notify.failure('Senha Fraca. Tente novamente!'); 
