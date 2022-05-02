@@ -1,10 +1,9 @@
 import { api } from "../../api";
-import { Container } from "../../Global.styles";
 import { AxiosError } from "axios"
 import { AuthContext } from "../../context/AuthContext";
 import { IAuthContext } from "../../model/AuthDTO";
-import { TitlePrincipal } from '../../Global.styles'
 import { FeedbacksDTO } from "../../model/FeedbackDTO";
+import { Container, TitlePrincipal } from "../../Global.styles";
 import { useContext, useEffect, useState } from "react";
 import { AiOutlineRightCircle, AiOutlineLeftCircle } from "react-icons/ai";
 
@@ -12,6 +11,7 @@ import {
   NavOptions,
   Pagination,
   PrincipalCard,
+  TitlePage,
 } from './Home.styles'
 
 import Tab from "../../components/tabs/Tab";
@@ -125,7 +125,7 @@ const Home = () => {
   return(
     <Container>
       <PrincipalCard>
-        <TitlePrincipal>Feedbacks</TitlePrincipal>
+        <TitlePage>Feedbacks</TitlePage>
         <Tabs>
           <Tab title="Recebidos">   
             <>

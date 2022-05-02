@@ -3,6 +3,14 @@ import { IPropsDTO } from './model/IPropsDTO'
 
 import styled from 'styled-components/'
 
+export const Container = styled.div<IPropsDTO>`
+  background: ${Theme.color.cinzaforte };
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+`;
+
 export const ContainerForm = styled.div`
   background: ${Theme.color.backgroundGradientBlur};
   backdrop-filter: blur(24px);
@@ -12,12 +20,12 @@ export const ContainerForm = styled.div`
   align-items: center;
 `;
 
-export const Container = styled.div<IPropsDTO>`
-  background: ${Theme.color.cinzaforte };
+export const ContainerCenter = styled.div<IPropsDTO>`
+  background: ${Theme.color.cinzaforte};
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: center;
 `;
 
 export const Form = styled.form<IPropsDTO>`
@@ -48,24 +56,6 @@ export const CardFormRegister = styled.div`
   height: ${Theme.Container.heightRegister};
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
   border-radius: ${Theme.fontSize.small}; ;
-  text-align: center;
-  align-items: center;
-`;
-
-export const CardHeader = styled.header`
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  background-color: ${Theme.color.branco};
-  overflow: hidden;
-  margin: auto;
-  width: ${Theme.Container.widhtRegister};
-  height: ${Theme.Container.heightRegister};
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
-  border-radius: ${Theme.fontSize.extraSmall};
   text-align: center;
   align-items: center;
 `;

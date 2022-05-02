@@ -1,12 +1,12 @@
-import { Container, TitlePrincipal } from "../../Global.styles"
+import { ContainerCenter, TitlePrincipal } from "../../Global.styles"
 import imgLoading from '../../images/loading.gif'
 
 const Loadingg = () => {
   return (
-    <Container>
+    <ContainerCenter>
       <img src={imgLoading} alt="Logo de carregamento do sistema" />
       <TitlePrincipal>Loading....</TitlePrincipal>
-    </Container>
+    </ContainerCenter>
   )
 }
 
