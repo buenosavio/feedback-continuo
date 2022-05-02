@@ -1,5 +1,4 @@
 import { Container, TitlePrincipal } from "../../Global.styles"
-import { Theme } from "../../theme"
 import imgLoading from '../../images/loading.gif'
 
 const Loadingg = () => {

@@ -9,16 +9,16 @@ import { useContext, useEffect, useState } from "react";
 import { AiOutlineRightCircle, AiOutlineLeftCircle } from "react-icons/ai";
 
 import {
-  Menualign,
+  NavOptions,
   Pagination,
-  PaginationDiv,
+  PrincipalCard,
 } from './Home.styles'
 
-import Tabs from '../../components/tabs'
 import Tab from "../../components/tabs/Tab";
-import Loading from "../../components/loading/Loading";
-import Error from "../../components/error/Error";
+import Tabs from '../../components/tabs'
 import Card from "../../components/cards/Card";
+import Error from "../../components/error/Error";
+import Loading from "../../components/loading/Loading";
 import handleError from '../../utils/Error'
 import FirstLetterUppercase from "../../utils/FirstLetterUppercase";
 
@@ -124,7 +124,7 @@ const Home = () => {
 
   return(
     <Container>
-      <Menualign>
+      <PrincipalCard>
         <TitlePrincipal>Feedbacks</TitlePrincipal>
         <Tabs>
           <Tab title="Recebidos">   
@@ -135,9 +135,11 @@ const Home = () => {
                     <Card key={feedback.feedbackId} profileUserImage={feedback.profileUserImage ? `data:image/png;base64,${feedback.profileUserImage}` : DEFAULT_IMAGE} userName={FirstLetterUppercase(feedback.userName)} message={feedback.message} tags={formatTags(feedback.tags)} createdAt={feedback.createdAt}/>                
                   )) 
                 : <TitlePrincipal>Nenhum feedback recebido!</TitlePrincipal> 
-              : null}     
-              <Pagination disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}>Anterior<AiOutlineLeftCircle size={30}/></Pagination> 
-              <Pagination disabled={btnDisabledReceived} onClick={() => nextPageReceived()}><AiOutlineRightCircle size={30}/>Mais</Pagination>
+              : null}  
+              <NavOptions>
+              <Pagination disabled={btnDisabledReceivedPrevious} onClick={() => previousPageReceived()}><AiOutlineLeftCircle size={30}/></Pagination> 
+              <Pagination disabled={btnDisabledReceived} onClick={() => nextPageReceived()}><AiOutlineRightCircle size={30}/></Pagination>
+              </NavOptions>   
             </>   
           </Tab>
           <Tab title="Enviados">        
@@ -149,14 +151,14 @@ const Home = () => {
                   ))
                 : <TitlePrincipal>Nenhum feedback enviado!</TitlePrincipal>
               : null}
-              <PaginationDiv>
-                <Pagination disabled={btnDisabledGivedPrevious} onClick={() => previousPageGived()}>Anterior<AiOutlineLeftCircle size={30}/></Pagination>
-                <Pagination disabled={btnDisabledGived} onClick={() => nextPageGived()}><AiOutlineRightCircle size={30}/>Mais</Pagination>
-              </PaginationDiv>        
+              <NavOptions>
+                <Pagination disabled={btnDisabledGivedPrevious} onClick={() => previousPageGived()}><AiOutlineLeftCircle size={30}/></Pagination>
+                <Pagination disabled={btnDisabledGived} onClick={() => nextPageGived()}><AiOutlineRightCircle size={30}/></Pagination>
+              </NavOptions>
             </>
           </Tab>
         </Tabs>           
-      </Menualign>
+      </PrincipalCard>
     </Container>    
   )
 }

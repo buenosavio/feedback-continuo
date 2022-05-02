@@ -1,54 +1,33 @@
 import { FC } from 'react'
 import moment from "moment";
+import { cardDTO } from '../../model/CardDTO';
 import {
   Tag,
   Image,
-  DivCard,
   CardName,
   CardText,
   CardBody,
+  TextDate,
   CardTags,
-  CardData,
-  TextFooter,
-  GlobalCard,
-  CardContainer,
+  MiddleCard,
 } from './Card.styled'
 
-type cardDTO = {
-  message: string,
-  profileUserImage: string,
-  tags: string,
-  userName: string,
-  createdAt: string
-}
-
-  const Card : FC<cardDTO> = ({message,profileUserImage,tags,userName,createdAt,}) => {
+  const Card : FC<cardDTO> = ({message,profileUserImage,tags,userName,createdAt,feedbackId}) => {
   return (
-    <GlobalCard>   
-      <CardContainer>
-        <CardBody>
-          <Image src={profileUserImage} alt="" width="80px" height="80px"/>
-          <DivCard>
-          <CardName>
-              {userName}
-            </CardName>
-          <CardText>
-            {message}
-          </CardText>
+    <CardBody>
+      <Image src={profileUserImage} alt="" width="80px" height="80px"/>
+      <MiddleCard>
+        <div>
+          <CardName>{userName} <TextDate>enviado em {moment(createdAt).format('DD/MM/YYYY hh:mm')}</TextDate></CardName>
+          <CardText>{message}</CardText>              
           <CardTags>
             {tags.split('#').slice(1).map((tag:string | boolean) =>(             
               <Tag> #{tag} </Tag>
             ))}
-          </CardTags>
-          <CardData>
-            <TextFooter>
-            Enviado em : {moment(createdAt).format('DD / MM / YYYY')}
-            </TextFooter>
-          </CardData>
-          </DivCard>  
-        </CardBody>
-      </CardContainer>
-    </GlobalCard>
+          </CardTags>          
+        </div>
+      </MiddleCard>  
+    </CardBody>
   )
 }
 

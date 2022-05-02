@@ -1,5 +1,4 @@
 import { Container, TitlePrincipal } from '../../Global.styles'
-import { Theme } from '../../theme'
 import imgError from '../../images/error.gif'
 
 const Error = () => {

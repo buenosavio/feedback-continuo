@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import { Theme } from "../../theme";
-
-interface IProps {
-  checked?: boolean;
-}
+import {IPropsDTO} from "../../model/IProps.DTO"
 
 export const TagList = styled.div`
   display: grid;
@@ -13,7 +9,7 @@ export const TagList = styled.div`
   justify-content: center;
 `;
 
-export const CheckboxContainer = styled.div<IProps>`  
+export const CheckboxContainer = styled.div<IPropsDTO>`  
   width: 100px;
   height: 35px;
   padding-left: 5px;
@@ -31,7 +27,7 @@ export const HiddenCheckbox = styled.input.attrs({type: 'checkbox'})`
   padding: 0;
 
 `;
-export const Text = styled.label<IProps>`
+export const Text = styled.label<IPropsDTO>`
   color: ${props => props.checked ? '#FFF' : '#555'} ;   
 
 `;
