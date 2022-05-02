@@ -18,7 +18,7 @@ import {
       <Image src={profileUserImage} alt="" width="80px" height="80px"/>
       <MiddleCard>
         <div>
-          <CardName>{userName} <TextDate>enviado em {moment(createdAt).format('DD/MM/YYYY hh:mm')}</TextDate></CardName>
+          <CardName>{userName} <TextDate>enviado em {moment(createdAt).format('DD/MM/YYYY hh:mm a')}</TextDate></CardName>
           <CardText>{message}</CardText>              
           <CardTags>
             {tags.split('#').slice(1).map((tag:string | boolean) =>(             
