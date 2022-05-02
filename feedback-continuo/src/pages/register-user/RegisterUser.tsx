@@ -7,7 +7,7 @@ import { AxiosError } from "axios";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom";
-import {  ContainerForm, FlexButton, Form, InsertImage, TextDanger } from "../../Global.styles";
+import { ContainerForm, FlexButton, Form, InsertImage, TextDanger } from "../../Global.styles";
 import {
   Input,
   MinorButton,
@@ -51,7 +51,7 @@ const RegisterUser = () => {
   const [eyeON, setEyeOn] = useState(true);
   const [eyeForm, setEyeForm] = useState(true);
   const [baseImage, setBaseImage] = useState<any>(DEFAULT_IMAGE);
-  const [profileImage, setProfileImage] = useState<any>(DEFAULT_IMAGE);
+  const [profileImage, setProfileImage] = useState<string>(DEFAULT_IMAGE);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const navigate = useNavigate();

@@ -5,7 +5,6 @@ export default ({ onChange, options, value }: any) => {
   const defaultValue = (options: any[], value:any ) => {
     return options ? options.find(option => option.value === value) : "";
   };
-
   return (      
     <Selectstyled
       value={defaultValue(options, value)}

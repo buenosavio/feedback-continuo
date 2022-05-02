@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { CheckboxContainer, HiddenCheckbox, StyledCheckbox, Text } from "./Checkbox.styles";
 
-const Checkbox = ({children, ...props}: any) => {
-  
+const Checkbox = ({children, ...props}: any) =>{
+
   const [checked, setChecked] = useState(false);
    
    const  handleCheckboxChange = () => {
