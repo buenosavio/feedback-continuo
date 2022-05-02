@@ -34,7 +34,7 @@ const RegisterFeedback = () => {
   const [tags, setTags] = useState<ListDTO>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const [selectedTags, setSelectedTags] = useState<any>([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const navigate = useNavigate();
   
   useEffect(() => {

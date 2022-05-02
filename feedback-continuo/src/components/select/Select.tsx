@@ -1,19 +1,9 @@
 import Option from "./Option";
+import {ListDTO,ItemDTO} from "../../model/SelectDTO"
 
-interface ListDTO {    
-  map(arg0: (user: ItemDTO) => JSX.Element): React.ReactNode;
-  list: ItemDTO[] 
-}
-
-interface ItemDTO {
-  name: string,
-  id: string,
-  tagId?: string,
-  userId?: string
-}
-
-const Select = ({list, id, nome}: any) => {
+const Select = ({list}: ListDTO) => {
   return (
+    
     <select>
       <option value=""></option>
       { list 

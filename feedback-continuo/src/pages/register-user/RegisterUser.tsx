@@ -50,12 +50,11 @@ const RegisterUser = () => {
   const [eyeON, setEyeOn] = useState(true);
   const [eyeForm, setEyeForm] = useState(true);
   const [baseImage, setBaseImage] = useState<any>(DEFAULT_IMAGE);
-  const [profileImage, setProfileImage] = useState<any>(DEFAULT_IMAGE);
+  const [profileImage, setProfileImage] = useState<string>(DEFAULT_IMAGE);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const navigate = useNavigate();
   const formData = new FormData();
-
   const registerUser = async (values: UserDTO) => {
     setLoading(true)
     formData.append('name', FirstLetterUppercase(values.name));
