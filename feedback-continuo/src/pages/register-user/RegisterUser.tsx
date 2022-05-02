@@ -1,7 +1,7 @@
 import { api } from "../../api";
 import { Theme } from "../../theme";
 import { UserDTO } from "../../model/UserDTO";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { AxiosError } from "axios";
 import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
@@ -47,6 +47,7 @@ const RegisterUser = () => {
       .required('Obrigatório')
       .oneOf([Yup.ref('password')], 'A senha deve ser igual')      
   });
+
   const [eyeON, setEyeOn] = useState(true);
   const [eyeForm, setEyeForm] = useState(true);
   const [baseImage, setBaseImage] = useState<any>(DEFAULT_IMAGE);
@@ -55,6 +56,10 @@ const RegisterUser = () => {
   const [error, setError] = useState<boolean>(false);
   const navigate = useNavigate();
   const formData = new FormData();
+
+  useEffect(() => {
+    localStorage.removeItem('token')
+  },[])
 
   const registerUser = async (values: UserDTO) => {
     setLoading(true)
