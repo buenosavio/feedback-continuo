@@ -92,8 +92,8 @@ const ChangePassword = () => {
             }             
           </Senha>          
           <FlexButton widht="400px" top="89%">
-            <MinorButton onClick={() => navigate('/')} marginLeft={'40px'} type="button" backgroundColor={Theme.color.CinzaMedio}>Voltar</MinorButton>
-            <MinorButton marginLeft={'-20px'} type="submit" backgroundColor={Theme.color.Azulclaro}>Atualizar</MinorButton>   
+            <MinorButton onClick={() => navigate('/')} marginLeft={'40px'} type="button" backgroundColor={Theme.color.GreyDark}>Voltar</MinorButton>
+            <MinorButton marginLeft={'-20px'} type="submit" backgroundColor={Theme.color.BlueClear}>Atualizar</MinorButton>   
           </FlexButton>
         </Form>
       </CardForm>

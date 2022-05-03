@@ -4,7 +4,7 @@ import { IPropsDTO } from './model/IPropsDTO'
 import styled from 'styled-components/'
 
 export const Container = styled.div<IPropsDTO>`
-  background: ${Theme.color.cinzaforte };
+  background: ${Theme.color.GreyClear};
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@ export const Container = styled.div<IPropsDTO>`
 `;
 
 export const ContainerForm = styled.div`
-  background: ${Theme.color.backgroundGradientBlur};
+  background: ${Theme.color.BackgroundGradientBlur};
   backdrop-filter: blur(24px);
   min-height: 100vh;
   display: flex;
@@ -21,7 +21,7 @@ export const ContainerForm = styled.div`
 `;
 
 export const ContainerCenter = styled.div<IPropsDTO>`
-  background: ${Theme.color.cinzaforte};
+  background: ${Theme.color.GreyClear};
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -49,7 +49,7 @@ export const CardForm = styled.div<IPropsDTO>`
 `;
 
 export const CardFormRegister = styled.div`
-  background-color:  ${Theme.color.branco};
+  background-color:  ${Theme.color.White};
   overflow: hidden;
   margin: auto;
   width: ${Theme.Container.widhtRegister};
@@ -65,7 +65,7 @@ export const TextDanger = styled.p<IPropsDTO>`
   margin-left: ${props => props.marginLeft || '20px'};	
   padding: 0;
   font-size: 14px;
-  color: ${Theme.color.vermelhoWarning};
+  color: ${Theme.color.RedWarning};
   font-weight: bolder;
   width: 100%;
   text-align: start;
@@ -116,9 +116,9 @@ export const MinorButton = styled.button<IPropsDTO>`
   align-items: center;
   text-align: center;
   font-size: 15px;
-  color: ${Theme.color.branco};
+  color: ${Theme.color.White};
   margin-left: ${props => props.marginLeft || 0};
-  color: ${(props) => Theme.color.branco};
+  color: ${(props) => Theme.color.White};
   background-color: ${props => props.backgroundColor} ;
   font-weight: 500;
   border: 0;
@@ -166,7 +166,7 @@ export const Input = styled.input<IPropsDTO>`
         box-shadow: 0 0 0 0;
         outline: 0;
         transition: 2s;    
-        border: 1px solid ${Theme.color.Azulclaro};
+        border: 1px solid ${Theme.color.BlueClear};
     }
 `;
 export const InsertImage = styled.label<IPropsDTO>`

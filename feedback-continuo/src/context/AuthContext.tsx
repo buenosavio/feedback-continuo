@@ -55,7 +55,7 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
         fontFamily: 'Roboto',
         titleColor: 'black',
         okButtonBackground: '#858282cc',
-        cancelButtonBackground: Theme.color.Azulclaro,        
+        cancelButtonBackground: Theme.color.BlueClear,        
       },
     );    
   }

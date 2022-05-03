@@ -186,8 +186,8 @@ const RegisterFeedback = () => {
             <FaUserSecret size={25}/>          
           </FlexComponent>      
           <FlexButton>
-            <MinorButton marginLeft={'80px'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/')}>Voltar</MinorButton>    
-            <MinorButton backgroundColor={Theme.color.Azulclaro} type="submit">Registrar</MinorButton>    
+            <MinorButton marginLeft={'80px'} backgroundColor={Theme.color.GreyDark} onClick={() => navigate('/')}>Voltar</MinorButton>    
+            <MinorButton backgroundColor={Theme.color.BlueClear} type="submit">Registrar</MinorButton>    
           </FlexButton>
         </Form>      
       </CardForm>

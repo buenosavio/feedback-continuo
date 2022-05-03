@@ -26,11 +26,11 @@ export const Div = styled.div`
 `;
 
 export const Ul = styled.ul`
-  background:${Theme.color.primaryDark}; 
+  background:${Theme.color.Secondary}; 
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   border-top-left-radius: 8px;
-  border: 1px solid ${Theme.color.primary};
+  border: 1px solid ${Theme.color.Primary};
   width: 85%;
 `
 
@@ -42,7 +42,7 @@ export const Li = styled.li`
   width: 250px;
   font-size: 20px;
   color: white;  
-  background-color: ${Theme.color.primary}; ;
+  background-color: ${Theme.color.Primary}; ;
   border-radius: 5px;
   padding: 5px;
   display: flex;

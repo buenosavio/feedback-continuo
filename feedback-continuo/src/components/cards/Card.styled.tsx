@@ -55,7 +55,7 @@ export const TextDate = styled.span`
 `;
 
 export const Tag = styled.p`
-  background: ${Theme.color.primaryClear};
+  background: ${Theme.color.PrimaryClear};
   margin-right: 5px ;
   border-radius: 20px;
   padding: 5px;

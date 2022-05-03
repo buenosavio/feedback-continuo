@@ -31,7 +31,7 @@ const ForgetPassword = () => {
         backOverlayColor: 'rgba(0,0,0,0.5)',
         success: {
           svgColor: '#32c682',            
-          buttonBackground: Theme.color.Azulclaro,                      
+          buttonBackground: Theme.color.BlueClear,                      
         },            
       }
       );
@@ -70,8 +70,8 @@ const ForgetPassword = () => {
             }    
 
           <FlexButton widht="380px" marginLeft="4%" top="80%">
-            <MinorButton marginLeft="5px" color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
-            <MinorButton color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Recuperar</MinorButton>    
+            <MinorButton marginLeft="5px" color={'white'} backgroundColor={Theme.color.GreyDark} onClick={() => navigate('/login')}>Voltar</MinorButton>
+            <MinorButton color={'white'} backgroundColor={Theme.color.BlueClear} type="submit">Recuperar</MinorButton>    
           </FlexButton>
           </Form>
       </CardForm>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Theme } from "../../theme";
 
 export const HeaderComponent = styled.header`
-  background: ${Theme.color.backgroundGradient};
+  background: ${Theme.color.BackgroundGradient};
 `;
 
 export const UserText = styled.p`

@@ -28,13 +28,13 @@ export const TextArea = styled.textarea`
   height: 150px;
   border-radius: 5px;
   font-size: 14px;
-  background: ${Theme.color.branco};
+  background: ${Theme.color.White};
   outline: none;
   resize: none;
   margin: 0 20px 20px 20px;
   border: 1px solid #d1d1d1;
   &:focus {
-    border: 1px solid ${Theme.color.Azulclaro};
+    border: 1px solid ${Theme.color.BlueClear};
   } 
 `;
 
@@ -50,7 +50,7 @@ export const Selectstyled = styled(Select)`
   :focus {
     box-shadow: 0 0 0 0;
     outline: 0;
-    border: 1px solid ${Theme.color.Azulclaro};   
+    border: 1px solid ${Theme.color.BlueClear};   
   }
 `;
 

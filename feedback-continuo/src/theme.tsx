@@ -1,21 +1,15 @@
 export const Theme = {
   color:{
-    primary: 'rgb(6, 44, 168)',
-    primaryClear: 'rgb(98, 123, 206)',
-    primaryDark: 'rgb(0, 21, 96)',
-    secondary: '#78b454',
-    AzulForte: 'linear-gradient(rgb(0, 27, 116) 0%, rgb(0, 21, 96) 100%)', //(header e footer),
-    Azulmeioforte: '#0337A4',
-    Azulclaro: '#0166FE', //(botao),
-    Azulmuitoclaro: '#FEFEFE',
-    cinzaforte: '#DEDFE1',
-    CinzaFraco: ' #EBEFF8', //(cor de fundo de todo o sistema)
-    CinzaMedio: '#878788',
-    branco: '#FFFFFF',
-    vermelhoWarning:'#E73532', //(erros, etc)
-    background: '#363740',
-    backgroundGradient: 'linear-gradient(rgb(6, 44, 168) 0%, rgb(0, 21, 96) 100%)',
-    backgroundGradientBlur: 'linear-gradient(rgb(0, 21, 96) 0%, rgb(255, 255, 255) 120%)',
+    Primary: 'rgb(6, 44, 168)',
+    PrimaryClear: 'rgb(98, 123, 206)',
+    Secondary: 'rgb(0, 21, 96)',
+    RedWarning:'#E73532', //(erros, etc)
+    BlueClear: '#0166FE', //botao ok,
+    GreyDark: '#878788', //botao voltar
+    GreyClear: '#DEDFE1', //Container background color
+    White: '#FFFFFF',
+    BackgroundGradient: 'linear-gradient(rgb(6, 44, 168) 0%, rgb(0, 21, 96) 100%)', //(header e footer)
+    BackgroundGradientBlur: 'linear-gradient(rgb(0, 21, 96) 0%, rgb(255, 255, 255) 120%)', //background login
   },
   fontSize:{
     extraSmall: '10px',

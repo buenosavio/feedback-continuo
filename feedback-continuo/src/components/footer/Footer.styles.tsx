@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Theme } from "../../theme";
 
 export const FooterComponent = styled.header`
-  background: ${Theme.color.backgroundGradient};  
+  background: ${Theme.color.BackgroundGradient};  
   text-align: center;
 `;
 

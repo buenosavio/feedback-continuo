@@ -172,8 +172,8 @@ const RegisterUser = () => {
           }   
             </Senha>
           <FlexButton widht="380px" marginLeft="4%" top="93%">
-            <MinorButton fontSize={Theme.fontSize.medium} color={'white'} backgroundColor={Theme.color.CinzaMedio} onClick={() => navigate('/login')}>Voltar</MinorButton>
-            <MinorButton fontSize={Theme.fontSize.large} color={'white'} backgroundColor={Theme.color.Azulclaro} type="submit">Cadastrar</MinorButton>    
+            <MinorButton fontSize={Theme.fontSize.medium} color={'white'} backgroundColor={Theme.color.GreyDark} onClick={() => navigate('/login')}>Voltar</MinorButton>
+            <MinorButton fontSize={Theme.fontSize.large} color={'white'} backgroundColor={Theme.color.BlueClear} type="submit">Cadastrar</MinorButton>    
           </FlexButton>
         </Form>
       </CardForm>

@@ -92,7 +92,7 @@ const Auth = () => {
           </Senha>      
 
           <RegisterForm>            
-            <MinorButton type='submit' backgroundColor={Theme.color.Azulclaro} marginLeft={'115px'}>Login</MinorButton>
+            <MinorButton type='submit' backgroundColor={Theme.color.BlueClear} marginLeft={'115px'}>Login</MinorButton>
           </RegisterForm>    
         </Form>
         <RegisterForm>

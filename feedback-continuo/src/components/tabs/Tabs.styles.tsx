@@ -17,7 +17,7 @@ export const ButtonTab = styled.button<IPropsDTO>`
 }
 &:focus{
   box-shadow: 0 0 0 2px rgba(0, 0, 255, .5);
-  background: ${Theme.color.Azulclaro};
+  background: ${Theme.color.BlueClear};
   color: white;
   border: 0;
   cursor: pointer;
