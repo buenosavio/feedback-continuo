@@ -1,13 +1,13 @@
 import { api } from '../api';
-import { LoginDTO } from "../model/LoginDTO";
-import { IAuthContext } from "../model/AuthDTO";
-import { useNavigate } from "react-router-dom";
-import { createContext, ReactElement, ReactNode, useEffect, useState } from "react";
-import { AxiosError } from 'axios';
-import handleError from '../utils/Error';
-import Notiflix, { Notify } from 'notiflix';
 import { Theme } from '../theme';
+import { LoginDTO } from "../model/LoginDTO";
+import { AxiosError } from 'axios';
+import { handleError } from '../utils';
+import { useNavigate } from "react-router-dom";
+import { IAuthContext } from "../model/AuthDTO";
 import { IChangePasswordDTO } from '../model/ChangePasswordDTO';
+import { createContext, ReactElement, ReactNode, useEffect, useState } from "react";
+import Notiflix, { Notify } from 'notiflix';
 
 export const AuthContext = createContext<IAuthContext | null>(null);
 
@@ -46,8 +46,8 @@ const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
         setLoginOn(false);
         navigate('/login')
       },
-      function cancelCb() {
-        //nao faz nada
+      function cancelCb() { 
+        return     
       },
       {
         width: '320px',

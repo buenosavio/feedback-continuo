@@ -7,6 +7,7 @@ import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { FeedbackDTO } from "../../model/FeedbackDTO";
+import { handleError } from "../../utils";
 import { IAuthContext } from "../../model/AuthDTO";
 import { FaUserSecret } from "react-icons/fa";
 import { ItemDTO, ListDTO } from "../../model/ListDTO";
@@ -18,7 +19,6 @@ import * as Yup from 'yup'
 import Error from "../../components/error/Error";
 import Loading from "../../components/loading/Loading";
 import Checkbox from "../../components/checkbox/Checkbox";
-import handleError from "../../utils/Error";
 import SelectFinder from "../../components/select/SelectFinder";
 
 const RegisterFeedback = () => {

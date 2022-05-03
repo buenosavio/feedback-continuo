@@ -11,8 +11,7 @@ import { useContext, useEffect, useState } from "react";
 import Error from "../error/Error";
 import Loading from "../loading/Loading";
 import Dropdown from "../dropdown/Dropdown";
-import handleError from '../../utils/Error'
-import FirstLetterUppercase from "../../utils/FirstLetterUppercase";
+import { FirstLetterUppercase, handleError } from "../../utils";
 
 const Header = () => {
 

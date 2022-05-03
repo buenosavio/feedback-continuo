@@ -4,10 +4,11 @@ import { Report } from "notiflix";
 import { useFormik } from "formik";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import { handleError } from "../../utils";
 import { CardForm, ContainerForm, Form, Input, MinorButton, TextDanger, TitleForm, TitlePrincipal, FlexButton } from "../../Global.styles";
 
 import * as Yup from "yup";
-import handleError from "../../utils/Error";
+
 
 const ForgetPassword = () => {
 
