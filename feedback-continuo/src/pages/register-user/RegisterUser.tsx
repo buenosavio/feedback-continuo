@@ -47,8 +47,8 @@ const RegisterUser = () => {
       .oneOf([Yup.ref('password')], 'A senha deve ser igual')      
   });
 
-  const [eyeON, setEyeOn] = useState(true);
-  const [eyeForm, setEyeForm] = useState(true);
+  const [newPwdEyeOn, setNewPwdEyeOn] = useState(true);
+  const [confirmPwdEyeOn, setConfirmPwdEyeOn] = useState(true);
   const [baseImage, setBaseImage] = useState<any>(DEFAULT_IMAGE);
   const [profileImage, setProfileImage] = useState<string>(DEFAULT_IMAGE);
   const [loading, setLoading] = useState<boolean>(false);
@@ -141,13 +141,13 @@ const RegisterUser = () => {
 
           <TitleForm htmlFor="password">Senha</TitleForm>
           <Senha>
-          <Input placeholder='Digite sua senha' id="password" name="password" type ={eyeON? "password" : "text"}
+          <Input placeholder='Digite sua senha' id="password" name="password" type ={newPwdEyeOn? "password" : "text"}
             onChange={formikProps.handleChange}
             value={formikProps.values.password}
             onBlur={formikProps.handleBlur}
           />
             <MostrarSenha>
-              <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
+              <ShowPassword onClick={() => setNewPwdEyeOn(!newPwdEyeOn)}>{newPwdEyeOn ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
             </MostrarSenha>
           <PasswordStrengthBar style={{ marginLeft: 25, width: 335 }} password={formikProps.values.password} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={6} shortScoreWord={['Muito curta']}/>
           {formikProps.errors.password && formikProps.touched.password 
@@ -157,13 +157,13 @@ const RegisterUser = () => {
         </Senha>
           <TitleForm htmlFor="confirm_password">Repita sua senha</TitleForm>
           <Senha>
-          <Input placeholder="Confirme a senha" id="confirm_password" name="confirm_password" type ={eyeForm? "password" : "text"}
+          <Input placeholder="Confirme a senha" id="confirm_password" name="confirm_password" type ={confirmPwdEyeOn? "password" : "text"}
             onChange={formikProps.handleChange}
             value={formikProps.values.confirm_password}
             onBlur={formikProps.handleBlur}
           />
            <MostrarSenha>
-              <ShowPassword onClick={() => setEyeForm(!eyeForm)}>{eyeForm ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
+              <ShowPassword onClick={() => setConfirmPwdEyeOn(!confirmPwdEyeOn)}>{confirmPwdEyeOn ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
             </MostrarSenha>
           {formikProps.errors.confirm_password && formikProps.touched.confirm_password 
             ? (<TextDanger marginLeft='25px'>{formikProps.errors.confirm_password}</TextDanger>) 

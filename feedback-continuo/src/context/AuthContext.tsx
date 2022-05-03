@@ -14,9 +14,9 @@ export const AuthContext = createContext<IAuthContext | null>(null);
 const AuthProvider = ({ children }: {children: ReactNode}): ReactElement => {
 
   const [token, setToken] = useState<string>('');
-  const navigate = useNavigate();
   const [loginOn, setLoginOn] = useState(false);
   const [loginOff, setLoginOff] = useState(true);
+  const navigate = useNavigate();
   
   const handleLogin = async (values: LoginDTO) => {
     try {

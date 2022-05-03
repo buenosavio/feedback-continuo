@@ -23,9 +23,9 @@ const ChangePassword = () => {
       .oneOf([Yup.ref('newPassword')], 'A senha deve ser igual') ,
   });
 
-  const [eyeON, setEyeOn] = useState(true);
-  const [eyeONN, setEyeOnn] = useState(true);
-  const [eyesON, setEyesOn] = useState(true);
+  const [oldPwdEyeOn, setOldPwdEyeOn] = useState(true);
+  const [newPwdEyeOn, setNewPwdEyeOn] = useState(true);
+  const [confirmPwdEyeOn, setConfirmPwdEyeOn] = useState(true);
   const {changePassword} = useContext(AuthContext) as IAuthContext  
   const navigate = useNavigate()
 
@@ -47,13 +47,13 @@ const ChangePassword = () => {
         <Form onSubmit={formikProps.handleSubmit}>          
           <TitleForm htmlFor="oldPassword">Digite a senha antiga</TitleForm>
           <Senha>
-            <Input id="oldPassword" name="oldPassword" type ={eyeON? "password" : "text"}
+            <Input id="oldPassword" name="oldPassword" type ={oldPwdEyeOn? "password" : "text"}
               onChange={formikProps.handleChange}
               value={formikProps.values.oldPassword}
               onBlur={formikProps.handleBlur}
             />   
             <MostrarSenha>
-              <ShowPassword onClick={() => setEyeOn(!eyeON)}>{eyeON ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
+              <ShowPassword onClick={() => setOldPwdEyeOn(!oldPwdEyeOn)}>{oldPwdEyeOn ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
             </MostrarSenha>                       
             {formikProps.errors.oldPassword && formikProps.touched.oldPassword 
               ? (<TextDanger marginLeft='25px'>{formikProps.errors.oldPassword}</TextDanger>) 
@@ -62,13 +62,13 @@ const ChangePassword = () => {
           </Senha>
           <TitleForm htmlFor="newPassword">Digite a nova senha</TitleForm>
           <Senha>
-            <Input id="newPassword" name="newPassword" type ={eyeONN? "password" : "text"}
+            <Input id="newPassword" name="newPassword" type ={newPwdEyeOn? "password" : "text"}
               onChange={formikProps.handleChange}
               value={formikProps.values.newPassword}
               onBlur={formikProps.handleBlur}
             />       
             <MostrarSenha>
-              <ShowPassword onClick={() => setEyeOnn(!eyeONN)}>{eyeONN ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
+              <ShowPassword onClick={() => setNewPwdEyeOn(!newPwdEyeOn)}>{newPwdEyeOn ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
             </MostrarSenha>     
             <PasswordStrengthBar style={{ marginLeft: 25, width: 350 }} password={formikProps.values.newPassword} scoreWords={['Fraca', 'Suficiente', 'Bom', 'Forte', 'Excelente']} minLength={6} shortScoreWord={['Muito curta']}/>
             {formikProps.errors.newPassword && formikProps.touched.newPassword 
@@ -78,13 +78,13 @@ const ChangePassword = () => {
           </Senha>
           <TitleForm htmlFor="confirmPassword">Confirme a nova senha</TitleForm>
           <Senha>
-            <Input id="confirmPassword" name="confirmPassword" type ={eyesON? "password" : "text"}
+            <Input id="confirmPassword" name="confirmPassword" type ={confirmPwdEyeOn? "password" : "text"}
               onChange={formikProps.handleChange}
               value={formikProps.values.confirmPassword}
               onBlur={formikProps.handleBlur}
             />
             <MostrarSenha>
-              <ShowPassword onClick={() => setEyesOn(!eyesON)}>{eyesON ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
+              <ShowPassword onClick={() => setConfirmPwdEyeOn(!confirmPwdEyeOn)}>{confirmPwdEyeOn ? < AiOutlineEye size={25}/> : < AiOutlineEyeInvisible size={25}/>}</ShowPassword>
             </MostrarSenha> 
             {formikProps.errors.confirmPassword && formikProps.touched.confirmPassword 
             ? (<TextDanger marginLeft='25px'>{formikProps.errors.confirmPassword}</TextDanger>) 
